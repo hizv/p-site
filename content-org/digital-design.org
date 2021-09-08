@@ -1,0 +1,39 @@
+#+title: Digital Design
+#+author: Himanish
+
+#+hugo_section: notes
+#+hugo_categories: electronics
+#+hugo_menu: :menu "main" :weight 2001
+
+#+startup: content
+
+#+hugo_base_dir: ../
+#+hugo_section: ./
+
+#+seq_todo: NEED__TO__UNDERSTAND | DONE
+#+seq_todo: TO__BE__FIXED | FIXED
+
+#+hugo_weight: auto
+#+hugo_auto_set_lastmod: t
+#+hugo_custom_front_matter: :mathjax t
+
+|-------------------------+----------|
+| Analog                  | Digital  |
+|-------------------------+----------|
+| Continuous              | Discrete |
+| Proportional Quantities | Digits   |
+|-------------------------+----------|
+
+* Digital
+** Advantages
+- Easier to design, using switching circuits (only *HIGH* and *LOW*)
+- Storage
+- Accuracy and precision
+- Programmable
+- Less affected by noise
+
+** Limitation
+Real world is mainly analog
+
+* Number Systems
+\(a_n\cdots a_0 . a_{-1}\cdots a_{-m}\)

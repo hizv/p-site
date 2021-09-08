@@ -1,0 +1,76 @@
+#+title: Electronic Devices
+#+author: Himanish
+
+#+hugo_section: notes
+#+hugo_categories: electronics
+#+hugo_menu: :menu "main" :weight 2001
+
+#+startup: content
+
+#+hugo_base_dir: ../
+#+hugo_section: ./
+
+#+seq_todo: NEED__TO__UNDERSTAND | DONE
+#+seq_todo: TO__BE__FIXED | FIXED
+
+#+hugo_weight: auto
+#+hugo_auto_set_lastmod: t
+#+hugo_custom_front_matter: :mathjax t
+
+* 3D Crystals
+| Property                   | Simple (sc)           | Body centered (bcc)         | Face centered (fcc)                          |
+|----------------------------+-----------------------+-----------------------------+----------------------------------------------|
+| Number of atoms            | \(8\cdot\frac{1}{8} = 1\) | \(8\cdot \frac{1}{8} + 1 = 2 \) | \(8 \cdot \frac{1}{8} +  6 \cdot \frac{1}{2} = 4  \) |
+| Nearest neighbour distance | \(a\)                 | \(\frac{\sqrt{3}a}{2}\)     | \(\frac{a}{\sqrt{2}}\)                       |
+
+** Miller Indices
+Three integers used to describe a plane.
+*** How to find
+1. Find intercepts of plane with crystal axes expressed in terms on basis vectors, e.g. 2 *a*, 4 *b*, 1 *c*
+2. Take reciprocals of these numbers: \(\frac{1}{2} \frac{1}{4} 1\)
+3. Reduce to integers and label as (/hkl/): (2 1 4)
+*** Notations
+1. If an intercept occurs on the negative branch of an axis, the minus sign is placed above the Miller index for convenience, such as \((h \overline{k} l)\).
+2. Many planes in a lattice are equivalent; that is, a plane with given Miller indices can be shifted about in the lattice simply by choice of the position and orientation of the unit cell. Such equivalent planes are denoted using {} instead of (). For example, the six equivalent faces of a cubic lattice are collectively designated as {100}.
+3. [] brackets are used for direction indices, e.g. the body diagonal of a cubic lattice can be designated [1 1 1]. <> is used for equivalent direction indices, e.g. all crystal axes [100], [010], [001] are denoted <100>.
+*** Useful relations
+1. The shortest distance d between two adjacent planes labeled (hkl) is given in terms of the lattice constant a as: \[ d = \frac{a}{\sqrt{h^2 + k^2 + l^2}} \]
+2. The angle u between two different Miller index directions is given by \(\cos \theta =\frac{h_{1} h_{2}+k_{1} k_{2}+l_{1} l_{2}}{(h_{1}^{2}+k_{1}^{2}+l_{1}^{2})^{1 / 2}(h_{2}^{2}+k_{2}^{2}+l_{2}^{2})^{1 / 2}}\)
+3. /The direction/ [\(hkl\)] /is perpendicular to the plane/ (\(hkl\))
+** Atomic Densities
+1. \[\text{Volume density} =\frac{\text{# atoms in cell}}{V_{cell}} \]
+2. \[\text{Areal density} =\frac{\text{# atoms in cell}}{SA_{cell}} \]
+# TODO Examples ({110}, {111})
+**  Diamond Lattice
+- The diamond structure can be thought of as an fcc lattice with an extra atom placed at a/4 + b/4 + c/4 from each of the fcc atoms. Thus, the original fcc has associated with it a second interpenetrating fcc displaced by 1/4 , 1/4 , 1/4.
+- Si-Ge form diamond like lattice
+- Si unit cell has 8 edge (red) atoms, 6 (green) face atoms and three atoms at the centers of smaller cubes forming a tetrahedral bonding. A total of \(N = \frac{1}{8} \cdot 8 + \frac{1}{2} \cdot 6 + 4 = 8 \) atoms per unit cell
+
+* Energy Bands and Charge Carriers
+# - The discrete energy levels of the isolated atom spread into bands of energies in a solid because in the solid the wavefunctions of electrons in neighboring atoms overlap, and an electron is not necessarily localized at a particular atom.
+# - In a metal the outer electron of each alkali atom is contributed to the crystal as a whole, so that the solid is made up of ions with closed shells immersed in a sea of free electrons, and these electrons are free to move about the crystal under the influence of an electric field.
+# - Fermion wavefunctions of a multi-electron system must be antisymmetric. When the spatial part is symmetric, the electron spins must be anti-parallel, and vice-versa (Pauli exclusion).
+- The upper band (called the conduction band) contains 4N states, as does the lower (valence) band. Thus, apart from the low-lying and tightly bound “core” levels, the silicon crystal has two bands of available energy levels separated by an energy gap \(E_g\) wide, which contains no allowed energy levels for electrons to occupy. This gap is sometimes called a “forbidden band,” since in a perfect crystal it contains no electron energy states.
+** Electrons and holes
+- Electrons (n) in conduction band and holes (p) in valence band contribute to current.
+- \(n \propto T\)
+- Holes are generally heavier than electrons (Effective mass)
+** Intrinsic semiconductors
+- \(n = p = n_i\)
+** Extrinsic Conductors
+| Substitute one Si atom with B        | Substitute one Si atom with P            |
+|--------------------------------------+------------------------------------------|
+| B: p-type dopant                     | P, As: n-type dopants                    |
+| # holes = # B atoms, \(p = N_A\)     | # electrons  = # P atoms,   \(n = N_D\)  |
+| hole rich \(\rightarrow\) p-type semiconductor | electron rich \(\rightarrow\) n-type semiconductor |
+** Fermi-Dirac Statistics
+ - Fundamental particles in nature have either integer spin and are called bosons (e.g. photons), or half-integer spin and are known as fermions (e.g. electrons).
+ - Fermions follow Fermi-Dirac statistics, thus probability of finding electron at any energy state E  is \[f(E) = \frac{1}{1+\text{exp}(\frac{E-E_F}{kT})} \] where \(k = 8.62 e\text{-}5 \quad \text{eV/K} = 1.38 \) J/K and \(kT = (\frac{T}{300})25.9\) meV
+ - Probability of finding a hole at energy E = \(1 - f(E)\)
+ - In a quantum mechanical system with many energy levels, the density of energy states per unit volume per unit energy is given by \[g(E)=\frac{4 \pi(2 m)^{3 / 2}}{h^{3}} \sqrt{E}\]
+ - The density of states in the conduction band \(E > E_c\)is given by \[g_{c}(E)=\frac{4 \pi\left(2 m_{n}^{*}\right)^{3 / 2}}{h^{3}} \sqrt{E-E_{c}}\]
+ - The density of states in the conduction band \(E < E_v\)is given by \[g_{v}(E)=\frac{4 \pi\left(2 m_{p}^{*}\right)^{3 / 2}}{h^{3}} \sqrt{E_{v}-E}\]
+ - The number of occupied states between energies E1 and E2 is given by \[ N = \int_{E_1}^{E_2} g(E)f(E)dE \]
+ - Thus, \[ \langle n \rangle = \int_{E_c}^{\infty} g_C(E)f(E)dE \]
+ - \[ \langle p \rangle= \int_{-\infty}^{E_v} g_v(E)f(E)dE \]
+ - For energies much greater than the Fermi energy (\(E-E_F \geq 3\) kT), the distribution function can be approximated as \( f(E) = \text{exp}(-\frac{E-E_F}{kT})\)
