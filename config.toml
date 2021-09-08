@@ -21,6 +21,25 @@ languageCode = 'en-us'
   tag = "tags"
   series = "series"
 
+[outputs]
+home = [ "HTML", "RSS", "REDIR", "HEADERS" ]
+
+[mediaTypes]
+[mediaTypes."text/netlify"]
+delimiter = ""
+
+[outputFormats]
+[outputFormats.REDIR]
+mediatype = "text/netlify"
+baseName = "_redirects"
+isPlainText = true
+notAlternative = true
+
+[outputFormats.HEADERS]
+mediatype = "text/netlify"
+baseName = "_headers"
+isPlainText = true
+notAlternative = true
 
 [Params]
   mainSections = ["posts", "notes"]

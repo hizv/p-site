@@ -1,7 +1,7 @@
 +++
 title = "Electronic Devices"
 author = ["Himanish"]
-lastmod = 2021-09-08T09:15:08+05:30
+lastmod = 2021-09-08T10:27:57+05:30
 categories = ["electronics"]
 draft = false
 mathjax = "t"
@@ -95,3 +95,12 @@ Three integers used to describe a plane.
 -   Thus, \\[ \langle n \rangle = \int\_{E\_c}^{\infty} g\_C(E)f(E)dE \\]
 -   \\[ \langle p \rangle= \int\_{-\infty}^{E\_v} g\_v(E)f(E)dE \\]
 -   For energies much greater than the Fermi energy (\\(E-E\_F \geq 3\\) kT), the distribution function can be approximated as \\( f(E) = \text{exp}(-\frac{E-E\_F}{kT})\\)
+
+
+### Fermi level at thermal equilibrium {#fermi-level-at-thermal-equilibrium}
+
+No discontinuity or gradient can arise in the equilibrium Fermi level \\(E\_F\\).
+
+-   Consider two materials in intimate contact such that electrons can move between the two.
+-   Rate of transfer of electrons from material 1 to 2 \\(\propto\\) (Filled states in 1) (Empty states in 2)
+-   \\(R\_{1 \rightarrow 2} \propto (N\_1f\_1(E)) (N\_2[1-f\_2(E)]) \\)
