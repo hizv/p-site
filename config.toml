@@ -10,7 +10,6 @@ disableAliases = true
   name = "Himanish"
   bio = "These infernal revelations beamed through the cryptic shadows are totally uncool."
 
-[Social]
   github = "hizv"
   twitter = "qqqzv"
 
@@ -46,15 +45,3 @@ notAlternative = true
 [Params]
   mainSections = ["posts", "notes"]
 
-  [Params.source]
-    url = "https://github.com/hizv/p-site"
-    org_dir = "content-org"
-    md_dir = "content"
-    ox_hugo = true
-  [[Params.social]]
-    name = "Github"
-    link = "https://github.com/hizv/"
-    relme = true
-  [[Params.social]]
-    name = "Twitter"
-    link = "https://twitter.com/qqqzv/"

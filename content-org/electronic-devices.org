@@ -42,8 +42,8 @@ Three integers used to describe a plane.
 2. \[\text{Areal density} =\frac{\text{# atoms in cell}}{SA_{cell}} \]
 # TODO Examples ({110}, {111})
 **  Diamond Lattice
-- The diamond structure can be thought of as an fcc lattice with an extra atom placed at a/4 + b/4 + c/4 from each of the fcc atoms. Thus, the original fcc has associated with it a second interpenetrating fcc displaced by 1/4 , 1/4 , 1/4.
-- Si-Ge form diamond like lattice
+- The diamond structure can be thought of as an fcc lattice with an extra atom placed at =a/4 + b/4 + c/4= from each of the fcc atoms. Thus, the original fcc has associated with it a second interpenetrating fcc displaced by =1/4 , 1/4 , 1/4=.
+- Si, Ge form diamond like lattice
 - Si unit cell has 8 edge (red) atoms, 6 (green) face atoms and three atoms at the centers of smaller cubes forming a tetrahedral bonding. A total of \(N = \frac{1}{8} \cdot 8 + \frac{1}{2} \cdot 6 + 4 = 8 \) atoms per unit cell
 
 * Energy Bands and Charge Carriers
@@ -55,8 +55,6 @@ Three integers used to describe a plane.
 - Electrons (n) in conduction band and holes (p) in valence band contribute to current.
 - \(n \propto T\)
 - Holes are generally heavier than electrons (Effective mass)
-** Intrinsic semiconductors
-- \(n = p = n_i\)
 ** Extrinsic Conductors
 | Substitute one Si atom with B        | Substitute one Si atom with P            |
 |--------------------------------------+------------------------------------------|
@@ -71,13 +69,36 @@ Three integers used to describe a plane.
  - The density of states in the conduction band \(E > E_c\)is given by \[g_{c}(E)=\frac{4 \pi\left(2 m_{n}^{*}\right)^{3 / 2}}{h^{3}} \sqrt{E-E_{c}}\]
  - The density of states in the conduction band \(E < E_v\)is given by \[g_{v}(E)=\frac{4 \pi\left(2 m_{p}^{*}\right)^{3 / 2}}{h^{3}} \sqrt{E_{v}-E}\]
  - The number of occupied states between energies E1 and E2 is given by \[ N = \int_{E_1}^{E_2} g(E)f(E)dE \]
- - Thus, \[ \langle n \rangle = \int_{E_c}^{\infty} g_C(E)f(E)dE \]
- - \[ \langle p \rangle= \int_{-\infty}^{E_v} g_v(E)f(E)dE \]
- - For energies much greater than the Fermi energy (\(E-E_F \geq 3\) kT), the distribution function can be approximated as \( f(E) = \text{exp}(-\frac{E-E_F}{kT})\)
-** Fermi level at thermal equilibrium
-No discontinuity or gradient can arise in the equilibrium Fermi level \(E_F\).
+- For energies much greater than the Fermi energy (\(E-E_F \geq 3\) kT), the distribution function can be approximated as \( f(E) = \text{exp}(-\frac{E-E_F}{kT})\)
+  - Thus \[ \langle n \rangle = \int_{E_c}^{\infty} g_C(E)f(E)dE = N_c \text{ exp}\left(-\frac{E_c-E_F}{kT}\right)\]
+  \[ \langle p \rangle = \int_{-\infty}^{E_v} g_v(E)f(E)dE = N_v\text{ exp}\left(-\frac{E_F-E_v}{kT}\right)\]
+** Intrinsic semiconductors
+- \(n = p = n_i\), thus\[ N_c \text{ exp}\left(-\frac{E_c-E_F}{kT}\right) = N_v\text{ exp}\left(-\frac{E_F-E_v}{kT}\right)\] \[\therefore E_i := E_{F (intrinsic)} = \frac{E_c + E_v}{2} + \frac{kT}{2}\log \frac{N_v}{N_c} \] (/close to midgap in Si, Ge/)
+  - \[ n_i^2 = N_cN_v \text{ exp}\left(-\frac{E_c- E_v}{kT}\right)\] \[ n_i = \sqrt{N_cN_v}\text{ exp}\left(\frac{-E_g}{2kT}\right)\]
+  - As \(T \uparrow, n_i \uparrow \uparrow\)
+** Semiconductor at thermal equilibrium
+- No discontinuity or gradient can arise in the equilibrium Fermi level \(E_F\).
 - Consider two materials in intimate contact such that electrons can move between the two.
 - Rate of transfer of electrons from material 1 to 2 \(\propto\) (Filled states in 1) (Empty states in 2)
 - \(R_{1 \rightarrow 2} \propto (N_1f_1(E)) (N_2[1-f_2(E)]) \)
 - \(R_{2 \rightarrow 1} \propto (N_2f_2(E)) (N_1[1-f_1(E)]) \)
-- At equilibrium, these two are equal. Rearranging terms ,we get\(f_1(E) = f_2(E)\)
+- At equilibrium, these two are equal. Rearranging terms, we get\(f_1(E) = f_2(E)\)
+- Thus, \(\frac{dE}{dx} = 0\)
+** Drift velocity
+ \(v_d = \)
+\(\begin{cases}
+\mu E & E < E_c \text{ [high field]}\\
+v_{sat} & E \geq E_c \text{ [high field]}
+\end{cases} \)
+\(\text{where } \mu: \text{mobility } \propto \frac{1}{m^*}\)
+- \[ \frac{V}{I} = R = \frac{\rho l}{A} \text{ where } \rho = \frac{1}{q(n\mu_n+p\mu_p)}\]
+- \[ \frac{1}{\mu_{eff}} = \sum_k \frac{1}{\mu_k}\]
+*** N-type
+- \[ E_c - E_F = kT \log \frac{N_c}{n} = kT \log \frac{N_c}{n}\]
+- \[ E_F - E_i = kT \log \frac{N_D}{n_i} \]
+- \[\rho \approx \frac{1}{q\mu_nN_D }\]
+*** P-type
+- \[\rho = \frac{1}{q\mu_p(N_A)N_A }\]
+* Excess Carriers in Semiconductors
+- A photon with energy \(h\nu > E_g\) can be absorbed in a semiconductor to generate an =EHP=. Less than that, and it passes through.
+- \[ -\frac{dI}{dx} = \alpha I(x) \] \[\therefore I(x) = I_0e^{-\alpha(\lambda) x} \]
