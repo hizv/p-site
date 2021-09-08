@@ -1,7 +1,7 @@
 +++
 title = "Digital Design"
 author = ["Himanish"]
-lastmod = 2021-09-08T09:15:36+05:30
+lastmod = 2021-09-08T19:28:35+05:30
 categories = ["electronics"]
 draft = false
 mathjax = "t"
@@ -16,12 +16,12 @@ mathjax = "t"
 | Proportional Quantities | Digits   |
 
 
-## Digital {#digital}
+## Why Digital? {#why-digital}
 
 
 ### Advantages {#advantages}
 
--   Easier to design, using switching circuits (only **HIGH** and **LOW**)
+-   Easier to design, using switching circuits (only `HIGH` and `LOW`)
 -   Storage
 -   Accuracy and precision
 -   Programmable

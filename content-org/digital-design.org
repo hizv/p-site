@@ -1,4 +1,5 @@
 #+title: Digital Design
+#+date: 2021-09-08
 #+author: Himanish
 
 #+hugo_section: notes
@@ -24,9 +25,9 @@
 | Proportional Quantities | Digits   |
 |-------------------------+----------|
 
-* Digital
+* Why Digital?
 ** Advantages
-- Easier to design, using switching circuits (only *HIGH* and *LOW*)
+- Easier to design, using switching circuits (only =HIGH= and =LOW=)
 - Storage
 - Accuracy and precision
 - Programmable
