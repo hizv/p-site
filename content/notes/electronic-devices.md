@@ -1,7 +1,7 @@
 +++
 title = "Electronic Devices"
 author = ["Himanish"]
-lastmod = 2021-09-08T10:27:57+05:30
+lastmod = 2021-09-08T10:35:45+05:30
 categories = ["electronics"]
 draft = false
 mathjax = "t"
@@ -104,3 +104,5 @@ No discontinuity or gradient can arise in the equilibrium Fermi level \\(E\_F\\)
 -   Consider two materials in intimate contact such that electrons can move between the two.
 -   Rate of transfer of electrons from material 1 to 2 \\(\propto\\) (Filled states in 1) (Empty states in 2)
 -   \\(R\_{1 \rightarrow 2} \propto (N\_1f\_1(E)) (N\_2[1-f\_2(E)]) \\)
+-   \\(R\_{2 \rightarrow 1} \propto (N\_2f\_2(E)) (N\_1[1-f\_1(E)]) \\)
+-   At equilibrium, these two are equal. Rearranging terms ,we get\\(f\_1(E) = f\_2(E)\\)
