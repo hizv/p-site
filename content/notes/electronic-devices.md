@@ -2,7 +2,7 @@
 title = "Electronic Devices"
 author = ["Himanish"]
 date = 2021-09-07
-lastmod = 2021-09-08T21:05:03+05:30
+lastmod = 2021-09-09T15:29:34+05:30
 categories = ["electronics"]
 draft = false
 mathjax = "t"
@@ -74,14 +74,11 @@ Three integers used to describe a plane.
 
 -   Fundamental particles in nature have either integer spin and are called bosons (e.g. photons), or half-integer spin and are known as fermions (e.g. electrons).
 -   Fermions follow Fermi-Dirac statistics, thus probability of finding electron at any energy state E  is \\[f(E) = \frac{1}{1+\text{exp}(\frac{E-E\_F}{kT})} \\] where \\(k = 8.62 e\text{-}5 \quad \text{eV/K} = 1.38 \\) J/K and \\(kT = (\frac{T}{300})25.9\\) meV
--   Probability of finding a hole at energy E \\(\rightarrow 1 - f(E)\\)
+    -   Probability of finding a hole at energy \\( E = 1 - f(E)\\)
 -   In a quantum mechanical system with many energy levels, the density of energy states per unit volume per unit energy is given by \\[g(E)=\frac{4 \pi(2 m)^{3 / 2}}{h^{3}} \sqrt{E}\\]
 -   The density of states in the conduction band \\(E > E\_c\\)is given by \\[g\_{c}(E)=\frac{4 \pi\left(2 m\_{n}^{\*}\right)^{3 / 2}}{h^{3}} \sqrt{E-E\_{c}}\\]
 -   The density of states in the conduction band \\(E < E\_v\\)is given by \\[g\_{v}(E)=\frac{4 \pi\left(2 m\_{p}^{\*}\right)^{3 / 2}}{h^{3}} \sqrt{E\_{v}-E}\\]
 -   The number of occupied states between energies E1 and E2 is given by \\[ N = \int\_{E\_1}^{E\_2} g(E)f(E)dE \\]
-
-<!--listend-->
-
 -   For energies much greater than the Fermi energy (\\(E-E\_F \geq 3\\) kT), the distribution function can be approximated as \\( f(E) = \text{exp}(-\frac{E-E\_F}{kT})\\)
 
     -   Thus \\[ \langle n \rangle = \int\_{E\_c}^{\infty} g\_C(E)f(E)dE = N\_c \text{ exp}\left(-\frac{E\_c-E\_F}{kT}\right)\\]
@@ -135,11 +132,13 @@ v\_{sat} & E \geq E\_c \text{ [high field]}
 | # holes = # B atoms, \\(p = N\_A\\)              | # electrons  = # P atoms,   \\(n = N\_D\\)           |
 | hole rich \\(\rightarrow\\) p-type semiconductor | electron rich \\(\rightarrow\\) n-type semiconductor |
 
+-   When \\(N\_D\\) or \\(N\_A\\) is of the order of \\(n\_i\\), use \\[ \boxed{p + N\_D=n+N\_A}\\]
+
 
 #### N-type {#n-type}
 
 -   \\[ E\_c - E\_F = kT \log \frac{N\_c}{n} = kT \log \frac{N\_c}{n}\\]
--   \\[ E\_F - E\_i = kT \log \frac{N\_D}{n\_i} \\]
+-   \\[ E\_F - E\_i = kT \log \frac{N\_D}{n\_i} \\] Thus Fermi level is above intrinsic level (midgap) in a n-type
 -   \\[\rho \approx \frac{1}{q\mu\_nN\_D }\\]
 
 

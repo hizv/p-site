@@ -59,14 +59,14 @@ Three integers used to describe a plane.
 ** Fermi-Dirac Statistics
  - Fundamental particles in nature have either integer spin and are called bosons (e.g. photons), or half-integer spin and are known as fermions (e.g. electrons).
  - Fermions follow Fermi-Dirac statistics, thus probability of finding electron at any energy state E  is \[f(E) = \frac{1}{1+\text{exp}(\frac{E-E_F}{kT})} \] where \(k = 8.62 e\text{-}5 \quad \text{eV/K} = 1.38 \) J/K and \(kT = (\frac{T}{300})25.9\) meV
- - Probability of finding a hole at energy E \(\rightarrow 1 - f(E)\)
+   + Probability of finding a hole at energy \( E = 1 - f(E)\)
  - In a quantum mechanical system with many energy levels, the density of energy states per unit volume per unit energy is given by \[g(E)=\frac{4 \pi(2 m)^{3 / 2}}{h^{3}} \sqrt{E}\]
  - The density of states in the conduction band \(E > E_c\)is given by \[g_{c}(E)=\frac{4 \pi\left(2 m_{n}^{*}\right)^{3 / 2}}{h^{3}} \sqrt{E-E_{c}}\]
  - The density of states in the conduction band \(E < E_v\)is given by \[g_{v}(E)=\frac{4 \pi\left(2 m_{p}^{*}\right)^{3 / 2}}{h^{3}} \sqrt{E_{v}-E}\]
  - The number of occupied states between energies E1 and E2 is given by \[ N = \int_{E_1}^{E_2} g(E)f(E)dE \]
-- For energies much greater than the Fermi energy (\(E-E_F \geq 3\) kT), the distribution function can be approximated as \( f(E) = \text{exp}(-\frac{E-E_F}{kT})\)
-  - Thus \[ \langle n \rangle = \int_{E_c}^{\infty} g_C(E)f(E)dE = N_c \text{ exp}\left(-\frac{E_c-E_F}{kT}\right)\]
-  \[ \langle p \rangle = \int_{-\infty}^{E_v} g_v(E)f(E)dE = N_v\text{ exp}\left(-\frac{E_F-E_v}{kT}\right)\]
+ - For energies much greater than the Fermi energy (\(E-E_F \geq 3\) kT), the distribution function can be approximated as \( f(E) = \text{exp}(-\frac{E-E_F}{kT})\)
+   - Thus \[ \langle n \rangle = \int_{E_c}^{\infty} g_C(E)f(E)dE = N_c \text{ exp}\left(-\frac{E_c-E_F}{kT}\right)\]
+   \[ \langle p \rangle = \int_{-\infty}^{E_v} g_v(E)f(E)dE = N_v\text{ exp}\left(-\frac{E_F-E_v}{kT}\right)\]
 ** Semiconductor at thermal equilibrium
 - No discontinuity or gradient can arise in the equilibrium Fermi level \(E_F\).
 - Consider two materials in intimate contact such that electrons can move between the two.
@@ -97,9 +97,12 @@ v_{sat} & E \geq E_c \text{ [high field]}
 | B: p-type dopant                     | P, As: n-type dopants                    |
 | # holes = # B atoms, \(p = N_A\)     | # electrons  = # P atoms,   \(n = N_D\)  |
 | hole rich \(\rightarrow\) p-type semiconductor | electron rich \(\rightarrow\) n-type semiconductor |
+
+- When \(N_D\) or \(N_A\) is of the order of \(n_i\), use \[ \boxed{p + N_D=n+N_A}\]
+
 *** N-type
 - \[ E_c - E_F = kT \log \frac{N_c}{n} = kT \log \frac{N_c}{n}\]
-- \[ E_F - E_i = kT \log \frac{N_D}{n_i} \]
+- \[ E_F - E_i = kT \log \frac{N_D}{n_i} \] Thus Fermi level is above intrinsic level (midgap) in a n-type
 - \[\rho \approx \frac{1}{q\mu_nN_D }\]
 *** P-type
 - \[\rho = \frac{1}{q\mu_p(N_A)N_A }\]
