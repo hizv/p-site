@@ -1,0 +1,50 @@
+#+title: Electromagnetic Theory
+#+date: 2021-09-09
+#+author: Himanish
+
+#+hugo_section: notes
+#+hugo_categories: physics
+#+hugo_menu: :menu "main" :weight 2001
+
+#+startup: content
+
+#+hugo_base_dir: ../
+#+hugo_section: ./
+
+#+seq_todo: NEED__TO__UNDERSTAND | DONE
+#+seq_todo: TO__BE__FIXED | FIXED
+
+#+hugo_weight: auto
+#+hugo_auto_set_lastmod: t
+#+hugo_custom_front_matter: :mathjax t
+
+
+* Vector Analysis
+** Vector Algebra
+- \[\mathbf{B} \times \mathbf{A} = - (\mathbf{A} \times \mathbf{B})\]
+- \[(\textbf{A} \times \textbf{B}) \cdot (\textbf{C} \times \textbf{D}) = (\textbf{A} \cdot \textbf{C})(\textbf{B} \cdot \textbf{D}) - (\textbf{A} \cdot \textbf{D})(\textbf{B} \cdot \textbf{C})  \]
+** Differential Calculus
+- \[ \nabla (\textbf{A} \cdot \textbf{B}) = \textbf{A} \times (\nabla \times \textbf{B}) + \textbf{B} \times (\nabla \times \textbf{A}) + (\textbf{A} \cdot \nabla)\textbf{B}  + (\textbf{B} \cdot \nabla)\textbf{A}\]
+  - \[\nabla \cdot (f\textbf{A}) = f(\nabla \cdot \textbf{A}) + \textbf{A} \cdot(\nabla f) \]
+- \[\nabla \times(f \mathbf{A})=f(\nabla \times \mathbf{A})-\mathbf{A} \times(\nabla f) \]
+- \[\boldsymbol{\nabla} \times(\mathbf{A} \times \mathbf{B})=(\mathbf{B} \cdot \boldsymbol{\nabla}) \mathbf{A}-(\mathbf{A} \cdot \boldsymbol{\nabla}) \mathbf{B}+\mathbf{A}(\boldsymbol{\nabla} \cdot \mathbf{B})-\mathbf{B}(\mathbf{\nabla} \cdot \mathbf{A})\]
+- \[\nabla\left(\frac{f}{g}\right) =\frac{g \nabla f-f \nabla g}{g^{2}}\]
+\[\nabla \cdot\left(\frac{\mathbf{A}}{g}\right) =\frac{g(\nabla \cdot \mathbf{A})-\mathbf{A} \cdot(\nabla g)}{g^{2}} \]
+\[\nabla \times\left(\frac{\mathbf{A}}{g}\right) =\frac{g(\nabla \times \mathbf{A})+\mathbf{A} \times(\nabla g)}{g^{2}}\]
+** Integral Calculus
+**** Fundamental Theorem for Gradients
+ \[ \int_a^b(\nabla T) \cdot d \textbf{l} = T(\textbf{b}) - T(\textbf{a}) \]
+**** Fundamental Theorem for Divergences (Gauss/Green)
+\[\int_{\mathcal{V}}(\nabla \cdot \mathbf{v}) d \tau=\oint_{\mathcal{S}} \mathbf{v} \cdot d \mathbf{a}\]
+**** Fundamental Theorem for Curls (Stokes)
+\[\int_{\mathcal{S}}(\nabla \times \mathbf{v}) \cdot d \mathbf{a}=\oint_{\mathcal{P}} \mathbf{v} \cdot d \mathbf{l}\]
+** Curvilinear Coordinates
+
+*** Spherical Coordinates
+\[x = r\sin \theta \cos \phi, \quad y = r\sin \theta \sin \phi, \quad z = r \cos \theta\]
+*** Cylindrical Coordinates
+** Dirac Delta Function
+1.  \[\boxed{\int_{-\infty}^{\infty} f(x) \delta(x-a) d x=f(a)}\]
+2. \[\nabla \cdot\left(\frac{\hat{r}}{r^{2}}\right)=4 \pi \delta^{3}(\boldsymbol{r})\]
+** Helmholtz Theorem
+\[\textbf{F} = −∇V + ∇ × \textbf{A}\]

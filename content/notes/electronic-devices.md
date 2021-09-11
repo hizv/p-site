@@ -2,7 +2,7 @@
 title = "Electronic Devices"
 author = ["Himanish"]
 date = 2021-09-07
-lastmod = 2021-09-09T15:29:34+05:30
+lastmod = 2021-09-09T16:23:29+05:30
 categories = ["electronics"]
 draft = false
 mathjax = "t"
@@ -145,6 +145,7 @@ v\_{sat} & E \geq E\_c \text{ [high field]}
 #### P-type {#p-type}
 
 -   \\[\rho = \frac{1}{q\mu\_p(N\_A)N\_A }\\]
+-   \\[p = n\_i\text{ exp}\left(\frac{E\_i-E\_F}{kT}\right) \\]
 
 
 ## Excess Carriers in Semiconductors {#excess-carriers-in-semiconductors}

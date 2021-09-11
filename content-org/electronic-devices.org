@@ -106,6 +106,7 @@ v_{sat} & E \geq E_c \text{ [high field]}
 - \[\rho \approx \frac{1}{q\mu_nN_D }\]
 *** P-type
 - \[\rho = \frac{1}{q\mu_p(N_A)N_A }\]
+- \[p = n_i\text{ exp}\left(\frac{E_i-E_F}{kT}\right) \]
 * Excess Carriers in Semiconductors
 - A photon with energy \(h\nu > E_g\) can be absorbed in a semiconductor to generate an =EHP=. Less than that, and it passes through.
 - \[ -\frac{dI}{dx} = \alpha I(x) \] \[\therefore I(x) = I_0e^{-\alpha(\lambda) x} \]
