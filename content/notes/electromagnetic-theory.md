@@ -2,7 +2,7 @@
 title = "Electromagnetic Theory"
 author = ["Himanish"]
 date = 2021-09-09
-lastmod = 2021-09-09T20:36:03+05:30
+lastmod = 2021-09-11T15:22:14+05:30
 categories = ["physics"]
 draft = false
 mathjax = "t"
@@ -58,7 +58,11 @@ mathjax = "t"
 
 #### Spherical Coordinates {#spherical-coordinates}
 
-\\[x = r\sin \theta \cos \phi, \quad y = r\sin \theta \sin \phi, \quad z = r \cos \theta\\]
+1.  \\[ d\tau = r^2\sin \theta \ dr \ d\theta \ d\phi \\]
+2.  On the surface of a sphere, r is constant, thus\\[ d \boldsymbol{a\_1} = r^2\sin \theta \ d \theta \ d\phi \ \hat{r}\\]
+3.  On the \\(xy\\) plane, \\(\theta\\) is constant, thus \\[d \boldsymbol{a\_2} = r \ dr \ d\phi \ \hat{\theta}\\]
+4.  \\[ \hat{r} = \sin θ \cos φ \ \boldsymbol{\hat{x}} + \sin θ \sin φ \ \boldsymbol{\hat{y}} + \cos θ \ \boldsymbol{\hat{z}}\\]
+5.  \\[x = r\sin \theta \cos \phi, \quad y = r\sin \theta \sin \phi, \quad z = r \cos \theta\\]
 
 
 #### Cylindrical Coordinates {#cylindrical-coordinates}

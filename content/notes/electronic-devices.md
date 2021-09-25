@@ -2,7 +2,7 @@
 title = "Electronic Devices"
 author = ["Himanish"]
 date = 2021-09-07
-lastmod = 2021-09-09T16:23:29+05:30
+lastmod = 2021-09-25T19:11:42+05:30
 categories = ["electronics"]
 draft = false
 mathjax = "t"
@@ -47,8 +47,9 @@ Three integers used to describe a plane.
 
 ### Atomic Densities {#atomic-densities}
 
-1.  \\[\text{Volume density} =\frac{\text{# atoms in cell}}{V\_{cell}} \\]
-2.  \\[\text{Areal density} =\frac{\text{# atoms in cell}}{SA\_{cell}} \\]
+-   \\(1 Å = 10^{-8} cm\\)
+-   \\[\text{Volume density} =\frac{\text{# atoms in cell}}{V\_{cell}} \\]
+-   \\[\text{Areal density} =\frac{\text{# atoms in cell}}{SA\_{cell}} \\]
 
 
 ### Diamond Lattice {#diamond-lattice}
@@ -79,11 +80,15 @@ Three integers used to describe a plane.
 -   The density of states in the conduction band \\(E > E\_c\\)is given by \\[g\_{c}(E)=\frac{4 \pi\left(2 m\_{n}^{\*}\right)^{3 / 2}}{h^{3}} \sqrt{E-E\_{c}}\\]
 -   The density of states in the conduction band \\(E < E\_v\\)is given by \\[g\_{v}(E)=\frac{4 \pi\left(2 m\_{p}^{\*}\right)^{3 / 2}}{h^{3}} \sqrt{E\_{v}-E}\\]
 -   The number of occupied states between energies E1 and E2 is given by \\[ N = \int\_{E\_1}^{E\_2} g(E)f(E)dE \\]
--   For energies much greater than the Fermi energy (\\(E-E\_F \geq 3\\) kT), the distribution function can be approximated as \\( f(E) = \text{exp}(-\frac{E-E\_F}{kT})\\)
 
-    -   Thus \\[ \langle n \rangle = \int\_{E\_c}^{\infty} g\_C(E)f(E)dE = N\_c \text{ exp}\left(-\frac{E\_c-E\_F}{kT}\right)\\]
+**\*** (Boltzmann approximation)
+For energies much greater than the Fermi energy (\\(E-E\_F \geq 3\\) kT), the distribution function can be approximated as \\( f(E) = \text{exp}(-\frac{E-E\_F}{kT})\\), thus
 
-    \\[ \langle p \rangle = \int\_{-\infty}^{E\_v} g\_v(E)f(E)dE = N\_v\text{ exp}\left(-\frac{E\_F-E\_v}{kT}\right)\\]
+-   \\[ \boxed{n  = N\_c \text{ exp}\left(-\frac{E\_c-E\_F}{kT}\right)}\\]\\( (\int\_{E\_c}^{\infty} g\_C(E)f(E)dE)\\)
+
+<!--listend-->
+
+-   \\[ \boxed{p = N\_v\text{ exp}\left(-\frac{E\_F-E\_v}{kT}\right)}\\] \\((\int\_{-\infty}^{E\_v} g\_v(E)f(E)dE) \\)
 
 
 ### Semiconductor at thermal equilibrium {#semiconductor-at-thermal-equilibrium}
@@ -124,6 +129,11 @@ v\_{sat} & E \geq E\_c \text{ [high field]}
 \\[ \frac{V}{I} = R = \frac{\rho l}{A} \text{ where } \rho = \frac{1}{q(n\mu\_n+p\mu\_p)}\\]
 
 
+#### Hall Effect {#hall-effect}
+
+\\[V\_H = \mathcal{E}\_y\cdot w  = \frac{I\_x\mathcal{B}\_z}{qn\_0}\cdot w = \mu\_n\mathcal{E}\_x\mathcal{B}\_zw \\]
+
+
 ### Extrinsic semiconductors {#extrinsic-semiconductors}
 
 | Substitute one Si atom with B                    | Substitute one Si atom with P                        |
@@ -150,5 +160,28 @@ v\_{sat} & E \geq E\_c \text{ [high field]}
 
 ## Excess Carriers in Semiconductors {#excess-carriers-in-semiconductors}
 
+
+### Optical Absorption {#optical-absorption}
+
 -   A photon with energy \\(h\nu > E\_g\\) can be absorbed in a semiconductor to generate an `EHP`. Less than that, and it passes through.
--   \\[ -\frac{dI}{dx} = \alpha I(x) \\] \\[\therefore I(x) = I\_0e^{-\alpha(\lambda) x} \\]
+-   \\[ - \frac{dI}{dx} = \alpha I(x) \\] \\[\therefore I(x) = I\_0e^{-\alpha(\lambda) x} \\]
+
+-   \\[ I = Aqn\_0\mu\_nE\\]
+    -   \\( 1 \mu m = 10^{-4} cm\\)
+
+    -   \\( v\_{d(sat)} = 10^7 cm/s\\)
+-   \\[ t\_{drift} = \frac{\Delta x}{v\_d}\\]
+
+-   \\[J = q[n\mu\_n+p\mu\_p]\mathcal{E}\\]
+
+-   \\[\mathcal{E} = \frac{V}{l}\\]
+
+
+### Carrier Lifetime and Photoconductivity {#carrier-lifetime-and-photoconductivity}
+
+-   Low level injection: \\[\\delta n(t) = \Delta n\text{ exp}{\frac{-t}{\tau\_n}} \ | \tau\_n = (\alpha\_rp\_0)^{-1}\\]
+-   In general, \\(\tau\_n = \frac{1}{\alpha\_r(n\_0+p\_0)}\\)
+-   Excess carrier concentration in terms of optical generation rate\\[\delta n = \delta p = g\_{op}\tau\_n\\]
+-   \\[\boxed{n  = n\_i \text{ exp}\left(\frac{F\_n-E\_i}{kT}\right)}\\]
+-   \\[\boxed{p  = n\_i \text{ exp}\left(\frac{E\_i-F\_p}{kT}\right)}\\]
+-   \\[\frac{D}{\mu}=\frac{kT}{q}\\]

@@ -39,8 +39,10 @@ Three integers used to describe a plane.
 2. The angle u between two different Miller index directions is given by \(\cos \theta =\frac{h_{1} h_{2}+k_{1} k_{2}+l_{1} l_{2}}{(h_{1}^{2}+k_{1}^{2}+l_{1}^{2})^{1 / 2}(h_{2}^{2}+k_{2}^{2}+l_{2}^{2})^{1 / 2}}\)
 3. /The direction/ [\(hkl\)] /is perpendicular to the plane/ (\(hkl\))
 ** Atomic Densities
+- \(1 Å = 10^{-8} cm\)
 1. \[\text{Volume density} =\frac{\text{# atoms in cell}}{V_{cell}} \]
 2. \[\text{Areal density} =\frac{\text{# atoms in cell}}{SA_{cell}} \]
+
 # TODO Examples ({110}, {111})
 **  Diamond Lattice
 - The diamond structure can be thought of as an fcc lattice with an extra atom placed at =a/4 + b/4 + c/4= from each of the fcc atoms. Thus, the original fcc has associated with it a second interpenetrating fcc displaced by =1/4 , 1/4 , 1/4=.
@@ -64,9 +66,10 @@ Three integers used to describe a plane.
  - The density of states in the conduction band \(E > E_c\)is given by \[g_{c}(E)=\frac{4 \pi\left(2 m_{n}^{*}\right)^{3 / 2}}{h^{3}} \sqrt{E-E_{c}}\]
  - The density of states in the conduction band \(E < E_v\)is given by \[g_{v}(E)=\frac{4 \pi\left(2 m_{p}^{*}\right)^{3 / 2}}{h^{3}} \sqrt{E_{v}-E}\]
  - The number of occupied states between energies E1 and E2 is given by \[ N = \int_{E_1}^{E_2} g(E)f(E)dE \]
- - For energies much greater than the Fermi energy (\(E-E_F \geq 3\) kT), the distribution function can be approximated as \( f(E) = \text{exp}(-\frac{E-E_F}{kT})\)
-   - Thus \[ \langle n \rangle = \int_{E_c}^{\infty} g_C(E)f(E)dE = N_c \text{ exp}\left(-\frac{E_c-E_F}{kT}\right)\]
-   \[ \langle p \rangle = \int_{-\infty}^{E_v} g_v(E)f(E)dE = N_v\text{ exp}\left(-\frac{E_F-E_v}{kT}\right)\]
+ *** (Boltzmann approximation)
+ For energies much greater than the Fermi energy (\(E-E_F \geq 3\) kT), the distribution function can be approximated as \( f(E) = \text{exp}(-\frac{E-E_F}{kT})\), thus
+ - \[ \boxed{n  = N_c \text{ exp}\left(-\frac{E_c-E_F}{kT}\right)}\]\( (\int_{E_c}^{\infty} g_C(E)f(E)dE)\)
+-   \[ \boxed{p = N_v\text{ exp}\left(-\frac{E_F-E_v}{kT}\right)}\] \((\int_{-\infty}^{E_v} g_v(E)f(E)dE) \)
 ** Semiconductor at thermal equilibrium
 - No discontinuity or gradient can arise in the equilibrium Fermi level \(E_F\).
 - Consider two materials in intimate contact such that electrons can move between the two.
@@ -91,6 +94,8 @@ v_{sat} & E \geq E_c \text{ [high field]}
 *** Resistivity
  \[ \frac{V}{I} = R = \frac{\rho l}{A} \text{ where } \rho = \frac{1}{q(n\mu_n+p\mu_p)}\]
 
+*** Hall Effect
+\[V_H = \mathcal{E}_y\cdot w  = \frac{I_x\mathcal{B}_z}{qn_0}\cdot w = \mu_n\mathcal{E}_x\mathcal{B}_zw \]
 ** Extrinsic semiconductors
 | Substitute one Si atom with B        | Substitute one Si atom with P            |
 |--------------------------------------+------------------------------------------|
@@ -108,5 +113,24 @@ v_{sat} & E \geq E_c \text{ [high field]}
 - \[\rho = \frac{1}{q\mu_p(N_A)N_A }\]
 - \[p = n_i\text{ exp}\left(\frac{E_i-E_F}{kT}\right) \]
 * Excess Carriers in Semiconductors
+** Optical Absorption
 - A photon with energy \(h\nu > E_g\) can be absorbed in a semiconductor to generate an =EHP=. Less than that, and it passes through.
-- \[ -\frac{dI}{dx} = \alpha I(x) \] \[\therefore I(x) = I_0e^{-\alpha(\lambda) x} \]
+- \[ - \frac{dI}{dx} = \alpha I(x) \] \[\therefore I(x) = I_0e^{-\alpha(\lambda) x} \]
+
+- \[ I = Aqn_0\mu_nE\]
+
+  + \( 1 \mu m = 10^{-4} cm\)
+
+  + \( v_{d(sat)} = 10^7 cm/s\)
+-  \[ t_{drift} = \frac{\Delta x}{v_d}\]
+
+- \[J = q[n\mu_n+p\mu_p]\mathcal{E}\]
+
+- \[\mathcal{E} = \frac{V}{l}\]
+** Carrier Lifetime and Photoconductivity
+- Low level injection: \[\\delta n(t) = \Delta n\text{ exp}{\frac{-t}{\tau_n}} \ | \tau_n = (\alpha_rp_0)^{-1}\]
+- In general, \(\tau_n = \frac{1}{\alpha_r(n_0+p_0)}\)
+- Excess carrier concentration in terms of optical generation rate\[\delta n = \delta p = g_{op}\tau_n\]
+- \[\boxed{n  = n_i \text{ exp}\left(\frac{F_n-E_i}{kT}\right)}\]
+- \[\boxed{p  = n_i \text{ exp}\left(\frac{E_i-F_p}{kT}\right)}\]
+- \[\frac{D}{\mu}=\frac{kT}{q}\]

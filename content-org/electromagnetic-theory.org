@@ -18,7 +18,6 @@
 #+hugo_auto_set_lastmod: t
 #+hugo_custom_front_matter: :mathjax t
 
-
 * Vector Analysis
 ** Vector Algebra
 - \[\mathbf{B} \times \mathbf{A} = - (\mathbf{A} \times \mathbf{B})\]
@@ -39,9 +38,12 @@
 **** Fundamental Theorem for Curls (Stokes)
 \[\int_{\mathcal{S}}(\nabla \times \mathbf{v}) \cdot d \mathbf{a}=\oint_{\mathcal{P}} \mathbf{v} \cdot d \mathbf{l}\]
 ** Curvilinear Coordinates
-
 *** Spherical Coordinates
-\[x = r\sin \theta \cos \phi, \quad y = r\sin \theta \sin \phi, \quad z = r \cos \theta\]
+1. \[ d\tau = r^2\sin \theta \ dr \ d\theta \ d\phi \]
+2. On the surface of a sphere, r is constant, thus\[ d \boldsymbol{a_1} = r^2\sin \theta \ d \theta \ d\phi \ \hat{r}\]
+3. On the \(xy\) plane, \(\theta\) is constant, thus \[d \boldsymbol{a_2} = r \ dr \ d\phi \ \hat{\theta}\]
+4. \[ \hat{r} = \sin θ \cos φ \ \boldsymbol{\hat{x}} + \sin θ \sin φ \ \boldsymbol{\hat{y}} + \cos θ \ \boldsymbol{\hat{z}}\]
+5. \[x = r\sin \theta \cos \phi, \quad y = r\sin \theta \sin \phi, \quad z = r \cos \theta\]
 *** Cylindrical Coordinates
 ** Dirac Delta Function
 1.  \[\boxed{\int_{-\infty}^{\infty} f(x) \delta(x-a) d x=f(a)}\]
