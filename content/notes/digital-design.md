@@ -2,7 +2,7 @@
 title = "Digital Design"
 author = ["Himanish"]
 date = 2021-09-08
-lastmod = 2021-09-24T09:48:06+05:30
+lastmod = 2021-10-02T10:43:21+05:30
 categories = ["electronics", "cs"]
 draft = false
 mathjax = "t"
@@ -183,3 +183,43 @@ Simplest way; chain together N full adders. \\(C\_{out}\\) of one stage acts as 
 
 
 #### Carry-Lookahead Adder (CLA) {#carry-lookahead-adder--cla}
+
+
+#### BCD Adder {#bcd-adder}
+
+-   The adder will form the sum in binary and produce a result that ranges from 0 through 19. These binary numbers are listed in Table 4.5 and are labeled by symbols \\(K, Z\_8, Z\_4, Z\_2, and Z\_1\\). K is the carry, and the subscripts under the letter Z represent the weights 8, 4, 2, and 1 that can be assigned to the four bits in the BCD code.
+    ![](/images/bcd-adder-table.png)
+-   When the binary sum is equal to or less than 1001, the corresponding BCD number is identical, and therefore no conversion is needed. When the binary sum is greater than 1001, we obtain an invalid BCD representation. The addition of binary 6 to the binary sum converts it to the correct BCD representation and also produces an output carry as required.
+-   The condition for a correction and an output carry can be expressed by the Boolean function \\(C = K + Z\_8Z\_4 + Z\_8Z\_2\\)
+    ![](/images/bcd-adder.png)
+-   A decimal parallel adder that adds n decimal digits needs n BCD adder stages.
+
+
+### Subtraction {#subtraction}
+
+![](/images/subtr-symbol.png)
+To compute Y = A − B, first create the two’s complement of B: Invert
+the bits of B to obtain B' and add 1 to get −B = B' + 1. Add this quantity to
+A to get Y = A + B + 1 = `A − B`. This sum can be performed with a single
+CPA by adding A + B with \\(C\_{in} = 1\\).
+
+
+#### Adder-Subtractor {#adder-subtractor}
+
+The input carry \\(C\_0\\) must be equal to 1 when subtraction is performed. The addition and subtraction operations can be combined into one circuit with one common binary adder by including an exclusive-OR gate with each full adder:
+![](/images/mano-sub-impl.png)
+The mode input M controls the operation.
+
+When M = 0, the circuit is an adder, and when M = 1, the circuit becomes a subtractor.
+It is worth noting that binary numbers in the signed-complement system are added and subtracted by the same basic addition and subtraction rules as are unsigned num- bers. Therefore, computers need only one common hardware circuit to handle both types of arithmetic. The user or programmer must interpret the results of such addition or subtraction differently, depending on whether it is assumed that the numbers are signed or unsigned.
+
+
+### Multiplication {#multiplication}
+
+For J multiplier bits and K multiplicand bits, we need \\(J \times K\\)  AND gates and  (J - 1) K-bit adders to produce a product of (J + K) bits.
+
+
+### Magnitude Comparator {#magnitude-comparator}
+
+-   Equality function \\[x\_i = A\_iB\_i+A\_i'B\_i' \quad i = 0..n-1\\]
+-   Thus, \\((A = B) = x\_3x\_2x\_1x\_0 (4-bit) \\)
