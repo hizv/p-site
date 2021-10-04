@@ -1,0 +1,39 @@
+#+TITLE: Electrical Machines
+#+date: 2021-10-04
+#+author: Himanish
+
+#+hugo_section: notes
+#+hugo_categories: electronics power
+#+hugo_menu: :menu "main" :weight 2001
+
+#+startup: content
+
+#+hugo_base_dir: ../
+#+hugo_section: ./
+
+#+hugo_weight: auto
+#+hugo_auto_set_lastmod: t
+#+hugo_custom_front_matter: :mathjax t
+
+* Transformers
+** No Load
+1. \[ \phi_{max} = \frac{E_1}{4.44fN_1} \quad E_1: \text{induced emf} \]
+2. \[ \frac{V_1}{V_2} = \frac{E_1}{E_2} = \frac{N_1}{N_2} = a \]
+   \[\frac{I_1}{I_2} = \frac{1}{a}\]
+** Equivalent Circuit
+1. \[\bar{z} = r + jx_l\]
+2. \[\bar{z_2}' = a^2(z_2) \]
+   \[\bar{z_1}' = \frac{z_1}{a^2}\]
+3. \[\bar{Z} (HV) = \bar{z_1} + \bar{z_2}'\] \[\bar{Z} (LV) = \bar{z_2} + \bar{z_1}'\]
+4. \[Z_B = \frac{(kV)_B^2}{(MVA)_B}\]
+\[\bar{z}_{pu} = \frac{\bar{z}}{Z_B}\]
+In pu (per unit) system, z is same on both sides.
+** Testing
+*** OC Test
+\[y_0 = \frac{I_0}{V_1} \]
+\[G_i = \frac{P_0}{V_1^2}\]
+\[B_m = \sqrt{y_0^2 - G_1^2}\]
+*** SC Test
+\[Z = \frac{V_{sc}}{I_{sc}}\]
+\[R = \frac{P_{sc}}{I_{sc}^2}\]
+\[X = \sqrt{Z^2 - R^2}\]
