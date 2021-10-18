@@ -51,7 +51,6 @@
 - Unlike unsigned numbers, a carry out of the most significant column does not indicate overflow. Instead, overflow occurs if the two numbers being added have the same sign bit and the result has the opposite sign bit.
 - When a two’s complement number is extended to more bits, the sign bit must be copied into the most significant bit positions. This process is called sign extension. For example, the numbers 3 and −3 are written as 4-bit two’s complement numbers 0011 and 1101, respectively. They are sign-extended to seven bits by copying the sign bit into the three new upper bits to form 0000011 and 1111101, respectively.
 
-
 * Logic
 ** Logic Gates
 *** XOR
@@ -139,5 +138,57 @@ It is worth noting that binary numbers in the signed-complement system are added
 ** Multiplication
 For J multiplier bits and K multiplicand bits, we need \(J \times K\)  AND gates and  (J - 1) K-bit adders to produce a product of (J + K) bits.
 ** Magnitude Comparator
-- Equality function \[x_i = A_iB_i+A_i'B_i' \quad i = 0..n-1\]
-- Thus, \((A = B) = x_3x_2x_1x_0 (4-bit) \)
+- The equality function  \(\ \ x_i = A_iB_i+A_i'B_i' \quad | \ i = 0..n-1\)
+- \((A = B) = x_3x_2x_1x_0 \ (4-\text{bit}) \)
+- \((A > B) = A_3B_3'+x_3A_2B_2'+x_3x_2A_1B_1'+x_3x_2x_1A_0B_0'\)
+- \((A < B) = A_3'B_3+x_3A_2'B_2+x_3x_2A_1'B_1+x_3x_2x_1A_0'B_0\)
+* Combinational Logic
+** Decoder
+- N inputs and \(2^N\) outputs. If input has unused combinations, may have fewer than \(2^N\) outputs.
+- Asserts exactly one of its outputs depending on the input combination.
+- Can be used to build logic functions. Because each output of a decoder represents a single minterm, the function is built as the OR of all the minterms in the function.
+*** Enable
+- A decoder with enable input can function as a demultiplexer—a circuit that receives information from a single line and directs it to one of \(2^n\) possible output lines.
+- Decoders with enable inputs can be connected together to form a larger decoder circuit
+-  In general, enable inputs are a convenient feature for interconnecting two or more standard components for the purpose of combining them into a similar function with more inputs and outputs.
+** Multiplexer
+*** 2:1 Mux
+ Two data inputs \(D_0\) and \(D_1\), a select input S, and one output Y. The multiplexer chooses between the two data inputs based on the select.
+- If S = 0, Y = \(D_0\), and if S = 1, Y = \(D_1\). S is also called a control signal because it controls what the multiplexer does.
+[[/images/2:1-mux.png]]
+- It can be built from sum-of-products logic or tristate buffers.
+*** Wider Muxes
+A 4:1 multiplexer has four data inputs and one output, two select signals are needed.
+- *Implementation*
+[[/images/4:1-mux-impl.png]]
+*** Comparison with Decoder
+- The AND gates and inverters in the multiplexer resemble a decoder circuit, and indeed, they decode the selection input lines. In general, a \(2^n\)-to-1-line multiplexer is constructed from an n-to-\(2^n\) decoder by adding \(2^n\) input lines to it, one to each AND gate.
+- As in decoders, multiplexers may have an enable input to control the operation of the unit. When the enable input is in the inactive state, the outputs are disabled.
+***  n-variable function using n-1 selection input multiplexer
+- The first n - 1 variables of the function are connected to the selection inputs of the multiplexer. The remaining variable of the function is used for the data inputs.
+- For each combination of the selection variables, we evaluate the output as a function of the last variable \(z\). This function can be 0, 1, \(z\), or \(z'\). These values are then applied to the data inputs in the proper order.
+# TODO: add example
+
+* Synchronous Sequential Logic
+The outputs of sequential logic depend on both current and /prior/ input values.  Hence, sequential logic has memory. Sequential logic might explicitly remember certain previous inputs, or it might distill the prior inputs into a smaller amount of information called the /state/ of the system. The state of a digital sequential circuit is a set of bits called /state variables/ that contain all the information about the past necessary to explain the future behavior of the circuit.
+*** Cross-Coupled Inverter
+- The fundamental building block of memory is a bistable element, an element with two stable states.
+  [[/images/coupled-inverter.png]]
+- Because the cross-coupled inverters have two stable states, Q=0 and Q=1, the circuit is said to be bistable. A subtle point is that the circuit has a third possible state with both outputs approximately halfway between 0 and 1. This is called a /metastable/ state.
+- Just as Y is commonly used for the output of combinational logic, Q is commonly used for the output of sequential logic.
+- The state of the cross-coupled inverters is contained in one binary state variable, Q. The circuit does have another node, Q', but Q' does not contain any additional information because if Q is known, Q' is also known.
+- They are not practical because the user has /no inputs/ to control the state.
+** Latches
+*** SR Latch
+[[/images/sr-bistable.png]]
+- The inputs S and R stand for Set and Reset. To set a bit means to make it TRUE. To reset a bit means to make it FALSE.
+- The outputs, Q and Q', are normally complementary. When R is asserted, Q is reset to 0 and Q' does the opposite. When S is asserted, Q is set to 1 and Q' does the opposite. When neither input is asserted, Q remembers its old value, \(Q_{prev}\).
+- Asserting both S and R simultaneously doesn’t make much sense because it means the latch should be set and reset at the same time, which is impossible. The poor confused circuit responds by making both outputs 0.
+[[/images/sr-tt.png]]
+- Unlike the cross-coupled inverter, the state can be controlled through the S and R inputs.
+*** D Latch
+The SR latch is awkward because it behaves strangely when both S and R are simultaneously asserted. Moreover, the S and R inputs conflate the issues of /what/ and /when/. Asserting one of the inputs determines not only what the state should be but also when it should change.
+- The D latch has two inputs. The /data/ input, D, controls what the next state should be. The /enable/ input, En, controls when the state should change.
+[[/images/d-latch.png]]
+- When En = 1, the latch is /transparent/. The data at D flows through to Q as if the latch were just a buffer. When En = 0, the latch is /opaque/. It blocks the new data from flowing through to Q, and Q retains the old value. Hence, the D latch is sometimes called a transparent latch or a level-sensitive latch.
+** Flip-flops

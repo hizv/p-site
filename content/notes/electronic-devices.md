@@ -2,7 +2,7 @@
 title = "Electronic Devices"
 author = ["Himanish"]
 date = 2021-09-07
-lastmod = 2021-09-25T19:11:42+05:30
+lastmod = 2021-10-07T23:09:06+05:30
 categories = ["electronics"]
 draft = false
 mathjax = "t"
@@ -185,3 +185,8 @@ v\_{sat} & E \geq E\_c \text{ [high field]}
 -   \\[\boxed{n  = n\_i \text{ exp}\left(\frac{F\_n-E\_i}{kT}\right)}\\]
 -   \\[\boxed{p  = n\_i \text{ exp}\left(\frac{E\_i-F\_p}{kT}\right)}\\]
 -   \\[\frac{D}{\mu}=\frac{kT}{q}\\]
+
+
+## Junctions {#junctions}
+
+-   If \\(x\_n, x\_p \rightarrow\\) depletion width of n-side and p-side respectively, then \\[x\_p \cdot N\_A = x\_n\cdot N\_D\\]

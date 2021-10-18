@@ -134,3 +134,6 @@ v_{sat} & E \geq E_c \text{ [high field]}
 - \[\boxed{n  = n_i \text{ exp}\left(\frac{F_n-E_i}{kT}\right)}\]
 - \[\boxed{p  = n_i \text{ exp}\left(\frac{E_i-F_p}{kT}\right)}\]
 - \[\frac{D}{\mu}=\frac{kT}{q}\]
+* Junctions
+
+- If \(x_n, x_p \rightarrow\) depletion width of n-side and p-side respectively, then \[x_p \cdot N_A = x_n\cdot N_D\]

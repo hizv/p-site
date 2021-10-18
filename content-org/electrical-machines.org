@@ -18,7 +18,8 @@
 * Transformers
 ** No Load
 1. \[ \phi_{max} = \frac{E_1}{4.44fN_1} \quad E_1: \text{induced emf} \]
-2. \[ \frac{V_1}{V_2} = \frac{E_1}{E_2} = \frac{N_1}{N_2} = a \]
+2. \[\text{flux density} B = \frac{\phi}{A}\]
+3. \[ \frac{V_1}{V_2} = \frac{E_1}{E_2} = \frac{N_1}{N_2} = a \]
    \[\frac{I_1}{I_2} = \frac{1}{a}\]
 ** Equivalent Circuit
 1. \[\bar{z} = r + jx_l\]
@@ -29,11 +30,50 @@
 \[\bar{z}_{pu} = \frac{\bar{z}}{Z_B}\]
 In pu (per unit) system, z is same on both sides.
 ** Testing
-*** OC Test
+*** OC Test / No-load Test
 \[y_0 = \frac{I_0}{V_1} \]
 \[G_i = \frac{P_0}{V_1^2}\]
-\[B_m = \sqrt{y_0^2 - G_1^2}\]
+\[B_m = \sqrt{y_0^2 - G_1^2} \]
 *** SC Test
 \[Z = \frac{V_{sc}}{I_{sc}}\]
 \[R = \frac{P_{sc}}{I_{sc}^2}\]
 \[X = \sqrt{Z^2 - R^2}\]
+
+*** Full load
+\[B_m = \frac{1}{2\pi fL_m}\]
+\[I_m = B_mE_1\]
+** Efficiency and Losses
+1. \[\eta = \frac{V_2I_2\cos \phi_2}{V_2I_2\cos \phi_2 + P_i+P_c}\]
+2. \[P_i = P_{oc}\][iron loss is constant irregardless of load] \[P_{Cu} = P_{sc}\]
+3. Load condition K = \(\frac{\text{Given load}}{\text{Full load}}\) e.g. k=0.5 for half load
+4. Output Power  = \(KS\cos \phi\)
+5. Cu loss at any load =  \(k^2\cdot P_{Cu,FL}\)
+6. \[\eta = \frac{\text{output}}{\text{input}} = \frac{\text{output}}{\text{output + losses}} = \frac{\text{output}}{\text{output + iron loss + Cu loss}}\]
+
+** Parallel Connection
+1. \[|S_2| = \frac{|z_{e1}|}{|z_{e1}+z_{e2}'}|S|\]
+* DC Machines
+** EMF and Torque
+
+\[\omega = \frac{2\pi N}{60}\]
+
+*** Induced EMF
+1. Per turn = \[ \frac{P\phi \omega_m}{\pi}\]
+2. Per parallel path  \[E_g = \frac{P\phi N}{60} \cdot \frac{Z}{A}\] where
+   a. A = P (Lap Winding)
+   b. A = 2 (Wave Winding)
+   c. N = rotor speed (RPM)
+   d. Z = total number of rotor conductors
+   e. A = number of parallel paths
+   f. \(\phi =\) flux per pole
+   ( Z/2 = total turns, Z/2A = total turns per parallel path)
+*** EMF Generation
+1. \( P_e (\text{mechanical/rotational [input] power}) = E_gI_a\) \[=  I_a^2R_a (\text{Cu loss}) + V_tI_L (\text{output power})\]
+2. If Armature reaction, \[\phi_R = 0.96\phi\]
+3. \[E_g = V_t + I_aR_a+V_{brush}\]
+*** Torque
+1. \[P_{shaft} = P_{rot} + P_e\]
+\[T_{sh}\omega = T_{fr}\omega+T_e\omega\] where  \(T_e\) is electromagnetic torque, \(T_{fr}\) is torque due to friction
+2. \[P_e = T_e\omega = E_gI_a\]
+3.  \[E_g = K_g \phi \omega\] where \[ K_g (\text{emf constant}) = \frac{PZ}{2\pi A}\]
+** Excitation
