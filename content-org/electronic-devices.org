@@ -17,6 +17,8 @@
 #+hugo_weight: auto
 #+hugo_auto_set_lastmod: t
 #+hugo_custom_front_matter: :mathjax t
+* Important Values
+\[n_i (Si) = 1.5e10 /cc\]
 
 * 3D Crystals
 | Property                   | Simple (sc)           | Body centered (bcc)         | Face centered (fcc)                          |
@@ -89,7 +91,7 @@ Three integers used to describe a plane.
 \mu E & E < E_c \text{ [low field]}\\
 v_{sat} & E \geq E_c \text{ [high field]}
 \end{cases} \)
-\(\text{where } \mu: \text{mobility } \propto \frac{1}{m^*}\)
+\(\text{where } \mu: \text{mobility } =  \frac{q\tau}{m^*}\)
 - \[ \frac{1}{\mu_{eff}} = \sum_k \frac{1}{\mu_k}\]
 *** Resistivity
  \[ \frac{V}{I} = R = \frac{\rho l}{A} \text{ where } \rho = \frac{1}{q(n\mu_n+p\mu_p)}\]
@@ -104,7 +106,7 @@ v_{sat} & E \geq E_c \text{ [high field]}
 | hole rich \(\rightarrow\) p-type semiconductor | electron rich \(\rightarrow\) n-type semiconductor |
 
 - When \(N_D\) or \(N_A\) is of the order of \(n_i\), use \[ \boxed{p + N_D=n+N_A}\]
-
+[[/images/band-diag.png]]
 *** N-type
 - \[ E_c - E_F = kT \log \frac{N_c}{n} = kT \log \frac{N_c}{n}\]
 - \[ E_F - E_i = kT \log \frac{N_D}{n_i} \] Thus Fermi level is above intrinsic level (midgap) in a n-type
@@ -112,6 +114,8 @@ v_{sat} & E \geq E_c \text{ [high field]}
 *** P-type
 - \[\rho = \frac{1}{q\mu_p(N_A)N_A }\]
 - \[p = n_i\text{ exp}\left(\frac{E_i-E_F}{kT}\right) \]
+
+
 * Excess Carriers in Semiconductors
 ** Optical Absorption
 - A photon with energy \(h\nu > E_g\) can be absorbed in a semiconductor to generate an =EHP=. Less than that, and it passes through.
@@ -122,18 +126,46 @@ v_{sat} & E \geq E_c \text{ [high field]}
   + \( 1 \mu m = 10^{-4} cm\)
 
   + \( v_{d(sat)} = 10^7 cm/s\)
--  \[ t_{drift} = \frac{\Delta x}{v_d}\]
+- \[ t_{drift} = \frac{\Delta x}{v_d}\]
 
-- \[J = q[n\mu_n+p\mu_p]\mathcal{E}\]
-
+- \[J = q[n\mu_n+p\mu_p]\mathcal{E} = \sigma E \]
+\(\sigma = \) \(\begin{cases}
+\sigma_n & [n-type]\\
+\sigma_p & [p-type]
+\end{cases} \)
 - \[\mathcal{E} = \frac{V}{l}\]
 ** Carrier Lifetime and Photoconductivity
-- Low level injection: \[\\delta n(t) = \Delta n\text{ exp}{\frac{-t}{\tau_n}} \ | \tau_n = (\alpha_rp_0)^{-1}\]
+- Low level injection: equal number of electrons and holes added, while it doesn't make a difference to majority carrier, it is significant for minority carriers, thus \[\frac{\partial p}{\partial t} = -\frac{\Delta p}{\tau_p}[\text{n-type}]\]
+  \[\frac{\partial n}{\partial t} = -\frac{\Delta n}{\tau_n} [\text{p-type}]\]
+- Continuity Equation \[\boxed{\frac{\partial p}{\partial t} = G - R - \frac{1}{q}\frac{\partial J_p}{\partial x}}\]
+\[\\delta n(t) = \Delta n\text{ exp}{\frac{-t}{\tau_n}} \\ | \\ \tau_n = (\alpha_rp_0)^{-1}\]
 - In general, \(\tau_n = \frac{1}{\alpha_r(n_0+p_0)}\)
 - Excess carrier concentration in terms of optical generation rate\[\delta n = \delta p = g_{op}\tau_n\]
 - \[\boxed{n  = n_i \text{ exp}\left(\frac{F_n-E_i}{kT}\right)}\]
 - \[\boxed{p  = n_i \text{ exp}\left(\frac{E_i-F_p}{kT}\right)}\]
 - \[\frac{D}{\mu}=\frac{kT}{q}\]
-* Junctions
 
+** Diffusion of Carriers
+\[J_n (\text{diff.}) = qD_n \frac{dn}{dx}\]
+\[J_p (\text{diff.}) = -qD_p \frac{dp}{dx}\]
+
+* Junctions
+[[/images/pn-band-diag.png]]
 - If \(x_n, x_p \rightarrow\) depletion width of n-side and p-side respectively, then \[x_p \cdot N_A = x_n\cdot N_D\]
+-  \[\text{Depletion width } W = \frac{2\epsilon V_{bi}}{q}(\frac{1}{N_a}+\frac{1}{N_d})^{1/2}\]
+- Built in potential\[V_{bi} = V_T ln\left(\frac{N_AN_D}{n_i^2}\right)\]
+- \[E_{max} = \frac{qN_A}{\epsilon_{Si}}x_p\]
+
+** PN Junction Diode
+- If we apply a voltage \(V_D\) across the PN junction, the built-in potential is reduced by this diode potential, so we can replace \(V_{bi}\) by \((V_{bi} - V_D)\) everywhere.
+- Relating carrier concentration on p-side and n-side: \[p_{n0} = p_{p0}\exp\left(-\frac{V_{bi} - V_D}{V_T}\right) \] \[ n_{p0} = n_{n0}e^{-(V_{bi}-V_D)/V_T}\]
+# (\(0 \rightarrow x=0 \text{ relative to depletion region}\))
+- Since \(\Delta p \ll p_0\) on the p-side and \(\Delta n \ll n_0\) on the n-side, we only need to solve the continuity equation for \(\Delta n\) on p-side and \(\Delta p\) on n-side.
+- We can neglect recombination in depletion region, and generation is small relative to injection from one side to another. Also, in steady state, carrier concentration becomes unchanging, thus we are left with \(\frac{1}{q}\frac{\partial J_P}{\partial x} = 0\), i.e.
+  + \(J_p\) and \(J_n\) are constant throughout depletion region and \(J = J_n + J_p\) is constant everywhere in the PN junction.
+- \[\frac{\partial^2\Delta p}{\partial x^2} = \frac{\Delta p}{L_p^2}\] where \(L_p=\sqrt{D_p\tau_p}:\) diffusion length
+\[\Delta p = A\exp{-\frac{x}{L_p}} + B\exp{\frac{x}{L_p}} \ \ \ [\text{B=0 unless short diode}] \]
+- \[\Delta p(x) = p_{n0}(e^{V_D/V_T}-1)e^{-x/L_p}\]
+- \[J_{n,sat} = \frac{qD_nn_{p0}}{L_n}\] \[J_{p,sat} = \frac{qD_pp_{n0}}{L_p}\] \[J_{sat} = J_{n,sat} + J_{p,sat}\] \[\boxed{J(V) = J_{sat}(e^{V_D/V_T}-1)}\]
+** Diffusion Capacitance
+\[C_{diff} = \frac{qAe^{V_0/V_T}}{2V_T}(L_nn_{p0}+L_pp_{n0}) \ \ \ [V_0: \text{bias voltage}\]
