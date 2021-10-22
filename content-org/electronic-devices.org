@@ -17,9 +17,11 @@
 #+hugo_weight: auto
 #+hugo_auto_set_lastmod: t
 #+hugo_custom_front_matter: :mathjax t
-* Important Values
-\[n_i (Si) = 1.5e10 /cc\]
-
+* Important Values (Si)
+\[n_i = 1.5e10 /cc\]
+\[N_c = 2.8e19 /cc\]
+\[N_v = 1.04e19 /cc\]
+\[\epsilon_r = 11.9\]
 * 3D Crystals
 | Property                   | Simple (sc)           | Body centered (bcc)         | Face centered (fcc)                          |
 |----------------------------+-----------------------+-----------------------------+----------------------------------------------|
@@ -135,10 +137,10 @@ v_{sat} & E \geq E_c \text{ [high field]}
 \end{cases} \)
 - \[\mathcal{E} = \frac{V}{l}\]
 ** Carrier Lifetime and Photoconductivity
-- Low level injection: equal number of electrons and holes added, while it doesn't make a difference to majority carrier, it is significant for minority carriers, thus \[\frac{\partial p}{\partial t} = -\frac{\Delta p}{\tau_p}[\text{n-type}]\]
+- *Low level injection*: equal number of electrons and holes added, while it doesn't make a difference to majority carrier, it is significant for minority carriers, thus \[\frac{\partial p}{\partial t} = -\frac{\Delta p}{\tau_p}[\text{n-type}]\]
   \[\frac{\partial n}{\partial t} = -\frac{\Delta n}{\tau_n} [\text{p-type}]\]
 - Continuity Equation \[\boxed{\frac{\partial p}{\partial t} = G - R - \frac{1}{q}\frac{\partial J_p}{\partial x}}\]
-\[\\delta n(t) = \Delta n\text{ exp}{\frac{-t}{\tau_n}} \\ | \\ \tau_n = (\alpha_rp_0)^{-1}\]
+\[\\delta n(t) = \Delta n e^{-t/\tau_n} \\ | \\ \tau_n = (\alpha_rp_0)^{-1}\]
 - In general, \(\tau_n = \frac{1}{\alpha_r(n_0+p_0)}\)
 - Excess carrier concentration in terms of optical generation rate\[\delta n = \delta p = g_{op}\tau_n\]
 - \[\boxed{n  = n_i \text{ exp}\left(\frac{F_n-E_i}{kT}\right)}\]
@@ -167,5 +169,10 @@ v_{sat} & E \geq E_c \text{ [high field]}
 \[\Delta p = A\exp{-\frac{x}{L_p}} + B\exp{\frac{x}{L_p}} \ \ \ [\text{B=0 unless short diode}] \]
 - \[\Delta p(x) = p_{n0}(e^{V_D/V_T}-1)e^{-x/L_p}\]
 - \[J_{n,sat} = \frac{qD_nn_{p0}}{L_n}\] \[J_{p,sat} = \frac{qD_pp_{n0}}{L_p}\] \[J_{sat} = J_{n,sat} + J_{p,sat}\] \[\boxed{J(V) = J_{sat}(e^{V_D/V_T}-1)}\]
-** Diffusion Capacitance
+- \[\boxed{I_D = I_S(e^{V_A/V_T}-1)} = -I_S (\text{reverse bias})\]
+
+- \(J_S \propto \exp(-E_g/T)\)
+\[J \propto \exp\left(\frac{-(E_g-qV_A)}{kT}\right)\]
+** Diffusion Capacitance and Resistance
 \[C_{diff} = \frac{qAe^{V_0/V_T}}{2V_T}(L_nn_{p0}+L_pp_{n0}) \ \ \ [V_0: \text{bias voltage}\]
+\[r_d = \frac{V_T}{I_D}\]

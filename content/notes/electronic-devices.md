@@ -2,7 +2,7 @@
 title = "Electronic Devices"
 author = ["Himanish"]
 date = 2021-09-07
-lastmod = 2021-10-22T14:22:42+05:30
+lastmod = 2021-10-22T22:02:02+05:30
 categories = ["electronics"]
 draft = false
 mathjax = "t"
@@ -11,9 +11,12 @@ mathjax = "t"
   weight = 2001
 +++
 
-## Important Values {#important-values}
+## Important Values (Si) {#important-values--si}
 
-\\[n\_i (Si) = 1.5e10 /cc\\]
+\\[n\_i = 1.5e10 /cc\\]
+\\[N\_c = 2.8e19 /cc\\]
+\\[N\_v = 1.04e19 /cc\\]
+\\[\epsilon\_r = 11.9\\]
 
 
 ## 3D Crystals {#3d-crystals}
@@ -191,11 +194,11 @@ v\_{sat} & E \geq E\_c \text{ [high field]}
 
 ### Carrier Lifetime and Photoconductivity {#carrier-lifetime-and-photoconductivity}
 
--   Low level injection: equal number of electrons and holes added, while it doesn't make a difference to majority carrier, it is significant for minority carriers, thus \\[\frac{\partial p}{\partial t} = -\frac{\Delta p}{\tau\_p}[\text{n-type}]\\]
+-   **Low level injection**: equal number of electrons and holes added, while it doesn't make a difference to majority carrier, it is significant for minority carriers, thus \\[\frac{\partial p}{\partial t} = -\frac{\Delta p}{\tau\_p}[\text{n-type}]\\]
     \\[\frac{\partial n}{\partial t} = -\frac{\Delta n}{\tau\_n} [\text{p-type}]\\]
 -   Continuity Equation \\[\boxed{\frac{\partial p}{\partial t} = G - R - \frac{1}{q}\frac{\partial J\_p}{\partial x}}\\]
 
-\\[\\delta n(t) = \Delta n\text{ exp}{\frac{-t}{\tau\_n}} \\ | \\ \tau\_n = (\alpha\_rp\_0)^{-1}\\]
+\\[\\delta n(t) = \Delta n e^{-t/\tau\_n} \\ | \\ \tau\_n = (\alpha\_rp\_0)^{-1}\\]
 
 -   In general, \\(\tau\_n = \frac{1}{\alpha\_r(n\_0+p\_0)}\\)
 -   Excess carrier concentration in terms of optical generation rate\\[\delta n = \delta p = g\_{op}\tau\_n\\]
@@ -236,8 +239,14 @@ v\_{sat} & E \geq E\_c \text{ [high field]}
 
 -   \\[\Delta p(x) = p\_{n0}(e^{V\_D/V\_T}-1)e^{-x/L\_p}\\]
 -   \\[J\_{n,sat} = \frac{qD\_nn\_{p0}}{L\_n}\\] \\[J\_{p,sat} = \frac{qD\_pp\_{n0}}{L\_p}\\] \\[J\_{sat} = J\_{n,sat} + J\_{p,sat}\\] \\[\boxed{J(V) = J\_{sat}(e^{V\_D/V\_T}-1)}\\]
+-   \\[\boxed{I\_D = I\_S(e^{V\_A/V\_T}-1)} = -I\_S (\text{reverse bias})\\]
+
+-   \\(J\_S \propto \exp(-E\_g/T)\\)
+
+\\[J \propto \exp\left(\frac{-(E\_g-qV\_A)}{kT}\right)\\]
 
 
-### Diffusion Capacitance {#diffusion-capacitance}
+### Diffusion Capacitance and Resistance {#diffusion-capacitance-and-resistance}
 
 \\[C\_{diff} = \frac{qAe^{V\_0/V\_T}}{2V\_T}(L\_nn\_{p0}+L\_pp\_{n0}) \ \ \ [V\_0: \text{bias voltage}\\]
+\\[r\_d = \frac{V\_T}{I\_D}\\]
