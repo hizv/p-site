@@ -31,13 +31,13 @@
 In pu (per unit) system, z is same on both sides.
 ** Testing
 *** OC Test / No-load Test
-\[y_0 = \frac{I_0}{V_1} \]
-\[G_i = \frac{P_0}{V_1^2}\]
-\[B_m = \sqrt{y_0^2 - G_1^2} \]
+\[y_0 = \frac{I_{oc}}{V_{oc}} \] or \(Z_\phi = \frac{V_{oc}}{I_{oc}}\)
+\[G_i = \frac{P_{oc}}{V_{oc}^2}\] or \(R_c = \frac{V^2_{oc}}{P_{oc}}\)
+\[B_m = \sqrt{y_0^2 - G_1^2} \] or \(X_m = \frac{1}{\sqrt{1/Z_\phi^2 - 1/R_c^2}}\)
 *** SC Test
-\[Z = \frac{V_{sc}}{I_{sc}}\]
-\[R = \frac{P_{sc}}{I_{sc}^2}\]
-\[X = \sqrt{Z^2 - R^2}\]
+\[Z_{eq} = \frac{V_{sc}}{I_{sc}}\]
+\[R_{eq} = \frac{P_{sc}}{I_{sc}^2}\]
+\[X = \sqrt{Z_{eq}^2 - R_{eq}^2}\]
 
 *** Full load
 \[B_m = \frac{1}{2\pi fL_m}\]

@@ -2,7 +2,7 @@
 title = "Electrical Machines"
 author = ["Himanish"]
 date = 2021-10-04
-lastmod = 2021-10-18T15:54:08+05:30
+lastmod = 2021-10-29T10:32:37+05:30
 categories = ["electronics", "power"]
 draft = false
 mathjax = "t"
@@ -39,16 +39,16 @@ In pu (per unit) system, z is same on both sides.
 
 #### OC Test / No-load Test {#oc-test-no-load-test}
 
-\\[y\_0 = \frac{I\_0}{V\_1} \\]
-\\[G\_i = \frac{P\_0}{V\_1^2}\\]
-\\[B\_m = \sqrt{y\_0^2 - G\_1^2} \\]
+\\[y\_0 = \frac{I\_{oc}}{V\_{oc}} \\] or \\(Z\_\phi = \frac{V\_{oc}}{I\_{oc}}\\)
+\\[G\_i = \frac{P\_{oc}}{V\_{oc}^2}\\] or \\(R\_c = \frac{V^2\_{oc}}{P\_{oc}}\\)
+\\[B\_m = \sqrt{y\_0^2 - G\_1^2} \\] or \\(X\_m = \frac{1}{\sqrt{1/Z\_\phi^2 - 1/R\_c^2}}\\)
 
 
 #### SC Test {#sc-test}
 
-\\[Z = \frac{V\_{sc}}{I\_{sc}}\\]
-\\[R = \frac{P\_{sc}}{I\_{sc}^2}\\]
-\\[X = \sqrt{Z^2 - R^2}\\]
+\\[Z\_{eq} = \frac{V\_{sc}}{I\_{sc}}\\]
+\\[R\_{eq} = \frac{P\_{sc}}{I\_{sc}^2}\\]
+\\[X = \sqrt{Z\_{eq}^2 - R\_{eq}^2}\\]
 
 
 #### Full load {#full-load}

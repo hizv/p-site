@@ -180,15 +180,23 @@ The outputs of sequential logic depend on both current and /prior/ input values.
 - They are not practical because the user has /no inputs/ to control the state.
 ** Latches
 *** SR Latch
-[[/images/sr-bistable.png]]
+[[/images/sr-bistable.png]] (NOR gates are used to build active high SR latches and NAND gates to build active low SR latches)
 - The inputs S and R stand for Set and Reset. To set a bit means to make it TRUE. To reset a bit means to make it FALSE.
 - The outputs, Q and Q', are normally complementary. When R is asserted, Q is reset to 0 and Q' does the opposite. When S is asserted, Q is set to 1 and Q' does the opposite. When neither input is asserted, Q remembers its old value, \(Q_{prev}\).
 - Asserting both S and R simultaneously doesn’t make much sense because it means the latch should be set and reset at the same time, which is impossible. The poor confused circuit responds by making both outputs 0.
 [[/images/sr-tt.png]]
 - Unlike the cross-coupled inverter, the state can be controlled through the S and R inputs.
+- SR NAND latch is an inverted version of SR NOR latch.
+  - [[https://electronics.stackexchange.com/questions/299670/on-rs-latches-or-flip-flops-nor-or-nand-via-duality-principle][On RS Latches (or Flip-Flops), NOR or NAND, via Duality Principle]]
+  - [[https://electronics.stackexchange.com/questions/163164/sr-flip-flop-nor-or-nand][SR: NOR vs NAND]]
 *** D Latch
 The SR latch is awkward because it behaves strangely when both S and R are simultaneously asserted. Moreover, the S and R inputs conflate the issues of /what/ and /when/. Asserting one of the inputs determines not only what the state should be but also when it should change.
 - The D latch has two inputs. The /data/ input, D, controls what the next state should be. The /enable/ input, En, controls when the state should change.
 [[/images/d-latch.png]]
 - When En = 1, the latch is /transparent/. The data at D flows through to Q as if the latch were just a buffer. When En = 0, the latch is /opaque/. It blocks the new data from flowing through to Q, and Q retains the old value. Hence, the D latch is sometimes called a transparent latch or a level-sensitive latch.
 ** Flip-flops
+*** JK
+\[D = JQ' + K'Q\]
+*** State Diagrams
+- It is important to remember that the bit value listed for the output along the directed line occurs during the present state and with the indicated input, and has nothing to do with the transition to the next state.
+** Finite State Machines

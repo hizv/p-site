@@ -2,7 +2,7 @@
 title = "Digital Design"
 author = ["Himanish"]
 date = 2021-09-08
-lastmod = 2021-10-11T15:17:13+05:30
+lastmod = 2021-11-09T16:42:55+05:30
 categories = ["electronics", "cs"]
 draft = false
 mathjax = "t"
@@ -299,7 +299,7 @@ The outputs of sequential logic depend on both current and _prior_ input values.
 
 #### SR Latch {#sr-latch}
 
-{{< figure src="/images/sr-bistable.png" >}}
+![](/images/sr-bistable.png) (NOR gates are used to build active high SR latches and NAND gates to build active low SR latches)
 
 -   The inputs S and R stand for Set and Reset. To set a bit means to make it TRUE. To reset a bit means to make it FALSE.
 -   The outputs, Q and Q', are normally complementary. When R is asserted, Q is reset to 0 and Q' does the opposite. When S is asserted, Q is set to 1 and Q' does the opposite. When neither input is asserted, Q remembers its old value, \\(Q\_{prev}\\).
@@ -308,6 +308,9 @@ The outputs of sequential logic depend on both current and _prior_ input values.
 {{< figure src="/images/sr-tt.png" >}}
 
 -   Unlike the cross-coupled inverter, the state can be controlled through the S and R inputs.
+-   SR NAND latch is an inverted version of SR NOR latch.
+    -   [On RS Latches (or Flip-Flops), NOR or NAND, via Duality Principle](https://electronics.stackexchange.com/questions/299670/on-rs-latches-or-flip-flops-nor-or-nand-via-duality-principle)
+    -   [SR: NOR vs NAND](https://electronics.stackexchange.com/questions/163164/sr-flip-flop-nor-or-nand)
 
 
 #### D Latch {#d-latch}
@@ -322,3 +325,16 @@ The SR latch is awkward because it behaves strangely when both S and R are simul
 
 
 ### Flip-flops {#flip-flops}
+
+
+#### JK {#jk}
+
+\\[D = JQ' + K'Q\\]
+
+
+#### State Diagrams {#state-diagrams}
+
+-   It is important to remember that the bit value listed for the output along the directed line occurs during the present state and with the indicated input, and has nothing to do with the transition to the next state.
+
+
+### Finite State Machines {#finite-state-machines}

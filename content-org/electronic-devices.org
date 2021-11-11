@@ -17,11 +17,26 @@
 #+hugo_weight: auto
 #+hugo_auto_set_lastmod: t
 #+hugo_custom_front_matter: :mathjax t
+
+* COMMENT TODO
+** NEED__TO__UNDERSTAND Hall Measurements
+** NEED__TO__UNDERSTAND Haynes-Shockley Experiment
 * Important Values (Si)
 \[n_i = 1.5e10 /cc\]
 \[N_c = 2.8e19 /cc\]
 \[N_v = 1.04e19 /cc\]
 \[\epsilon_r = 11.9\]
+* Overview
+We want to answer two questions.
+1. How many charge carriers are there?
+   a. E/k band diagram  \(\rightarrow\)Effective Mass
+   b. Density of states
+   c. Fermi-Dirac Statistics
+2. Where are they and how are they moving?
+   a. Carrier Drift \(\rightarrow\) Ohm's Law
+   b. Carrier Diffusion
+   c. Generation and Recombination
+   d. /Continuity Equation/
 * 3D Crystals
 | Property                   | Simple (sc)           | Body centered (bcc)         | Face centered (fcc)                          |
 |----------------------------+-----------------------+-----------------------------+----------------------------------------------|
@@ -84,6 +99,7 @@ Three integers used to describe a plane.
 - Thus, \(\frac{dE}{dx} = 0\)
 ** Intrinsic semiconductors
 - \(n = p = n_i\), thus\[ N_c \text{ exp}\left(-\frac{E_c-E_F}{kT}\right) = N_v\text{ exp}\left(-\frac{E_F-E_v}{kT}\right)\] \[\therefore E_i := E_{F (intrinsic)} = \frac{E_c + E_v}{2} + \frac{kT}{2}\log \frac{N_v}{N_c} \] (/close to midgap in Si, Ge/)
+  - Law of mass action: \(np = n_i^2 \text{(valid at equilibrium)}\)
   - \[ n_i^2 = N_cN_v \text{ exp}\left(-\frac{E_c- E_v}{kT}\right)\] \[ n_i = \sqrt{N_cN_v}\text{ exp}\left(\frac{-E_g}{2kT}\right)\]
   - As \(T \uparrow, n_i \uparrow \uparrow\)
 ** Drift of Carriers in Fields
@@ -117,8 +133,8 @@ v_{sat} & E \geq E_c \text{ [high field]}
 - \[\rho = \frac{1}{q\mu_p(N_A)N_A }\]
 - \[p = n_i\text{ exp}\left(\frac{E_i-E_F}{kT}\right) \]
 
-
 * Excess Carriers in Semiconductors
+Excess carriers are different from doping; in doping, the semiconductor stays in equilibrium, whereas creating excess carriers disturbs it.
 ** Optical Absorption
 - A photon with energy \(h\nu > E_g\) can be absorbed in a semiconductor to generate an =EHP=. Less than that, and it passes through.
 - \[ - \frac{dI}{dx} = \alpha I(x) \] \[\therefore I(x) = I_0e^{-\alpha(\lambda) x} \]
@@ -136,6 +152,9 @@ v_{sat} & E \geq E_c \text{ [high field]}
 \sigma_p & [p-type]
 \end{cases} \)
 - \[\mathcal{E} = \frac{V}{l}\]
+*** Formal Analysis
+- As a system always tries to re-establish equilibrium, when light is impinged on a semiconductor, creating excess carriers i.e.\(np > n_i^2\), recombination rate R shoots up to go back home. [net recombination occurs: R > G]
+- On the flip side, when carriers are extracted e.g. in a pn junction, thus making \(np < n_i^2\), G>R.
 ** Carrier Lifetime and Photoconductivity
 - *Low level injection*: equal number of electrons and holes added, while it doesn't make a difference to majority carrier, it is significant for minority carriers, thus \[\frac{\partial p}{\partial t} = -\frac{\Delta p}{\tau_p}[\text{n-type}]\]
   \[\frac{\partial n}{\partial t} = -\frac{\Delta n}{\tau_n} [\text{p-type}]\]
@@ -154,25 +173,101 @@ v_{sat} & E \geq E_c \text{ [high field]}
 * Junctions
 [[/images/pn-band-diag.png]]
 - If \(x_n, x_p \rightarrow\) depletion width of n-side and p-side respectively, then \[x_p \cdot N_A = x_n\cdot N_D\]
--  \[\text{Depletion width } W = \frac{2\epsilon V_{bi}}{q}(\frac{1}{N_a}+\frac{1}{N_d})^{1/2}\]
-- Built in potential\[V_{bi} = V_T ln\left(\frac{N_AN_D}{n_i^2}\right)\]
+  + Thus depletion width is higher on lightly doped side in pn junction
+- \[\text{Depletion width } W = \frac{2\epsilon V_{bi}}{q}(\frac{1}{N_a}+\frac{1}{N_d})^{1/2}\]
+- Built in potential\[V_{bi} = V_T \ln\left(\frac{N_AN_D}{n_i^2}\right)\]
 - \[E_{max} = \frac{qN_A}{\epsilon_{Si}}x_p\]
-
 ** PN Junction Diode
 - If we apply a voltage \(V_D\) across the PN junction, the built-in potential is reduced by this diode potential, so we can replace \(V_{bi}\) by \((V_{bi} - V_D)\) everywhere.
-- Relating carrier concentration on p-side and n-side: \[p_{n0} = p_{p0}\exp\left(-\frac{V_{bi} - V_D}{V_T}\right) \] \[ n_{p0} = n_{n0}e^{-(V_{bi}-V_D)/V_T}\]
+- Applying this voltage is like shining light on one side of semiconductor.
+*** Relating carrier concentration on p-side and n-side
+\[p_{n0} = p_{p0}e^{-(V_{bi} - V_D)/V_T} \] \[ n_{p0} = n_{n0}e^{-(V_{bi}-V_D)/V_T}\]
 # (\(0 \rightarrow x=0 \text{ relative to depletion region}\))
-- Since \(\Delta p \ll p_0\) on the p-side and \(\Delta n \ll n_0\) on the n-side, we only need to solve the continuity equation for \(\Delta n\) on p-side and \(\Delta p\) on n-side.
+*** Solving the Continuity Equation
+- Since \(\Delta p \ll p_0\) on the p-side and \(\Delta n \ll n_0\) on the n-side, we only need to solve the continuity equation for \(\Delta n\) on p-side and \(\Delta p\) on n-side. [Low-level injection (\(V_D \ll V_{bi}\))]
 - We can neglect recombination in depletion region, and generation is small relative to injection from one side to another. Also, in steady state, carrier concentration becomes unchanging, thus we are left with \(\frac{1}{q}\frac{\partial J_P}{\partial x} = 0\), i.e.
-  + \(J_p\) and \(J_n\) are constant throughout depletion region and \(J = J_n + J_p\) is constant everywhere in the PN junction.
+  + \(J_p\) and \(J_n\) are constant throughout depletion region and \(J = J_n + J_p\) is constant everywhere in the PN junction. The depletion region has no carriers, any entering will be swept across.
 - \[\frac{\partial^2\Delta p}{\partial x^2} = \frac{\Delta p}{L_p^2}\] where \(L_p=\sqrt{D_p\tau_p}:\) diffusion length
 \[\Delta p = A\exp{-\frac{x}{L_p}} + B\exp{\frac{x}{L_p}} \ \ \ [\text{B=0 unless short diode}] \]
 - \[\Delta p(x) = p_{n0}(e^{V_D/V_T}-1)e^{-x/L_p}\]
-- \[J_{n,sat} = \frac{qD_nn_{p0}}{L_n}\] \[J_{p,sat} = \frac{qD_pp_{n0}}{L_p}\] \[J_{sat} = J_{n,sat} + J_{p,sat}\] \[\boxed{J(V) = J_{sat}(e^{V_D/V_T}-1)}\]
-- \[\boxed{I_D = I_S(e^{V_A/V_T}-1)} = -I_S (\text{reverse bias})\]
-
+- \[J_{n,sat} = \frac{qD_nn_{p0}}{L_n} = \frac{qn_i^2D_p}{L_pN_D}\] \[J_{p,sat} = \frac{qD_pp_{n0}}{L_p} = \frac{qn_i^2D_n}{L_nN_A}\]
+  (Lightly doped side contributes to current)
+\[J_{sat} = J_{n,sat} + J_{p,sat}\] \[\boxed{J(V) = J_{sat}(e^{V_D/V_T}-1)}\]
+- \[\boxed{I_D = I_S(e^{V_A/V_T}-1)}\]
+  + \(I \approx I_Se^{V_D/V_T}\)Under forward bias when \(V > 3V_T\)
+  + \(I \approx -I_S\)Under reverse bias when \(|V| > 3V_T\)
 - \(J_S \propto \exp(-E_g/T)\)
 \[J \propto \exp\left(\frac{-(E_g-qV_A)}{kT}\right)\]
+*** One-sided diode
+- \(P^+N\) junction is formed when \(N_a \gg N_d \). The depletion region extends mostly towards the n-side.
+*** Equilibrium
+When a zero bias voltage is applied across the junction, the junction is in equilibrium. No ’net’ current flows across the junction. The drift and diffusion currents cancel each other
+\[J_{\text{p,diff}} = J_{\text{p,drift}} \ \ \ J_{\text{n,diff}} = J_{\text{n,drift}}\]
+*** Forward Bias
+- Majorly diffusion current from p to n
+*** Reverse Bias
+- When a negative bias voltage is applied across the junction, the equilibrium is disturbed. Assuming that the p and n regions have very low resistivity, most of the applied voltage drops across the depletion region.
+- Thus the voltage across the junction opposes the diffusion current, the diffusion current is almost non-existant under the rever applied bias. Only drift current dominates.
 ** Diffusion Capacitance and Resistance
-\[C_{diff} = \frac{qAe^{V_0/V_T}}{2V_T}(L_nn_{p0}+L_pp_{n0}) \ \ \ [V_0: \text{bias voltage}\]
-\[r_d = \frac{V_T}{I_D}\]
+- A differential change in the reverse bias leads to a
+differenntial change in the charge. This can be seen as a
+capacitive effect:
+\[C_{diff} = \frac{dQ}{dV} \frac{qAe^{V_0/V_T}}{2V_T}(L_nn_{p0}+L_pp_{n0}) \ \ \ [V_0: \text{bias voltage}\]
+- Normally depletion capacitance (\(C_j\)) is defined per unit
+area (\(C_j = C/A\)) in pn junctions thus we have
+\[C_j = \sqrt{\frac{q\epsilon}{2(\frac{1}{N_A} + \frac{1}{N_D})(V_{bi}-V_A)}} \text{(varicap)}\]
+- \(C_j\) also depends on doping concentration profile. If \(N_D(x) = Gx^m\), \(C_{rb} \propto V_R^{-n}\), where \(n = \frac{1}{m+2}\)
+- \[r_d = \frac{V_T}{I_D}\]
+
+** Short Base Diode
+- If length of n region \((\ell) \ll L_p\), Recombination rate = Zero as insufficient length available for holes to recombine
+- Thus \(\frac{d^2\Delta p}{dx^2} = 0 \implies \Delta p = mx + c\)
+- In the short side, replace recombination length by width, e.g. \(L_p\) by W.
+- At the contact, no excess carriers are present as metal contact has infinite carriers that nullify them, i.e. full recombination.
+** Non-idealities
+- If \(V_A ~ 0.7 - 1 V\), the series resistance of p and n side kicks in and limits the current, i.e. current reaches saturation at high voltages. At small currents, contact resistance can be neglected.
+- Recap: R > G if \(np > n_i^2\) else R < G.
+*** Space Charge Generation-Recombination Current
+- Traps reduce idealities, causing \(I_{FB} \downarrow, I_{RB} \uparrow\)
+- Consider diode in =RB=. In ideal model, we only had \(J_0\). But now due to traps, \(np < n_i^2\) in the depletion region, causing net generation to realise equilibrium. Thus the actual RB current has an additional \(J_G\) term (\(\propto N_T, T\)), thus \(I_{RB}\uparrow\).
+- In =FB=, more carriers, so net recombination, so \(J_{FB}' = J_0 - J_R\), thus current decreases.
+** Breakdown
+- At \(E_{crit}\), breakdown occurs. \[E_{crit} = \frac{2(V_{bi}+V_R)}{W}\]
+*** Zener Breakdown
+- Heavily doped diode
+- Tunneling mechanism: Tunneling \(\propto \exp{(-W)}\) [depletion width matters]
+- Less dependent on temperature
+*** Avalanche Breakdown
+- Lightly doped diode
+- One electron enters depletion region, uses the electric field energy to generate an EHP, which in turn produce their own EHPs, causing lot of current.
+- Multiplicative factor M = \((1+P)^N\) where \(N = \lfloor W/\lambda \rfloor\)
+- Holes bubble up to the top, electrons roll down the hill of band bending.
+** Switching in P-N junction
+- If we apply a sinusoidal voltage across the diode, it takes time for the diode to switch from forward to reverse bias as recombination of excess carriers is not instantaneous
+- To increase the switching speed, we must reduce recombination time \(\tau\), which can be done by increasing the number of traps. But that comes with a tradeoff: leakage current increases.
+- Either the diode can be fast, or less leaky
+
+** Metal-Semiconductor Contacts
+- _Ohmic (ideal) contact_: R \(\rightarrow\) small
+- _Rectifying (Schottky) contact_: allows current to flow only in one direction
+- _Work function of metal_ (\(\phi_M = E_F\)): Minimum energy needed to be supplied to an electron for it to come out
+  - Work function of semiconductor: \(\phi_S = \chi + (E_C - E_F)\), \(\chi\) is electron affinity, energy required to remove electron from conduction band
+  - \(\phi_M > \phi_S \implies\) Rectifying contact, as depletion region created
+  - \(\phi_M < \phi_S \implies\) Ohmic contact, as no depletion region, i.e. conduction same on both sides of MS contact
+  - As doping concentration increases, depletion width decreases, so a Schottky diode can be converted to an Ohmic diode by doping very high
+* Transistors
+- Amplification
+- "Transfer resistor"
+** JFETS
+- \(V_{DS}\) small: acts as resistor
+  - \(V_{DS}\) larger: depletion width is not constant. Depending on where voltage difference is larger, larger depletion region
+- Gradual Channel Approximation: depletion region varies linearly with length
+*** Pinch-off voltage
+\[V_P := V_{bi}-V_R \text{ when } W=a\]
+- Internal pinch-off \[V_{P0} = V_{bi}\]
+- \[V_P = \frac{qN_Da^2}{2\epsilon_S}\]
+** MOSCAP
+- p-type substrate: accumulation on the negative side of C-V curve
+- High or low frequency, accumulation region remains same, change happens in inversion region
+- \[C_{ox} = \frac{\epsilon_{ox}}{T_{ox}} \text{ where } T_{ox}: \text{dielectric thickness} \]
+- \[C_{dep} = \frac{\epsilon_s}{x_{d(max)}} \text{ where } x_{d(max)} = \sqrt{\frac{2\epsilon_S(2\phi_F)}{qN_A}} and \phi_F = V_T \ln{\frac{N_a}{n_i}} \]
