@@ -2,7 +2,7 @@
 title = "Electronic Devices"
 author = ["Himanish"]
 date = 2021-09-07
-lastmod = 2021-11-11T15:01:45+05:30
+lastmod = 2021-12-02T12:39:50+05:30
 categories = ["electronics"]
 draft = false
 mathjax = "t"
@@ -306,15 +306,12 @@ When a zero bias voltage is applied across the junction, the junction is in equi
 
 ### Diffusion Capacitance and Resistance {#diffusion-capacitance-and-resistance}
 
--   A differential change in the reverse bias leads to a
+-   A differential change in the reverse bias leads to a differential change in the charge. This can be seen as a capacitive effect:
 
-differenntial change in the charge. This can be seen as a
-capacitive effect:
 \\[C\_{diff} = \frac{dQ}{dV} \frac{qAe^{V\_0/V\_T}}{2V\_T}(L\_nn\_{p0}+L\_pp\_{n0}) \ \ \ [V\_0: \text{bias voltage}\\]
 
--   Normally depletion capacitance (\\(C\_j\\)) is defined per unit
+-   Normally depletion capacitance (\\(C\_j\\)) is defined per unit area (\\(C\_j = C/A\\)) in pn junctions thus we have
 
-area (\\(C\_j = C/A\\)) in pn junctions thus we have
 \\[C\_j = \sqrt{\frac{q\epsilon}{2(\frac{1}{N\_A} + \frac{1}{N\_D})(V\_{bi}-V\_A)}} \text{(varicap)}\\]
 
 -   \\(C\_j\\) also depends on doping concentration profile. If \\(N\_D(x) = Gx^m\\), \\(C\_{rb} \propto V\_R^{-n}\\), where \\(n = \frac{1}{m+2}\\)
@@ -380,20 +377,14 @@ area (\\(C\_j = C/A\\)) in pn junctions thus we have
     -   As doping concentration increases, depletion width decreases, so a Schottky diode can be converted to an Ohmic diode by doping very high
 
 
-## Transistors {#transistors}
-
--   Amplification
--   "Transfer resistor"
-
-
-### JFETS {#jfets}
+## JFETS {#jfets}
 
 -   \\(V\_{DS}\\) small: acts as resistor
     -   \\(V\_{DS}\\) larger: depletion width is not constant. Depending on where voltage difference is larger, larger depletion region
 -   Gradual Channel Approximation: depletion region varies linearly with length
 
 
-#### Pinch-off voltage {#pinch-off-voltage}
+### Pinch-off voltage {#pinch-off-voltage}
 
 \\[V\_P := V\_{bi}-V\_R \text{ when } W=a\\]
 
@@ -401,9 +392,233 @@ area (\\(C\_j = C/A\\)) in pn junctions thus we have
 -   \\[V\_P = \frac{qN\_Da^2}{2\epsilon\_S}\\]
 
 
-### MOSCAP {#moscap}
+## MOSCAP {#moscap}
 
+{{< figure src="/images/moscap.png" >}}
+
+-   Important: Hardware debugging; can trace buggy device ultimately to unexpected transistor behaviour
+-   Modeling can be used to predict, but it should be simple; avoid excessive variables
+-   MOSFET is easy to fabricate: Si is abundant and Si/SiO2 is close to an ideal interface
+-   Used in digital design as a voltage-controlled switch (gate voltage decides whether source touches drain)
+
+
+### Oxide layer {#oxide-layer}
+
+-   Oxide layer provides insulation (huge band gap) between metal-semiconductor, i.e. the capacitor gap
+-   It has a built-in electric field \\[E = \frac{|W\_1-W\_2|}{qd}\\] which causes band bending towards the side with greater work function, i.e.
+-   \\[C'\_{ox} = \frac{\epsilon\_{ox}}{T\_{ox}} \text{ where } T\_{ox}: \text{dielectric thickness} \\]
+    -   Prime indicates capacitance (or charge) per unit area.
+
+
+### Accumulation mode {#accumulation-mode}
+
+-   On applying a negative voltage, electrons accumulate on the metal, and holes (majority carriers) from the bulk accumulate on the oxide–semiconductor interface which corresponds to the positive charge on the bottom “plate” of the MOS capacitor.
+-   **Flat band**: Intrinsic band bending due to \\(\phi\_{MS}\\) needs to be undone before we can enter accumulation mode, as the Fermi level is closer to the intrinsic Fermi level than we want
+-   Thus, we need to apply a positive voltage on the semiconductor side and negative on metal side:\\[ |-V| > |\phi\_{MS}| \\]
 -   p-type substrate: accumulation on the negative side of C-V curve
 -   High or low frequency, accumulation region remains same, change happens in inversion region
--   \\[C\_{ox} = \frac{\epsilon\_{ox}}{T\_{ox}} \text{ where } T\_{ox}: \text{dielectric thickness} \\]
--   \\[C\_{dep} = \frac{\epsilon\_s}{x\_{d(max)}} \text{ where } x\_{d(max)} = \sqrt{\frac{2\epsilon\_S(2\phi\_F)}{qN\_A}} and \phi\_F = V\_T \ln{\frac{N\_a}{n\_i}} \\]
+
+
+### Depletion mode {#depletion-mode}
+
+\\[V = \phi\_{MS} + \phi\_F\\]
+
+-   \\( V\_{GS} = \phi\_{MS}\\) will undo band bending (flat band) and to bring back \\(E\_F = E\_i\\) we need to apply an additional voltage \\(\phi\_F = E\_F - E\_i\\)
+-   \\[\phi\_F = V\_T \ln{\frac{N\_a}{n\_i}}\\]
+
+
+### Inversion mode {#inversion-mode}
+
+-   By applying a sufficiently large positive gate voltage, we have inverted the surface of the semiconductor from a p-type to an n-type semiconductor. We have created an inversion layer of electrons at the oxide–semiconductor interface (whose electron concentration = majority hole concentration @ bulk)
+-   Depletion region still exists along with this inversion layer
+
+
+### Depletion Layer Analysis {#depletion-layer-analysis}
+
+
+#### Charge profile {#charge-profile}
+
+\\[\rho = \begin{cases}
+0 & x > x\_d \\\\\\
+-qN\_A & 0 \le x \le x\_d
+ \end{cases}\\]
+
+
+#### **E-field profile** {#e-field-profile}
+
+-   Linear with negative slope in sc and \\(\mathcal{E}\_{max}\\) @ surface, constant in oxide, and zero in metal
+-   As displacement field vector is constant, \\[\epsilon\_{ox}\mathcal{E}\_{ox} = \epsilon\_{Si}\mathcal{E}\_{max} = Q\_d\\] i.e. field in oxide is greater than \\(\mathcal{E}\_{max}\\)
+
+
+#### Potential profile {#potential-profile}
+
+-   quadratic in sc, linear in oxide, constant in metal
+-   \\[V\_{ox} = \frac{E\_{ox}T}{\epsilon\_{ox}}T\_{ox} = \frac{\epsilon\_{Si}E\_{Si}}{C\_{ox}} = \frac{Q\_d}{C\_{ox}}\\]
+    -   \\[Q\_d = qN\_ax\_d\\]
+    -   \\[V\_S = \frac{1}{2}E\_sx\_d \text{(from graph)}= \frac{1}{2}\frac{qN\_ax\_d}{\epsilon\_{si}}x\_d\\]
+    -   Gate voltage \\[V\_G = V\_{ox}+V\_S = \frac{qN\_Ax\_d}{C\_{ox}} + \frac{qN\_Ax\_d^2}{2\epsilon\_{Si}}\\]
+
+
+#### **Thickness** {#thickness}
+
+-   \\[x\_d = \sqrt{\frac{2\epsilon\_S\phi\_s}{qN\_A}}\\] where \\(\phi\_s: \text{surface potential}\\)
+-   \\[C'\_{dep} = \frac{\epsilon\_s}{x\_{d(max)}} \\]
+-   The maximum space charge width, \\(x\_{d(max)}\\), at this inversion transition point can be calculated from the above equation by setting \\(\phi\_s = 2\phi\_F\\), since at inversion the potential drop at surface is the negative of the potential drop in the bulk which is \\(\phi\_F\\). This happens at threshold voltage \\[V\_T = V\_S+V\_{ox} = 2\phi\_F+\frac{qN\_Ax\_{d{max}}}{C\_{ox}}\\]
+-   Beyond \\(V\_T\\), the depletion width does not change much, as all the extra voltage after that is dropped across the oxide, due to the inversion layer's high density of charge. (\\(V\_S\\): constant)
+
+
+### CV characteristics {#cv-characteristics}
+
+-   Useful in debugging and understanding MOSFET properties
+-   Time-varying signal required, so we apply a small ac voltage with dc.
+
+
+#### **Accumulation** {#accumulation}
+
+\\[C = C\_{ox} = \frac{dQ}{dV} = \frac{\epsilon\_{ox}}{t\_{ox}}\\]
+
+
+#### **Depletion** {#depletion}
+
+-   \\(x\_d = f(V\_G)\\),  charge in depletion layer responds to applied voltage
+-   This adds a \\(C\_s\\) in _series_ along with \\(C\_{ox}\\)
+-   \\[C\_{eff} = \frac{C\_sC\_{ox}}{C\_s+C\_{ox}}\\]
+
+
+#### **Inversion** {#inversion}
+
+-   We don't know if the electrons depletion region or the inversion layer are responding to the applied voltage.
+
+    -   This depends on the frequency of applied signal. When inversion charge responds, frequency of change of voltage is slow enough that it responds.
+
+    {{< figure src="/images/mos-freq.png" >}}
+
+    -   Low freq (1-10 Hz) \\(\rightarrow C\_{ox}\\)
+    -   High freq (~100 kHz) \\(\rightarrow C\_{dep}\\)
+-   **Freq vs Temp**
+    -   Low Temp (25°C): High freq
+    -   High Temp (150°C): Low freq due to higher generation rate, i.e. charge appears to be available for longer duration
+
+
+## MOSFET {#mosfet}
+
+{{< figure src="/images/nmos.png" >}}
+
+-   It has two pn-junctions. Each pn-junction is a diode.
+
+{{< figure src="/images/mosfet-diodes.png" >}}
+
+-   We use the varcap for controlling (via \\(V\_G\\)) the conductivity of the surface. MOSFET is a surface device.
+-   When \\(V\_G>0 \text{ and } V\_{GS} > V\_T\\), i.e. inversion, n+-n-n+ structure which is conducting, so \\(I\_{DS}\uparrow\\) for a given \\(V\_{DS}\\)
+-   \\(V\_G<0, I\_{DS} \text{ is low}\\)
+
+
+### Working Principle {#working-principle}
+
+-   Metal work function is such that \\(@ V\_G = 0\\), moscap in depletion.
+    -   Thus, the depletion region of the MOSCAP does not allow any current i.e. \\(I\_{DS} = 0\\), even if \\(V\_{DS}\\) is increased from zero, which only increases the depletion width of drain (more reverse-bias)
+        -   It also blocks current from going to the body, we only want current from source to drain, if any
+-   At some \\(V\_D, Q\_{inv} = 0\\) at the drain, known as pinchoff.
+    -   Condition: \\(V\_{GD} = V\_T\\) i.e. \\(V\_{D(sat)} = V\_G - V\_T\\)
+    -   On increasing it further, i.e. \\(V\_D > V\_{D(sat)}\\), pinch off point moves inwards
+
+
+### Regions {#regions}
+
+Can think of it as a black box with modes to model it without pondering the physics
+
+
+#### Cutoff {#cutoff}
+
+\\(|V\_{GS}| < |V\_T| \rightarrow I\_{DS} = 0\\)
+
+-   nMOS: \\(V\_{GS} < V\_{T\_n}\\)
+-   pMOS: \\(V\_{GS} > V\_{T\_p}, V\_{T\_p} < 0\\)
+-   Until \\(|V\_{GS}| > |V\_T|\\), the mos is off and can't be in any other region. Can be used as a switch
+
+
+#### Linear {#linear}
+
+Close to \\(V\_{DS} = 0 \rightarrow I\_{DS} \propto V\_{DS}\\), behaves like a resistor
+
+
+#### Triode {#triode}
+
+\\(V\_{DS} < V\_{D(sat)}\\), difference from linear region is that \\(I\_D\\) is a function of both \\(V\_{DS}, V\_{GS}\\)
+
+
+#### Saturation {#saturation}
+
+When \\(V\_D > V\_{D(sat)}, I\_{DS} = I\_{D(sat)} = f(V\_{GS})\\), i.e. current is _saturated_
+
+-   current source
+
+
+### Types {#types}
+
+-   nMOS and pMOS
+-   Enhancement and depletion mode MOSFETS
+    -   Enhancement: Normally off, apply a \\(V\_G\\) to reduce the resistance and turn it on
+    -   Depletion: Normally on, apply a \\(V\_G\\) to shut it off.
+
+
+#### Diode Connected MOSFET {#diode-connected-mosfet}
+
+Drain and Gate short-circuited, making \\(V\_{DS} = V\_{GS}\\) so \\(V\_{DS} > \overbrace{V\_{D(sat)}}^{V\_{GS}-V\_T}\\) always. So it is either turned off or in saturation (square-law device)
+
+
+### Modeling {#modeling}
+
+-   \\(Q\_i = -C\_{ox}(V\_{GS} - V\_T(x))\\)
+    -   \\(V\_T = \phi\_{ms} + (2\phi\_F+V(x))+V\_{ox}\\)
+    -   \\(V\_{ox} = Q\_i/C\_{ox}\\)
+    -   \\(Q\_i = \sqrt{2\epsilon\_SN\_Aq(2\phi\_F+V(x))}\\)
+-   Modeling the mos as a series of resistors, \\(dV = I\_D dR\\)
+    -   \\(dR = \frac{dx}{\underbrace{\sigma}\_{\propto \ Q\_I(x)} W}\\)
+    -   \\(\boxed{I\_Ddx = \mu Q\_I(x)dV}\\)
+-   \\(V\_{DS} > 0\\) (small), then \\(V(x)\\) becomes 0
+-   \\[I\_{DS} = \mu C\_{ox} \frac{W}{L}(V\_{GS}-V\_T)\\]
+
+
+### Effect of substrate bias {#effect-of-substrate-bias}
+
+-   Normally \\(V\_B=0, V\_S=0\\) and vary \\(V\_{GS}, V\_{DS}\\)
+-   But if \\(V\_B\\) is increased, \\(V\_{GB}\downarrow\\), and we need to apply a higher gate voltage to get same surface potential.
+    -   \\(V\_T = V\_{FB}+\frac{\sqrt{2\epsilon\_SqN\_A(2\phi\_F+V\_{BS})}}{C\_{ox}}+2\phi\_F\\) [higher voltage needed, thus addition]
+        -   \\(\Delta V\_T = V\_T - V\_{T\_0} = \frac{1}{C\_{ox}}\sqrt{2\epsilon\_SqN\_A}[\sqrt{2\phi\_F+V\_{BS}}-\sqrt{2\phi\_F}] \approx \frac{1}{C\_{ox}}\sqrt{2\epsilon\_SqN\_A}\sqrt{V\_{BS}} = \underbrace{\gamma}\_{\text{Body factor}}\sqrt{V\_{BS}}\\) [assuming \\(V\_{BS} \ll 2\phi\_F\\)]
+            -   Popular technique in the past to change threshold voltage, no longer used
+
+
+### Non-idealities {#non-idealities}
+
+
+#### Channel length modulation {#channel-length-modulation}
+
+-   At some point in saturation, in pinchoff: as we increase \\(V\_D\\), \\(\Delta L\\) increases which reduces effective channel length from \\(L \text{ to } L-\Delta L\\)
+-   We can model this non-ideality using the channel length modulation factor \\(\lambda\\): \\[I\_{DS} = \frac{1}{2}\mu\_{neff}C\_{ox}\frac{W}{L}(V\_{GS}-V\_T)^2(1+\lambda V\_{DS})\\]
+-   \\(\frac{\partial I\_{DS}}{\partial V\_{DS}} = \lambda I\_{DSAT}\\)
+    -   Thus, resistance \\[r\_0 = \frac{1}{\lambda I\_{DSAT}}\\]
+
+
+#### Mobility of carriers in MOSFETS {#mobility-of-carriers-in-mosfets}
+
+-   Smaller in a real MOS than in regular semiconductor, as the oxide surface is rough, and more interaction (collision) occurs
+-   Model it as \\[\mu(V\_{GS}) = \frac{\mu\_{eff\_0}}{1+\theta(V\_{GS}-V\_T)}\\]
+    -   \\(I\_{DS}|\_{real} \propto (V\_{GS}-V\_T)^\alpha \\) [Power law model]
+
+
+#### High field effects {#high-field-effects}
+
+-   Reducing channel width \\(L\\) increases electric field. But eventually, drift velocity saturates (saturated velocity regime), and there is no benefit to reducing L.
+-   \\[I\_{DS} = \underbrace{WC\_{ox}(V\_G-V\_T)}\_{\text{total charge of channel}}v\_{sat}\\]
+
+
+## BJT {#bjt}
+
+-   Older technology, still used in RF/high frequency applications
+-   If we manage to inject holes into the depletion region of a pn-junction in reverse bias, the high electric field will cause high carrier velocity, i.e. high current. [similiar to avalanche breakdown]
+    -   A p+-n junction in forward bias can act as a hole injector (heavily doped p injects holes into n-side)
+    -   So, a BJT can be constructed from the two junctions of a P(+)NP setup.
+-   Holes are emitted from P+ (emitter) into the central n-region.The high electric field of the second junction (NP) in reverse bias forces them into the collector, not giving a chance to the base to snatch them.
+    -   So, \\(I\_E \sim I\_C\\) and \\(I\_B = I\_E-I\_C\\)
+-   If base width (W: critical param) is narrow, it can be modelled as two diodes

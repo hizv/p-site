@@ -2,7 +2,7 @@
 title = "Electrical Machines"
 author = ["Himanish"]
 date = 2021-10-04
-lastmod = 2021-10-29T10:32:37+05:30
+lastmod = 2021-11-26T15:06:24+05:30
 categories = ["electronics", "power"]
 draft = false
 mathjax = "t"
@@ -83,7 +83,7 @@ In pu (per unit) system, z is same on both sides.
 #### Induced EMF {#induced-emf}
 
 1.  Per turn = \\[ \frac{P\phi \omega\_m}{\pi}\\]
-2.  Per parallel path  \\[E\_g = \frac{P\phi N}{60} \cdot \frac{Z}{A}\\] where
+2.  Per parallel path  \\[E\_a = \frac{P\phi N}{60} \cdot \frac{Z}{A}\\] where
 
     1.  A = P (Lap Winding)
     2.  A = 2 (Wave Winding)
@@ -95,11 +95,24 @@ In pu (per unit) system, z is same on both sides.
     ( Z/2 = total turns, Z/2A = total turns per parallel path)
 
 
-#### EMF Generation {#emf-generation}
+#### Current {#current}
 
-1.  \\( P\_e (\text{mechanical/rotational [input] power}) = E\_gI\_a\\) \\[=  I\_a^2R\_a (\text{Cu loss}) + V\_tI\_L (\text{output power})\\]
+\\[I\_f = V\_t/R\_f\\]
+\\[I\_L = V\_t/R\_L\\]
+\\[I\_a = I\_L+I\_f\\]
+
+
+#### Power and Losses {#power-and-losses}
+
+1.  \\( P\_e (\text{mechanical/rotational [input] power}) = E\_aI\_a\\) \\[= \text{total Cu-loss} + \text{output power}\\]
+    -   Armature Cu-loss = \\(I\_a^2R\_a\\)
+    -   Field Cu-loss = \\(V\_tI\_f\\)
+    -   Total Cu-loss = (Armature + Field) Cu-loss
+    -   Output Power = \\(V\_tI\_L\\)
+
 2.  If Armature reaction, \\[\phi\_R = 0.96\phi\\]
-3.  \\[E\_g = V\_t + I\_aR\_a+V\_{brush}\\]
+3.  \\[E\_a = V\_t + I\_aR\_a+V\_{brush}\\]
+    -   \\[V\_{brush} = 2V\_{per brush}\\]
 
 
 #### Torque {#torque}

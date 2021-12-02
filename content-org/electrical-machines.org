@@ -59,7 +59,7 @@ In pu (per unit) system, z is same on both sides.
 
 *** Induced EMF
 1. Per turn = \[ \frac{P\phi \omega_m}{\pi}\]
-2. Per parallel path  \[E_g = \frac{P\phi N}{60} \cdot \frac{Z}{A}\] where
+2. Per parallel path  \[E_a = \frac{P\phi N}{60} \cdot \frac{Z}{A}\] where
    a. A = P (Lap Winding)
    b. A = 2 (Wave Winding)
    c. N = rotor speed (RPM)
@@ -67,10 +67,20 @@ In pu (per unit) system, z is same on both sides.
    e. A = number of parallel paths
    f. \(\phi =\) flux per pole
    ( Z/2 = total turns, Z/2A = total turns per parallel path)
-*** EMF Generation
-1. \( P_e (\text{mechanical/rotational [input] power}) = E_gI_a\) \[=  I_a^2R_a (\text{Cu loss}) + V_tI_L (\text{output power})\]
+*** Current
+\[I_f = V_t/R_f\]
+\[I_L = V_t/R_L\]
+\[I_a = I_L+I_f\]
+*** Power and Losses
+1. \( P_e (\text{mechanical/rotational [input] power}) = E_aI_a\) \[= \text{total Cu-loss} + \text{output power}\]
+   - Armature Cu-loss = \(I_a^2R_a\)
+   - Field Cu-loss = \(V_tI_f\)
+   -  Total Cu-loss = (Armature + Field) Cu-loss
+   - Output Power = \(V_tI_L\)
+
 2. If Armature reaction, \[\phi_R = 0.96\phi\]
-3. \[E_g = V_t + I_aR_a+V_{brush}\]
+3. \[E_a = V_t + I_aR_a+V_{brush}\]
+   - \[V_{brush} = 2V_{per brush}\]
 *** Torque
 1. \[P_{shaft} = P_{rot} + P_e\]
 \[T_{sh}\omega = T_{fr}\omega+T_e\omega\] where  \(T_e\) is electromagnetic torque, \(T_{fr}\) is torque due to friction
