@@ -372,13 +372,25 @@ Drain and Gate short-circuited, making \(V_{DS} = V_{GS}\) so \(V_{DS} > \overbr
   - \(\boxed{I_Ddx = \mu Q_I(x)dV}\)
 - \(V_{DS} > 0\) (small), then \(V(x)\) becomes 0
 - \[I_{DS} = \mu C_{ox} \frac{W}{L}(V_{GS}-V_T)\]
+
+** Transfer characteristics
+\(g_m = \frac{\partial I_{DS}}{\partial V_{GS}}\)
+\[g_m|_{sat} = \frac{W}{L} \mu_{neff}C_{ox}(V_{GS}-V_T)\]
 ** Effect of substrate bias
 - Normally \(V_B=0, V_S=0\) and vary \(V_{GS}, V_{DS}\)
 - But if \(V_B\) is increased, \(V_{GB}\downarrow\), and we need to apply a higher gate voltage to get same surface potential.
   - \(V_T = V_{FB}+\frac{\sqrt{2\epsilon_SqN_A(2\phi_F+V_{BS})}}{C_{ox}}+2\phi_F\) [higher voltage needed, thus addition]
     - \(\Delta V_T = V_T - V_{T_0} = \frac{1}{C_{ox}}\sqrt{2\epsilon_SqN_A}[\sqrt{2\phi_F+V_{BS}}-\sqrt{2\phi_F}] \approx \frac{1}{C_{ox}}\sqrt{2\epsilon_SqN_A}\sqrt{V_{BS}} = \underbrace{\gamma}_{\text{Body factor}}\sqrt{V_{BS}}\) [assuming \(V_{BS} \ll 2\phi_F\)]
       - Popular technique in the past to change threshold voltage, no longer used
-** Non-idealities
+** Non-ideal MOSFET
+*** Real Threshold Voltage
+\[ V_T = \phi_{MS}+2\phi_F+\frac{|Q_d|}{C_{ox}}\]
+- In W-Si, \(\phi_{MS} > 0\) (band bending causes accumulation) whereas \(\phi_{MS} < 0\) in Al-Si (band-bending causes inversion)
+- Changing metal contact from Al to W shifts C-V graph right by \(\Delta V_T\)
+*** Fixed charge
+- Fixed charge from manufacturing @ Ox/Si interface (Dangling bonds)
+- This reduces \(V_T\) by \[\Delta V_T = \frac{-Q_F}{C_{ox}}\] (C-V graph: parallel shift to left)
+
 *** Channel length modulation
 - At some point in saturation, in pinchoff: as we increase \(V_D\), \(\Delta L\) increases which reduces effective channel length from \(L \text{ to } L-\Delta L\)
 - We can model this non-ideality using the channel length modulation factor \(\lambda\): \[I_{DS} = \frac{1}{2}\mu_{neff}C_{ox}\frac{W}{L}(V_{GS}-V_T)^2(1+\lambda V_{DS})\]

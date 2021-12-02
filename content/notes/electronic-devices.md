@@ -2,7 +2,7 @@
 title = "Electronic Devices"
 author = ["Himanish"]
 date = 2021-09-07
-lastmod = 2021-12-02T12:39:50+05:30
+lastmod = 2021-12-02T16:17:17+05:30
 categories = ["electronics"]
 draft = false
 mathjax = "t"
@@ -580,6 +580,12 @@ Drain and Gate short-circuited, making \\(V\_{DS} = V\_{GS}\\) so \\(V\_{DS} > \
 -   \\[I\_{DS} = \mu C\_{ox} \frac{W}{L}(V\_{GS}-V\_T)\\]
 
 
+### Transfer characteristics {#transfer-characteristics}
+
+\\(g\_m = \frac{\partial I\_{DS}}{\partial V\_{GS}}\\)
+\\[g\_m|\_{sat} = \frac{W}{L} \mu\_{neff}C\_{ox}(V\_{GS}-V\_T)\\]
+
+
 ### Effect of substrate bias {#effect-of-substrate-bias}
 
 -   Normally \\(V\_B=0, V\_S=0\\) and vary \\(V\_{GS}, V\_{DS}\\)
@@ -589,7 +595,21 @@ Drain and Gate short-circuited, making \\(V\_{DS} = V\_{GS}\\) so \\(V\_{DS} > \
             -   Popular technique in the past to change threshold voltage, no longer used
 
 
-### Non-idealities {#non-idealities}
+### Non-ideal MOSFET {#non-ideal-mosfet}
+
+
+#### Real Threshold Voltage {#real-threshold-voltage}
+
+\\[ V\_T = \phi\_{MS}+2\phi\_F+\frac{|Q\_d|}{C\_{ox}}\\]
+
+-   In W-Si, \\(\phi\_{MS} > 0\\) (band bending causes accumulation) whereas \\(\phi\_{MS} < 0\\) in Al-Si (band-bending causes inversion)
+-   Changing metal contact from Al to W shifts C-V graph right by \\(\Delta V\_T\\)
+
+
+#### Fixed charge {#fixed-charge}
+
+-   Fixed charge from manufacturing @ Ox/Si interface (Dangling bonds)
+-   This reduces \\(V\_T\\) by \\[\Delta V\_T = \frac{-Q\_F}{C\_{ox}}\\] (C-V graph: parallel shift to left)
 
 
 #### Channel length modulation {#channel-length-modulation}
