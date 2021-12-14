@@ -2,7 +2,7 @@
 title = "Electrical Machines"
 author = ["Himanish"]
 date = 2021-10-04
-lastmod = 2021-11-26T15:06:24+05:30
+lastmod = 2021-12-03T15:23:21+05:30
 categories = ["electronics", "power"]
 draft = false
 mathjax = "t"
@@ -126,3 +126,22 @@ In pu (per unit) system, z is same on both sides.
 
 
 ### Excitation {#excitation}
+
+
+## Synchronous Machines {#synchronous-machines}
+
+1.  \\[Z\_S(unsat) = \frac{V\_{OC}}{I\_{SC}}|\_{I\_f = constant}\\]
+2.  \\[Z\_S(adjusted) = \frac{V\_{OC(rated)}}{I\_{SC}} \\]
+    -   \\(X\_S(adjusted) = \sqrt{Z\_S(adjusted)^2-R\_a^2}\\)
+    -   \\(R\_a\\) can be ignored (except when calculating efficiency) so \\(X\_S (adjusted) = Z\_S(adjusted)\\)
+3.  Power factor pf = \\(\cos \theta = \frac{P\_{in}}{\sqrt{3}V\_LI\_g}\\)
+
+
+## Induction Motors {#induction-motors}
+
+1.  Reading of wattmeter = Number of divison \\(\times\\) MF
+2.  Active power in 3-phase load \\(P = W\_1 + W\_2 \\) (kW)
+    1.  Reactive power \\(Q = \sqrt{3}(W\_2-W\_1)\\) (kVAR)
+    2.  Apparent power \\(S = \sqrt{P^2+Q^2}\\) (kVA)
+3.  Power factor of load pf = \\(\cos \tan^{-1}{(Q/P)}\\)
+4.

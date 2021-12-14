@@ -2,7 +2,7 @@
 title = "Electronic Devices"
 author = ["Himanish"]
 date = 2021-09-07
-lastmod = 2021-12-02T16:17:17+05:30
+lastmod = 2021-12-07T14:39:29+05:30
 categories = ["electronics"]
 draft = false
 mathjax = "t"
@@ -642,3 +642,36 @@ Drain and Gate short-circuited, making \\(V\_{DS} = V\_{GS}\\) so \\(V\_{DS} > \
 -   Holes are emitted from P+ (emitter) into the central n-region.The high electric field of the second junction (NP) in reverse bias forces them into the collector, not giving a chance to the base to snatch them.
     -   So, \\(I\_E \sim I\_C\\) and \\(I\_B = I\_E-I\_C\\)
 -   If base width (W: critical param) is narrow, it can be modelled as two diodes
+-   Two diodes talking through the base
+
+
+### Advantages over MOSFET {#advantages-over-mosfet}
+
+-   Threshold voltage of device only depends on band gap of sc, better control during manufacturing; however, difficult to vary it
+-   High transconductance, MOSFETs have caught up though
+-   Outputs high current per unit area i.e. high current density supported. Used a lot in lasers, LEDs (optical devices)
+-   Works the same with III-V semiconductors as with silicon
+
+
+### Drawbacks {#drawbacks}
+
+-   Lower power design unsupported
+-   Minority carrier device: charge storage worries
+-   Simpler to make a MOSFET. Manufacturing BJT is more complex
+
+
+### Regions {#regions}
+
+| Region     | EB | CB |
+|------------|----|----|
+| Active     | F  | R  |
+| Saturation | F  | F  |
+| Cutoff     | R  | R  |
+| Inverted   | R  | F  |
+
+
+### Active {#active}
+
+-   \\(I\_C \approx I\_{E\_p}\\)
+-   \\(I\_B \approx I\_{E\_n}+I\_{C\_n}+I\_{\text{hole recombination}}\\)
+-   Current (\\(I\_B\\)) Controlled Current Source
