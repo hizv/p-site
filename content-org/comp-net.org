@@ -1,0 +1,41 @@
+#+TITLE: Computer Networking
+#+date: 2021-11-12
+#+author: Himanish
+
+#+hugo_section: notes
+#+hugo_categories: cs
+#+hugo_menu: :menu "main" :weight 2001
+
+#+startup: content
+
+#+hugo_base_dir: ../
+#+hugo_section: ./
+
+#+hugo_weight: auto
+#+hugo_auto_set_lastmod: t
+#+hugo_custom_front_matter: :mathjax t
+
+
+* Computer Networks and the Internet
+** What is the Internet?
+*** 'Nuts and Bolts' view
+- Network of networks (interconnected ISPs)
+- Protocols everywhere e.g. HTTP, Skype
+*** Services view
+- Infrastructure that provides services to applications (email, social media, ecommerce)
+- Provides programming interface (hooks)
+*** What's a protocol
+- Defines format, order of messages sent and received, actions taken on former
+
+* TCP
+Transmission Control Protocol
+- Most applications want to communicate over a reliable, bi-directional byte-stream
+** Three Way Handshake
+- Host A sends SYN (synchronise) message to Host B, indicating that A wants to establish a TCP connection with B
+- B responds with a SYN + ACK (acknowledge), ACK indicate correct delivery (/reliable delivery/)
+- A responds with an ACK
+- Stream of Bytes: Emulated using TCP segments
+
+** Connection Teardown
+- A sends FIN to B, B responds with (Data +) Ack, and B stops receiving data from A
+- But B keeps sending data to A till B's FIN message
