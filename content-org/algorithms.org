@@ -22,6 +22,25 @@
 ― Alfred V. Aho
 
 #+end_quote
+* Basics
+** Guiding Principles
+1. We do a worst case analysis, appropriate for 'general-purpose' routines. As opposed to 'average-case' analysis, which requires domain knowledge
+
+2. We don't really pay much attention to constant factors, and lower order terms. Constant factors depend on the code implementation, architecture etc anyway. Not much predictive power is lost too, and makes our job easier.
+   - Programming libraries do take into account constant factors for deciding when to switch from a particular algorithm to another
+3. Asymptotic analysis: Focus on running time for large input sizes n. For small inputs, we don't really need algorithm ingenuity
+** Asymptotic Analysis
+*** Big Oh
+\[T(n) = \mathcal{O}(f(n)) \implies \exists \ c, n_0 \text{ such that } T(n) \le cf(n) \ \ \forall n \ge n_0\]
+
+*** Omega
+\[T(n) = \Omega(f(n)) \implies \exists \ c, n_0 \text{ such that } T(n) \ge cf(n) \ \ \forall n \ge n_0\]
+
+*** Theta
+\[T(n) = \theta(f(n)) \text{ iff } T(n) = \mathcal{O}(f(n)) \text{ and } T(n) = \Omega(f(n)) \]
+*** Little Oh
+\[T(n) = o(f(n)) \text{ iff } \forall \ c>0 \ \exists \ n_0 \text{ such that } T(n) \le cf(n) \ \forall \ n \ge n_0\]
+
 
 * Divide and Conquer
 - Always ask yourself, "CAN WE DO BETTER?"
@@ -60,19 +79,249 @@ end
 - At each level \(j = 0..\log n\), there are \(2^j\) subproblems, each of size \(n/2^j\)
 - Therefore total operations at level j \(\leq 2^j * 6(n/2^j) = 6n\)
 - Total work done by algo = Work per level * Number of levels = \(6n (\log n + 1)\)
-** Guiding Principles
-1. We do a worst case analysis, appropriate for 'general-purpose' routines. As opposed to 'average-case' analysis, which requires domain knowledge
-2. We don't really pay much attention to constant factors, and lower order terms. Constant factors depend on the code implementation, architecture etc anyway. Not much predictive power is lost too, and makes our job easier.
-   - Programming libraries do take into account constant factors for deciding when to switch from a particular algorithm to another
-3. Asymptotic analysis: Focus on running time for large input sizes n. For small inputs, we don't really need algorithm ingenuity
-** Asymptotic Analysis
-*** Big Oh
-\[T(n) = \mathcal{O}(f(n)) \implies \exists \ c, n_0 \text{ such that } T(n) \le cf(n) \ \ \forall n \ge n_0\]
+** Counting Array Inversions
+*** Problem
+/Input/: Array with integers 1, 2, ... in some arbitary order
+/Output/: Number of inversions i.e. number of pairs of array indices with i < j but A[i] > A[j]
+/Motivation/: measuring similarity between two ranked lists, relevant for making good recommendations to someone based on your knowledge of their and others' preferences ("collaborative filtering").
+Brute-force would cost \( \mathcal{O}(n^2)\)
+*** Divide (into smaller subproblems)
+Differentiate between inversions and count them separately:
+ - Left inversion: if \(i, j \le n/2\)
+ - Right inversion: if i, j > n/2
+ - Split inversion: if i < n/2 < j
+ So now we need an algorithm somewhat like:
+ #+begin_src
+Count (array A, length n):
+if n = 1 return 0
+else
+    x = Count(1st half of A, n/2)
+    y = Count(2nd half of A, n/2)
+    z = CountSplitInv(A, n)  ; to be implemented
+    return x+y+z
+ #+end_src
+ We want CountSplitInv to be linear (\(\mathcal{O}(n)\))  so that Count will run in \(\mathcal{O}(n\log n)\). (just like merge sort)
+*** Conquer (via recursive calls)
+*Idea*: Have recursive calls both count, and /sort/.
+- /Motivation/? Merge sort's merge subroutine naturally uncovers split inversions.
+- How? If two sorted sub-arrays B and C each of size n/2 have no split inversions, then every element in B would be smaller than C, so the merge subroutine applied to these two would just concatenate them.
+- So, every time an element from C is copied before B, it is a deviation from the trivial case, which means there are split inversions.
+  - But how many? Every element left to copy from B at the time the element Y from C is copied would form a split inversion pair with Y.
+** Strassen's Subcubic Matrix Multiplication
+- Very non-trivial algorithm
+- Input size: \(\mathcal{O}(n^2)\), so the best an algorithm could do is \(\mathcal{O}(n^2)\)
+- Trivial algorithm would be \(\mathcal{O}(n^3)\)
+*** Divide
+- Divide the matrix into quadrants, similiar to how we divided a number into halves in Karatsuba multiplication.
+- The quadrants behave like normal matrix elements for matrix multiplication i.e. if
+\[ X =\left(\begin{array}{c|c}
+  A & B \\\
+  \hline
+  C & D
+\end{array}
+\right), \quad
+Y =\left(\begin{array}{c|c}
+  E & F \\\
+  \hline
+  G & H
+\end{array}
+\right)
+\]
+then\[ X =\left(\begin{array}{c|c}
+  AE+BG & AF+BH \\\
+  \hline
+  CE+DG & CF+DH
+\end{array}
+\right)
+\]
+*** Trivial Recursive Algorithm
+1. Recursively calculate the eight subproducts
+2. Do the necessary additions (\(\mathcal{O}(n^2)\))
+Sadly, this algorithm cannot beat \(\mathcal{O}(n^3)\) time.
+*** Strassen's Approach
+1. Recursively calculate only 7 products
+2. Do the necessary (clever) additions and subtractions
+The reduction of recursive calls from 8 to 7 changes the algorithm from cubic to subcubic time.
+** COMMENT Closest Pair Problem
+*Input*: A set \(P = \{p_1...p_n\}\) of \(n\) points in the plane.
 
-*** Omega
-\[T(n) = \Omega(f(n)) \implies \exists \ c, n_0 \text{ such that } T(n) \ge cf(n) \ \ \forall n \ge n_0\]
+*Output*: A pair \(p^*,q^* \in p\) of distinct points with minimum \(d(p,q)\) over P.
+- Assumption: All points have distinct x-coordinates and y-coordinates.
+- Brute force search: \(\mathcal{O}(n^2)\). But perhaps, just like while counting inversions, sorting can bring it down to \(\mathcal{O}(n\log n)\)
+*** One-dimensional case
+- All the points lie on the x-axis.
+1. Sort the points; \(\mathcal{O}(n\log n)\)
+2. Return closest pair of adjacent points;  \(\mathcal{O}(n)\)
+** Master Method
+- Black box for solving recurrences
+- Assumption: All subproblems have equal size
+*** Recurrence Format
+T(n): maximum number of operations done by algorithm
+1. Base Case: \(T(n) \le \text{a constant} \) for sufficiently small n
 
-*** Theta
-\[T(n) = \theta(f(n)) \text{ iff } T(n) = \mathcal{O}(f(n)) \text{ and } T(n) = \Omega(f(n)) \]
-*** Little Oh
-\[T(n) = o(f(n)) \text{ iff } \forall \ c>0 \ \exists \ n_0 \text{ such that } T(n) \le cf(n) \ \forall \ n \ge n_0\]
+2. For larger n: \[T(n) \le aT(n/b)+\mathcal{O}(n^d)\]
+   - a: number of recursive calls (\(\ge 1\))
+
+   - b: factor by which input size shrinks (\(\ge 1\))
+
+   - d: exponent in running time of combine step (work done outside recursive calls) (\(\ge 0\))
+*** Master Theorem
+\[T(n) = \begin{cases}
+\mathcal{O}(n^d \log n) & a = b^d \\
+\mathcal{O}(n^d) & a < b^d \\
+\mathcal{O}(n^{\log_ba}) & a > b^d
+\end{cases}\]
+- Interpretation:
+  - a: Rate of subproblem proliferation
+  - \(b^d\): rate of work shrinkage (per subproblem)
+
+* Randomised Algorithms
+** QuickSort
+- Works in place, i.e. minimal extra memory needed unlike MergeSort
+*** Partitioning around a Pivot
+1. Pick element of array (the "pivot")
+2. Rearrange array so that
+   a. Left of pivot \(\rightarrow\) less than pivot
+   b. Right of pivot \(\rightarrow\) greater than pivot
+This takes \(\mathcal{O}(n)\) time with no extra memory involved. And it reduces the problem size, i.e. divide-n-conquer approach.
+*** High-level description
+#+begin_src
+QuickSort(array A, length n)
+    if n=1: return
+    p = ChoosePivot(A, n)
+    Partition A around p
+    QuickSort(1st part)
+    QuickSort(2nd part)
+#+end_src
+
+*** Pseudocode for Partition
+Let input: \(A[\ell \cdots r]\)
+#+begin_src
+Partition (A, l, r)
+    p := A[l]
+    i := l+1
+    for j = l+1 to r
+        if A[j] < p  ; if A[j] > p, do nothing
+            swap A[j], A[i]
+            i := i+1
+    swap A[l], A[i-1] ; bring pivot in between
+#+end_src
+*** Choosing a Pivot
+- Best case: Already sorted array, pick the median element, as we want the two subproblems to be of equal size as much as possible. Otherwise
+- Choose the pivot randomly!
+- /Intuition/: A 25-75 split is good enough for \(\mathcal{O}(n \log n)\) running time.
+- If we have 100 numbers in an array, any number between 26 and 75 inclusive will give a  25-75 split or better. This has 50% probability, so we don't need to be all that lucky for a good split
+- QuickSort Theorem: For every array of length n, /average/ running time of QuickSort (with random pivots) is \(\mathcal{O}(n \log n)\). Worst case, \(\mathcal{O}(n^2)\)
+*** Time Complexity Analysis
+- Notations:
+  - Sample space: \(\Omega\)
+  - Random choices: \(\sigma\)
+  - \(z_i = i^{th} \text{smallest element of array A i.e.} i^{th} \text{ order statistic} \)
+- Key random variable: \(C(\sigma) = \text{# of comparisons between two elements made by QSort} \), as running time of QSort dominated by comparisons.
+- We can't apply the Master Method as the subproblems are random, unbalanced.
+- For indices \(i < j\), let \(X_{ij} = \text{# of times } z_i, z_j \text{ get compared} \).
+  - Now the only comparisons that occur are between the pivot and \(z_i\). Once an element has been compared with the pivot, the pivot would be excluded from further recursive calls, hence they would never be compared again.
+- So, \(C(\sigma) = \sum_{i=1}^{n-1}\sum_{j=i+1}^n X_{ij}(\sigma)\)
+  - \(E[C] = \sum_{i=1}^{n-1}\sum_{j=i+1}^n E[X_{ij}]\)
+  - \(E[X_{ij}] = 0\cdot P[X_{ij}=0] + 1\cdot P[X_{ij}=1] = P[X_{ij}=1]\)
+- \(P[z_i,z_j \text{ get compared}] = \frac{2}{j-i+1}\)
+- \(E[C] = 2\sum_{i=1}^{n-1}\sum_{j=i+1}^n \frac{1}{j-i+1}\)
+- Hence, \(E[C] \le 2 \cdot n \cdot \sum_{k=2}^n \frac{1}{k} \le 2n\ln n\)
+** Linear-Time Selection
+*Input*: Array A with n distinct numbers and a number \(i \in \{1...n\}\)
+*Output*: \(i^{th}\) order statistic i.e. \(z_i\)
+Example: \(i = (n+1)/2 \text{ for n odd}, i = n/2 \text{ for n even} \)
+*** Trivial algorithm
+\(\mathcal{O}(n\log n)\)
+1. Apply MergeSort
+2. Return \(i^{th}\) element of sorted array
+*** Randomised Selection
+#+begin_src
+RSelect (array A, length n, order statistic i)
+    if n=1: return A[1]
+    choose pivot P from A at random
+    partition A around p, let j: new index of p
+    if j=i: return p
+    if j>i: return RSelect(1st part of A, j-1, i)
+    if j<i: return RSelect(2nd part of A, n-j, i-j)
+#+end_src
+* Graphs
+** Ingredients
+- *Vertices* aka nodes (V: set of vertices)
+  - \(n\): number of vertices
+- *Edges* (E) aka arcs: pairs of vertices
+  - undirected: unordered pair
+  - directed: ordered pair
+- \(m\): number of edges
+** Cuts
+- A cut of a graph (V, E) is a partition of V into two non-empty sets A and B.
+- Possible cuts of a graph with n vertices = \(2^n-2\)
+- *Crossing edges*: of a cut (A, B) are those with:
+  - one endpoint in each of (A, B) [undirected]
+  - tail in A, head in B [directed]
+** Minimum Cut Problem
+- Input: An undirected graph G = (V, E)
+- Output: Compute a cut with fewest number of crossing edges
+*** Karger's Algorithm
+- While there are more than 2 vertices:
+  - Pick a remaining edge \((u, v)\) uniformly at random
+  - Merge ("contract") u and v into a single vertex
+  - Remove self-loops
+- Return cut represented by final 2 vertices (i.e. all nodes in one supernode go to A and other supernode to B)
+**** Probability of success
+** Representation
+*** Sparse vs Dense
+In most applications, m (number of edges) is \(\Omega(n)\) and \(\mathcal{O}(n^2)\)
+- In a sparse graph, m is \(\mathcal{O}(n)\) or close
+- In a dense graph, m is closer to \(\mathcal{O}(n^2)\)
+*** Adjacency Matrix
+- Represent G by a \(n \times n\) matrix A, where \(A_{ij} = 1 \Leftrightarrow G \text{ has an } i-j \text{ edge}\)
+- Requires \(\theta(n^2)\) space
+- useful for dense, gets wasteful for sparse graphs
+Variants
+- If parallel edges, \(A_{ij} = \) # of i-j edges
+- \(A_{ij} = \) weight of i-j edge (if any)
+# - Directed graphs: \( A_{ij} =
+# +1 & i \rightarrow j \\
+# -1 & i \leftarrow j \)
+*** Adjacency List
+- Ingredients
+  - Array of vertices, \(\theta(n)\)
+  - Array of edges, \(\theta(m)\)
+  - Each edge points to its endpoints, \(\theta(m)\)
+  - Each vertex points to edges incident on it, \(\theta(m)\)
+- Requires \(\theta(m + n)\) storage space
+- Better for sparse graphs
+- Perfect for graph search algorithms
+
+* Greedy
+- Iteratively make myopic decisions, and hope everything works out in the end.
+- *DANGER*: Most greedy algorithms are NOT correct
+*** Contrast with Divide and Conquer
+- Easy to propose (vs eureka moments)
+- Easy running time analysis (vs Master Method etc)
+- Hard to establish correctness (vs straightforward induction)
+** Scheduling
+- Shared resource e.g. processor working on many jobs (processes)
+- What order should they be sequenced in, if each job has a:
+  - Weight \(w_j\) (priority)
+  - Length \(l_j\)
+- Task: Minimise the weighted sum of completion times i.e. \(\text{min}\sum_{j=1}^nw_jC_j\) where
+  - \(C_j\): sum of job lengths up to and including j.
+*** Intuition
+  - With equal lengths, we would schedule larger jobs earlier and with equal weights, schedule shorter jobs earlier.
+*** Conflict Resolution
+What if \(w_i > w_j\) but also \(l_i > l_j\)?
+  - So, assign a 'score' to jobs which:
+    - increases with weight
+    - decreases with length
+  - Possible metrics:
+    1. \(w_j-l_j\)
+    2. \(w_j/l_j\)
+*** Which One?
+Find an example where two algorithms produce different outputs, at least one has to be wrong!
+So,
+\(l_1 = 5, w_1 = 3\) [bigger diff]
+\(l_2 = 2, w_2 = 1\) [larger ratio]
+
+On comparing weighted sums, we see that Alg #1 gives the wrong answer. So we use Alg #2 [proof of correctness by exchange argument], which has running time \(\mathcal{O}(n \log n)\) [sorting].
