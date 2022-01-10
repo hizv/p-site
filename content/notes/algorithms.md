@@ -2,7 +2,7 @@
 title = "Algorithms"
 author = ["Himanish"]
 date = 2021-12-23
-lastmod = 2022-01-07T14:56:54+05:30
+lastmod = 2022-01-10T13:12:54+05:30
 categories = ["cs"]
 draft = false
 mathjax = "t"
@@ -51,7 +51,7 @@ mathjax = "t"
 \\[T(n) = o(f(n)) \text{ iff } \forall \ c>0 \ \exists \ n\_0 \text{ such that } T(n) \le cf(n) \ \forall \ n \ge n\_0\\]
 
 
-## Divide and Conquer {#divide-and-conquer}
+## Divide and Conquer Paradigm {#divide-and-conquer-paradigm}
 
 -   Always ask yourself, "CAN WE DO BETTER?"
 -   Try to translate all pseudocode into code in some language
@@ -111,10 +111,10 @@ end
 
 #### Problem {#problem}
 
-_Input_: Array with integers 1, 2, ... in some arbitary order
-_Output_: Number of inversions i.e. number of pairs of array indices with i < j but A[i] > A[j]
-_Motivation_: measuring similarity between two ranked lists, relevant for making good recommendations to someone based on your knowledge of their and others' preferences ("collaborative filtering").
-Brute-force would cost \\( \mathcal{O}(n^2)\\)
+-   _Input_: Array with integers 1, 2, ... in some arbitary order
+-   _Output_: Number of inversions i.e. number of pairs of array indices with i < j but A[i] > A[j]
+-   _Motivation_: measuring similarity between two ranked lists, relevant for making good recommendations to someone based on your knowledge of their and others' preferences ("collaborative filtering").
+-   Brute-force would cost \\( \mathcal{O}(n^2)\\)
 
 
 #### Divide (into smaller subproblems) {#divide--into-smaller-subproblems}
@@ -410,7 +410,52 @@ Variants
 -   Perfect for graph search algorithms
 
 
-## Greedy {#greedy}
+## Data Structures {#data-structures}
+
+-   Choose the minimal data structure that supports all the operations you need.
+
+
+### Heaps {#heaps}
+
+Container for objects that have keys
+
+-   Canonical use of heap: Fast way to do repeated minimum calculations
+    -   HeapSort (SelectionSort with a heap [\\(\mathcal{O}(n \log n)\\)])
+    -   Event Manager [priority queue]
+    -   Median Maintanence
+
+
+#### Supported Operations {#supported-operations}
+
+Both operations: \\(\mathcal{O}(\log n)\\)
+
+-   **Insert**: Add a new object to heap
+    -   Mass Insert would take \\(\mathcal{O}(n \log n)\\), better to use **Heapify**, which takes \\(\mathcal{O}(n)\\) for n batched Inserts
+-   **Extract-Min**: Remove an object in heap with min key value. (Supports Extract-Max equally well, but not both at the same time)
+    -   Mass removal can be done by Delete in \\(\mathcal{O}(\log n)\\)
+
+
+### Balanced BST {#balanced-bst}
+
+-   A sorted array but with fast (logarithmic) inserts+deletes
+
+
+#### Supported Operations {#supported-operations}
+
+-   \\(\mathcal{O}(\log n)\\): Search, Select (\\(z\_i\\)), Min/Max, Pred/Succ, Rank, Insert, Delete
+-   \\(\mathcal{O}(n)\\): Output in Sorted Order
+
+
+#### Comparison with Heap and Hash Table {#comparison-with-heap-and-hash-table}
+
+-   Prefer heap when you only need: (as constant factors are smaller)
+    -   Insert
+    -   Delete
+    -   Min
+-   Prefer hash table (constant time look ups) when you don't need min/max, and ordering on keys, i.e. only need to know what's there and what's not.
+
+
+## Greedy Algorithms {#greedy-algorithms}
 
 -   Iteratively make myopic decisions, and hope everything works out in the end.
 -   **DANGER**: Most greedy algorithms are NOT correct
@@ -458,3 +503,29 @@ So,
 \\(l\_2 = 2, w\_2 = 1\\) [larger ratio]
 
 On comparing weighted sums, we see that Alg #1 gives the wrong answer. So we use Alg #2 [proof of correctness by exchange argument], which has running time \\(\mathcal{O}(n \log n)\\) [sorting].
+
+
+### Huffman Codes {#huffman-codes}
+
+-   _Binary code_: Maps each character of an alphabet \\(\Sigma\\) to a binary string.
+-   Variable-length codes can lead to shorter encodings with non-uniform character frequencies by using lesser bits for the more frequent characters.
+-   To avoid ambiguity, we need prefix-free codes: for every pair \\(i, j \in \Sigma\\), neither of the encodings \\(f (i), f (j)\\) is a prefix of the other, e.g. `{0,10,110,111}`
+
+
+#### Codes as Trees {#codes-as-trees}
+
+{{< figure src="/images/codes-as-trees.png" >}}
+
+-   We see that for prefix-free coding, only leaves should be labelled
+
+
+#### Problem Statement {#problem-statement}
+
+-   _Input_: Probability \\(p\_i\\) for each character \\(i \in \Sigma\\)
+-   If \\(T\\): tree with leaves \\(\leftrightarrow\\) symbols of \\(\Sigma\\), then \\(L(T) = \sum\limits\_{i \in \Sigma}p\_i\cdot [\text{depth of i in T}] \\)
+-   _Output_: Binary tree \\(T\\) minimising the average encoding length \\(L(T)\\)
+
+
+#### Huffman's Algorithm {#huffman-s-algorithm}
+
+{{< figure src="/images/huffman-algo.png" >}}
