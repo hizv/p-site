@@ -2,7 +2,7 @@
 title = "Algorithms"
 author = ["Himanish"]
 date = 2021-12-23
-lastmod = 2022-01-10T13:12:54+05:30
+lastmod = 2022-01-18T21:50:06+05:30
 categories = ["cs"]
 draft = false
 mathjax = "t"
@@ -17,6 +17,9 @@ mathjax = "t"
 
 
 ## Basics {#basics}
+
+-   Always ask yourself, "CAN WE DO BETTER?"
+-   Try to translate all pseudocode into code in some language
 
 
 ### Guiding Principles {#guiding-principles}
@@ -52,9 +55,6 @@ mathjax = "t"
 
 
 ## Divide and Conquer Paradigm {#divide-and-conquer-paradigm}
-
--   Always ask yourself, "CAN WE DO BETTER?"
--   Try to translate all pseudocode into code in some language
 
 
 ### Karatsuba Multiplication {#karatsuba-multiplication}
@@ -163,20 +163,20 @@ We want CountSplitInv to be linear (\\(\mathcal{O}(n)\\))  so that Count will ru
 -   The quadrants behave like normal matrix elements for matrix multiplication i.e. if
 
 \\[ X =\left(\begin{array}{c|c}
-  A & B \\\
+  A & B \\\\\
   \hline
   C & D
 \end{array}
 \right), \quad
 Y =\left(\begin{array}{c|c}
-  E & F \\\
+  E & F \\\\\
   \hline
   G & H
 \end{array}
 \right)
 \\]
 then\\[ X =\left(\begin{array}{c|c}
-  AE+BG & AF+BH \\\
+  AE+BG & AF+BH \\\\\
   \hline
   CE+DG & CF+DH
 \end{array}
@@ -223,8 +223,8 @@ T(n): maximum number of operations done by algorithm
 #### Master Theorem {#master-theorem}
 
 \\[T(n) = \begin{cases}
-\mathcal{O}(n^d \log n) & a = b^d \\\\\\
-\mathcal{O}(n^d) & a < b^d \\\\\\
+\mathcal{O}(n^d \log n) & a = b^d \\\\
+\mathcal{O}(n^d) & a < b^d \\\\
 \mathcal{O}(n^{\log\_ba}) & a > b^d
 \end{cases}\\]
 
@@ -408,6 +408,61 @@ Variants
 -   Requires \\(\theta(m + n)\\) storage space
 -   Better for sparse graphs
 -   Perfect for graph search algorithms
+
+
+### Traversal {#traversal}
+
+
+#### BFS {#bfs}
+
+```python
+marked = [False] * G.size()
+def bfs(G, v):
+    queue = [v]
+    while len(queue) > 0:
+        v = queue.pop(0)
+    if not marked[v]:
+        visit(v)
+        marked[v] = True
+        for w in G.neighbours(v):
+            if not marked[w]:
+                queue.append(w)
+```
+
+
+#### DFS {#dfs}
+
+-   Recursive
+
+_Cleaner and easier to read_
+
+```python
+marked = [False] * G.size()
+def dfs(G, v):
+    visit(v)
+    marked[v] = True
+    for w in G.neighbours(v):
+        if not marked[w]:
+            dfs(G, w)
+```
+
+-   Iterative
+
+_More generalisable_
+
+```python
+marked = [False] * G.size()
+def dfs_iter(G, v):
+    stack = [v]
+    while len(stack) > 0:
+        v = stack.pop()
+        if not marked[v]:
+            visit(v)
+            marked[v] = True
+            for w in G.neighbours(v):
+                if not marked[w]:
+                    stack.append(w)
+```
 
 
 ## Data Structures {#data-structures}

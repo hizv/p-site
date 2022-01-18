@@ -1,0 +1,17 @@
+#+TITLE: Control Systems
+
+#+hugo_section: notes
+#+hugo_categories: electronics
+#+hugo_menu: :menu "main" :weight 2001
+
+#+startup: content
+
+#+hugo_base_dir: ../
+#+hugo_section: ./
+
+#+hugo_weight: auto
+#+hugo_auto_set_lastmod: t
+#+hugo_custom_front_matter: :mathjax t
+
+
+* Overview

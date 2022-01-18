@@ -1,0 +1,27 @@
+#+TITLE: Microelectronic Circuits
+#+date: 2022-01-17
+#+author: Himanish
+
+#+hugo_section: notes
+#+hugo_categories: electronics power
+#+hugo_menu: :menu "main" :weight 2001
+
+#+startup: content
+
+#+hugo_base_dir: ../
+#+hugo_section: ./
+
+#+hugo_weight: auto
+#+hugo_auto_set_lastmod: t
+#+hugo_custom_front_matter: :mathjax t
+
+* Lec 1
+- Op Amp is the closest we can get to Ideal Amplifier
+[[/images/mue-abstraction.png]]
+
+* L2
+** Superposition Theorem
+ - used when there are multiple independent sources
+ - For each independent source, form a subckt with all other independent srcs set to zero. All voltage sources are shorted, all current sources are open.
+ - Find the response to that independent source acting alone for each subckt
+ - Total response is sum of individual responses.

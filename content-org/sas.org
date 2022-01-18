@@ -1,0 +1,45 @@
+#+TITLE: Signals and Systems
+#+date: 2022-01-17
+#+author: Himanish
+
+#+hugo_section: notes
+#+hugo_categories: electronics power
+#+hugo_menu: :menu "main" :weight 2001
+
+#+startup: content
+
+#+hugo_base_dir: ../
+#+hugo_section: ./
+
+#+hugo_weight: auto
+#+hugo_auto_set_lastmod: t
+#+hugo_custom_front_matter: :mathjax t
+
+* Overview
+- LTI System: building block
+- Fourier Transform: Time to Frequency Domain (CT: continuous, DT: discrete)
+- Sampling: Natural signals need to converted to digital
+- Advanced Topics: Only covered if time remains
+- If midsem/compre offline: then exam will be closed book, else open book: only handwritten notes.
+- Quizzes could be online or offline: (15% weightage)
+  - Surprise: n quizzes -> best (n-1) considered
+  - Announced: n quizzes -> n considered
+- Assignments: MATLAB
+- Class recording only to those who attend, sometimes recording will not be provided
+* T1
+- Signal: time-varying function that conveys information. Two types:
+  - Analog: can continuously take on any value in a range
+  - Digital: discretised. Fixed finite possible values.
+- Sample times can be discrete or continuous.
+* L1
+- \(x[n] \implies n \in \mathbb{Z}\) [discrete]
+- \(x(n) \implies\) continuous signal
+** Time Shrinkage Operation
+- Consider the function \(x(\alpha t)\):
+  - If \(\alpha > 1\): shrinks to \(\frac{1}{\alpha}\) of original
+  - If \(\alpha < 1\): expands to \(\alpha\) times original
+- For discrete signal \(x[\alpha t]\):
+  - If \(\alpha > 1\):  remains same
+  - \(\alpha < 1\): Output for which input is fractional become zero
+** Advance-Delay
+- \(x(t-t_0\): Delayed if \(t_0 > 0\) else advance

@@ -22,7 +22,10 @@
 ― Alfred V. Aho
 
 #+end_quote
+
 * Basics
+- Always ask yourself, "CAN WE DO BETTER?"
+- Try to translate all pseudocode into code in some language
 ** Guiding Principles
 1. We do a worst case analysis, appropriate for 'general-purpose' routines. As opposed to 'average-case' analysis, which requires domain knowledge
 
@@ -41,10 +44,27 @@
 *** Little Oh
 \[T(n) = o(f(n)) \text{ iff } \forall \ c>0 \ \exists \ n_0 \text{ such that } T(n) \le cf(n) \ \forall \ n \ge n_0\]
 
+* COMMENT Recursive Algorithms
+** Generating Subsets
+#+begin_src cpp
+void search(int k) {
+  if (k == n+1) {
+    // process subset
+  } else {
+    // include k in the subset
+    subset.push_back(k);
+    search(k+1);
+    subset.pop_back();
+
+    // don’t include k in the subset
+    search(k+1);
+}
+#+end_src
+- The function maintains a =vector<int> subset= that contains the element of each subset
+- When the function search is called with parameter k, it decides whether to include the element k in the subset or not, and in both cases, then calls itself with parameter k+1. Then, if k = n+1, the function notices that all elements have been processed and a subset has been generated.
+
 
 * Divide and Conquer Paradigm
-- Always ask yourself, "CAN WE DO BETTER?"
-- Try to translate all pseudocode into code in some language
 ** Karatsuba Multiplication
 - Input: 2 n-digit numbers x, y
 - Output: x*y
@@ -294,6 +314,48 @@ Variants
 - Better for sparse graphs
 - Perfect for graph search algorithms
 
+** Traversal
+*** BFS
+#+begin_src python
+marked = [False] * G.size()
+def bfs(G, v):
+    queue = [v]
+    while len(queue) > 0:
+        v = queue.pop(0)
+    if not marked[v]:
+        visit(v)
+        marked[v] = True
+        for w in G.neighbours(v):
+            if not marked[w]:
+                queue.append(w)
+#+end_src
+*** DFS
+- Recursive
+/Cleaner and easier to read/
+#+begin_src python
+marked = [False] * G.size()
+def dfs(G, v):
+    visit(v)
+    marked[v] = True
+    for w in G.neighbours(v):
+        if not marked[w]:
+            dfs(G, w)
+#+end_src
+- Iterative
+/More generalisable/
+#+begin_src python
+marked = [False] * G.size()
+def dfs_iter(G, v):
+    stack = [v]
+    while len(stack) > 0:
+        v = stack.pop()
+        if not marked[v]:
+            visit(v)
+            marked[v] = True
+            for w in G.neighbours(v):
+                if not marked[w]:
+                    stack.append(w)
+#+end_src
 * Data Structures
 - Choose the minimal data structure that supports all the operations you need.
 ** Heaps
