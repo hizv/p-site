@@ -1,7 +1,7 @@
 +++
 title = "Control Systems"
 author = ["himi"]
-lastmod = 2022-01-18T11:51:04+05:30
+lastmod = 2022-01-25T19:16:05+05:30
 categories = ["electronics"]
 draft = false
 mathjax = "t"
@@ -10,4 +10,4 @@ mathjax = "t"
   weight = 2001
 +++
 
-## Overview {#overview}
+-   Poles are marked by X and zeroes by circles in complex plane

@@ -14,4 +14,4 @@
 #+hugo_custom_front_matter: :mathjax t
 
 
-* Overview
+- Poles are marked by X and zeroes by circles in complex plane

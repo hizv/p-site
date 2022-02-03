@@ -3,7 +3,7 @@
 #+author: Himanish
 
 #+hugo_section: notes
-#+hugo_categories: electronics power
+#+hugo_categories: electronics analog
 #+hugo_menu: :menu "main" :weight 2001
 
 #+startup: content
@@ -17,11 +17,131 @@
 
 * Lec 1
 - Op Amp is the closest we can get to Ideal Amplifier
-[[/images/mue-abstraction.png]]
-
-* L2
+* Lec 2
 ** Superposition Theorem
  - used when there are multiple independent sources
  - For each independent source, form a subckt with all other independent srcs set to zero. All voltage sources are shorted, all current sources are open.
  - Find the response to that independent source acting alone for each subckt
  - Total response is sum of individual responses.
+
+* Lec 3
+** Capacitor
+\[I = C \frac{dV}{dt}\]
+\[X_c = \frac{1}{j\omega C}\]
+- At dc, \(\omega = 0\), open ckt
+- At high freq ac, \(\omega \approx \infty\), short ckt
+
+** Inductor
+\[V = L \frac{dI}{dt}\]
+\[X_L = j\omega L\]
+- At dc, \(\omega = 0\), short ckt
+- At high freq ac, \(\omega \approx \infty\), open ckt
+** Amplifiers
+- \(v_i \sim \mu V\), \(v_o \sim mV\)
+*** Linear Amplifier
+\[v_o (t) = Av_i(t)\]
+- A: a constant independent of \(\omega\)
+- If \(v_i = a \sin \omega t\), then \(v_o = Aa \sin(\omega t + \phi)\), only amplitude changes. Don't worry about phase in this class. Either in-phase or out of phase.
+- Non-linear amp: \(v_o(t) = f(v_i(t))\)
+** Gain
+\[A_p = \frac{v_oi_o}{v_ii_i} = A_VA_I\]
+*** Decibels
+- V-Gain (dB) = \(20 \log_{10} |A_v|\) dB
+- I-Gain (dB) = \(20 \log_{10} |A_I|\) dB
+- Power Gain (dB) = \(10 \log_{10} |A_p|\) dB
+** Amp Power Supply
+\[P_{DC} = V_{CC}I_{CC}+V_{EE}+I_{EE} \]
+\[\underbrace{P_{DC}}_{\text{Power from supply}} + \underbrace{P_I}_{\text{i/p power in the signal}} = P_{\text{load}} + P_{\text{diss}} \]
+\[\eta = \frac{P_L}{P_{DC}}, \ P_I \ll P_{DC}\]
+** Amplifier Saturation
+- Linear amplification happens only over a range of inputs. Outside this range, no amplification occurs, distortion may happen.
+- Output voltage is limited to \(\{L_-,L_+\}\) so \[\frac{L_-}{A_v} \le v_i \le \frac{L_+}{A_v}\]
+
+* Lec 4
+** Naming Convention
+ - DC: Capital letters, \(V_O, I_C\)
+ - AC: Lowercase, \(v_c, i_c\)
+ - Total current = DC + AC so \(i_C(t) = I_C+i_c(t)\).
+ - DC power supplies: \(V_{CC} , V_{DD}\).
+** Voltage Amplifier Model
+- \(v_i,  v_o,  A_v\)
+[[/images/volt-amp-model.png]]
+- For ideal volt amp, \(R_{in} = \infty\), \(R_{out} = R_o = 0\)
+- only a fraction of the source signal v s actually reaches the input terminals of the amplifier
+- Thus, net gain < \(A_v\)
+** Measurement
+- Open ckt voltage gain
+- \[R_{in} = \frac{v_i}{i_{in}}\]
+- \[R_o = v_o/i_o\]
+** Amplifier Types
+[[/images/amp-types.png]]
+** Cascade Amps
+* Lec 5
+** MOSFET
+- Neglect body effect, was only an issue in older technologies.
+- Gate current is zero, i.e. \(I_G = 0\). Only gate voltage matters.
+- Threshold voltage is at which inversion occurs, i.e. drain becomes source
+** MOSFET Params
+- Design Params: W, L (\(\frac{W}{L}\)); Less flexibility to change L
+- Process Params: \( V_{DD}, V_T, T_{ox}, N_{sub} \)
+-  Process transconductance parameter \(k_n' = \mu_nC_{ox}\)
+-  MOSFET transconductance parameter \(k_n = \mu_nC_{ox}(W/L)\)
+
+* Lec 6
+** Channel Length Modulation
+- At some point in saturation, in pinchoff: as we increase \(V_D\), \(\Delta L\) increases which reduces effective channel length from \(L \text{ to } L-\Delta L\)
+- We can model this non-ideality using the channel length modulation factor \(\lambda \propto \Delta L/ L\): \[I_{DS} = \frac{1}{2}\mu_{neff}C_{ox}\frac{W}{L}(V_{GS}-V_T)^2(1+\lambda V_{DS})\]
+- \(\frac{\partial I_{DS}}{\partial V_{DS}} = \lambda I_{DSAT}\)
+  - Thus, resistance \[r_0 = \frac{1}{\lambda I_{DSAT}}\]
+** Transconductance
+\[g_m = \frac{\partial I_{DS}}{\partial V_{GS}}\]
+\[g_m = k_n'(W/L)\overbrace{(V_{GS}-V_T)}^{overdrive}\]
+\[g_m = \sqrt{2\mu_nC_{ox}(W/L)I_D} \]
+\[g_m = \frac{2I_D}{V_{GS}-V_T}\]
+** Body effect
+- When source and body are not tied together
+- Not used in this class
+** Long Signal Models
+[[/images/large-signal-mossat.png]]
+
+* Lec 7
+** Small Signal Model
+- \(I_{ds} = I_{DS}+i_{ds}\): Amplitude of \(i_{ds}\) is very smol.
+  - Small signal parameters depend on the biasing point we choose
+*** Linearisation of I-V characters around a bias point
+- At a bias point: \(I_{DS}, V_{GS}, V_{DS}\)
+- Since \(I_{DS} =  f(V_{GS}, V_{DS}) \), and we think of the small signal \(i_{ds}\) as a variation in the dc signal, we can say
+\[i_{ds} = \Delta I_{DS} = \frac{\partial f}{\partial V_{GS}}v_{gs}+\frac{\partial f}{\partial V_{DS}}v_{ds}\]
+\[i_{ds} = \frac{\partial I_{DS}}{\partial V_{GS}}v_{gs}+\frac{\partial I_{DS}}{\partial V_{DS}}v_{ds}\]
+- Assume an NMOS in saturation:
+  \[I_{DS} = \frac{1}{2}k_n(V_{GS}-V_T)^2(1+\lambda V_{DS})\]
+
+\[i_{ds} = \frac{\partial I_{DS}}{\partial V_{GS}}v_{gs}+\frac{\partial I_{DS}}{\partial V_{DS}}v_{ds}\]
+\[i_{ds} = g_mv_{gs}+\frac{v_{ds}}{r_0} \text{ where } \ r_0 = \frac{1}{\lambda I_D}\]
+\(i_{ds} = g_mv_{gs}\) when no channel-length modulation
+[[/images/smol-signal-model.png]]
+(a): No channel length modulation
+(b): With channel length  modulation
+
+* Lec 8
+** Transistor Amplifier
+\[A = \frac{v_o}{v_i} = -g_mR_D\]
+- Negative gain implies inverting amplifier, i.e. \(180^\degree\) phase between input and output.
+- When channel-length modulation is accounted for:
+\[A_v = \frac{v_o}{v_i} = -g_m(r_0||R_D)\]
+** CMOS Amplifier
+- Common Source (CS)
+- Common Gate (CG)
+- Common Drain (CD) or Source Follower
+** CS Amplifier
+\[A_v = -\sqrt{2k_n'(W/L)I_D}R_D\]
+- For high gain, we need to increase \(I_D, R_D\) but that makes it harder to keep \(M_1\) in saturation
+
+* Lec 9
+** CS Amp
+- For high gain, increase \(R_D\) till infinity so that it becomes an ideal current source
+- So \(A_v = -g_mr_o\), \(R_{on} = \infty\), \(R_{out} = r_o\)
+  - For an ideal MOS, \(r_o = \infty\) so gain is infinite
+- We can get an ideal current source by using another MOS in saturation
+[[/images/cs-amp.png]]
+- \[A_v = -g_{m1}(r_{o1}||r_{o2})\]

@@ -2,7 +2,7 @@
 title = "Algorithms"
 author = ["Himanish"]
 date = 2021-12-23
-lastmod = 2022-01-18T21:50:06+05:30
+lastmod = 2022-01-23T22:12:24+05:30
 categories = ["cs"]
 draft = false
 mathjax = "t"
@@ -468,6 +468,15 @@ def dfs_iter(G, v):
 ## Data Structures {#data-structures}
 
 -   Choose the minimal data structure that supports all the operations you need.
+
+
+### Trees {#trees}
+
+
+#### DFS {#dfs}
+
+
+#### BFS {#bfs}
 
 
 ### Heaps {#heaps}

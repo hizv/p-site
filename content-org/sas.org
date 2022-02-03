@@ -3,7 +3,7 @@
 #+author: Himanish
 
 #+hugo_section: notes
-#+hugo_categories: electronics power
+#+hugo_categories: electronics
 #+hugo_menu: :menu "main" :weight 2001
 
 #+startup: content
@@ -26,12 +26,12 @@
   - Announced: n quizzes -> n considered
 - Assignments: MATLAB
 - Class recording only to those who attend, sometimes recording will not be provided
-* T1
+* Lec 1
 - Signal: time-varying function that conveys information. Two types:
   - Analog: can continuously take on any value in a range
   - Digital: discretised. Fixed finite possible values.
 - Sample times can be discrete or continuous.
-* L1
+* Lec 2
 - \(x[n] \implies n \in \mathbb{Z}\) [discrete]
 - \(x(n) \implies\) continuous signal
 ** Time Shrinkage Operation
@@ -43,3 +43,56 @@
   - \(\alpha < 1\): Output for which input is fractional become zero
 ** Advance-Delay
 - \(x(t-t_0\): Delayed if \(t_0 > 0\) else advance
+* Lec 3
+- Arrow indicates sample value is at n=0
+[[/images/sas-dt-arrow.png]]
+- Absolutely summable sequence: \[\sum_{-\infty}^{\infty} |x(n)| \le P < \infty\]
+- Square summable sequence: \[\sum_{-\infty}^{\infty} |x(n)|^2 \le Q < \infty\]
+  - Energy: \(\sum_{-\infty}^{\infty} |x(n)|^2\)
+
+* Lec 4
+** Power
+\[P = \lim_{T\to\infty} \frac{E}{T}\]
+
+*** Discrete Time
+\[ P = \lim_{k\to\infty} \frac{1}{2k+1}\sum_{-k}^k|x(n)|^2 \]
+*** Continuous Time
+\[ P = \lim_{T\to\infty} \frac{1}{2T}\int_{-T}^T|x(t)|^2 dt \]
+** Types of Signals
+1. Energy Signal: Energy is finite, power is zero (\(P = \lim_{T\to\infty} \frac{E}{T}\))
+2. Power Signal: Power is finite, energy is infinite
+3. Neither Energy Nor Power Signal: Both are infinite
+
+** Necessary Conditions
+*** Energy Signal
+Must be
+- Finite duration and Bounded
+- Infinite duration, Bounded and Decaying
+
+*** Power Signal
+- Periodic signal are always power signals
+Must be
+- Bounded
+- Infinite duration
+- Not decaying
+
+* Lec 5
+** Impulse Signal
+*** CT
+- Infinite at x=0, and zero otherwise
+- NENP signal
+*** DT
+- 1 at n=0, and zero otherwise
+- Energy signal
+
+* Lec 6
+- A system is memoryless if the output \(y(n)\) depends on the value of input \(x(n)\)at n only, for all values of n.
+* Lec 7
+** Time-invariant System
+Delay at the input should not change the ouput.
+** Causal System
+Output is independent of future values of input.
+*** Noncausal System
+Output depends on future inputs.
+*** Anticausal System
+Output depends purely on future values of input.

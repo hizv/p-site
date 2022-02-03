@@ -1,0 +1,33 @@
+#+TITLE: Microprocessors
+#+date: 2022-01-25
+#+author: Himanish
+
+#+hugo_section: notes
+#+hugo_categories: electronics cs
+#+hugo_menu: :menu "main" :weight 2001
+
+#+startup: content
+
+#+hugo_base_dir: ../
+#+hugo_section: ./
+
+#+hugo_weight: auto
+#+hugo_auto_set_lastmod: t
+#+hugo_custom_front_matter: :mathjax t
+
+* Programmer's Model x86
+** BIU
+- Instruction stored in =FFFF0= is first to be executed.
+* Addressing Modes
+- Scaled Index Addressing Mode only available in 32-bit processors i.e. 80386 and 80486.
+- Square brackets in ASM command indicates dereferencing of memory:
+  - =mov [ebx], eax= moves the value in eax to the memory address contained in ebx.
+  - =mov ebx, [eax]= moves the value from the memory address contained in eax to ebx.
+- Word Bit
+  - W=0: 8-bit data
+  - W=1: 16-bit data
+- All Intel processors use little endian representation, i.e. lower byte first and then higher byte.
+- In 1985 Intel introduced 80386, the first 32-bit processor in the x86 line.
+  - The main registers were extended to 32 bits by adding an E prefix
+  - EAX stood for extended AX. And AX now refers to the lower half of EAX, while AH and AL continue to refer to the two AX bytes.
+- One can copy data to DS only from AX register. i.e. only =MOV DS, AX= works for DS.
