@@ -2,7 +2,7 @@
 title = "Microprocessors"
 author = ["Himanish"]
 date = 2022-01-25
-lastmod = 2022-02-02T22:57:07+05:30
+lastmod = 2022-02-08T21:32:25+05:30
 categories = ["electronics", "cs"]
 draft = false
 mathjax = "t"
@@ -33,3 +33,18 @@ mathjax = "t"
     -   The main registers were extended to 32 bits by adding an E prefix
     -   EAX stood for extended AX. And AX now refers to the lower half of EAX, while AH and AL continue to refer to the two AX bytes.
 -   One can copy data to DS only from AX register. i.e. only `MOV DS, AX` works for DS.
+
+
+## Instruction Set of x86 {#instruction-set-of-x86}
+
+
+### Increment {#increment}
+
+-   Carry flag is not affected
+-   Can increment word size (2 memory locations affected) or byte size (1 mem loc)
+
+
+### Branch Instruction {#branch-instruction}
+
+-   je/jz
+-   jne/jnz

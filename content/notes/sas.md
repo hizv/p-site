@@ -2,7 +2,7 @@
 title = "Signals and Systems"
 author = ["Himanish"]
 date = 2022-01-17
-lastmod = 2022-01-31T11:38:23+05:30
+lastmod = 2022-02-18T19:01:22+05:30
 categories = ["electronics"]
 draft = false
 mathjax = "t"
@@ -11,35 +11,88 @@ mathjax = "t"
   weight = 2001
 +++
 
-## Overview {#overview}
-
--   LTI System: building block
--   Fourier Transform: Time to Frequency Domain (CT: continuous, DT: discrete)
--   Sampling: Natural signals need to converted to digital
--   Advanced Topics: Only covered if time remains
--   If midsem/compre offline: then exam will be closed book, else open book: only handwritten notes.
--   Quizzes could be online or offline: (15% weightage)
-    -   Surprise: n quizzes -> best (n-1) considered
-    -   Announced: n quizzes -> n considered
--   Assignments: MATLAB
--   Class recording only to those who attend, sometimes recording will not be provided
-
-
-## Lec 1 {#lec-1}
+## Signals and Systems {#signals-and-systems}
 
 -   Signal: time-varying function that conveys information. Two types:
     -   Analog: can continuously take on any value in a range
     -   Digital: discretised. Fixed finite possible values.
 -   Sample times can be discrete or continuous.
+    -   Arrow indicates sample value is at n=0
+
+{{< figure src="/images/sas-dt-arrow.png" >}}
+
+-   Absolutely summable sequence: \\[\sum\_{-\infty}^{\infty} |x(n)| \le P < \infty\\]
+-   Square summable sequence: \\[\sum\_{-\infty}^{\infty} |x(n)|^2 \le Q < \infty\\]
 
 
-## Lec 2 {#lec-2}
+### Energy {#energy}
+
+
+#### Discrete {#discrete}
+
+-   \\(E\_{\infty} = \sum\_{-\infty}^{\infty} |x[n]|^2\\)
+
+
+#### Continuous {#continuous}
+
+-   \\[E\_{\infty} = \int\_{-\infty}^{\infty} |x(t)|^2dt\\]
+
+
+### Power {#power}
+
+\\[P = \lim\_{T\to\infty} \frac{E}{T}\\]
+
+-   Power of
+
+
+#### Discrete Time {#discrete-time}
+
+\\[ P = \lim\_{k  \to\infty} \frac{1}{2k+1}\sum\_{-k}^k|x(n)|^2 \\]
+
+
+#### Continuous Time {#continuous-time}
+
+\\[ P = \lim\_{T\to\infty} \frac{1}{2T}\int\_{-T}^T|x(t)|^2 dt \\]
+
+
+#### Types of Signals {#types-of-signals}
+
+1.  Energy Signal: Energy is finite, power is zero (\\(P = \lim\_{T\to\infty} \frac{E}{T}\\))
+2.  Power Signal: Power is finite, energy is infinite
+3.  Neither Energy Nor Power Signal: Both are infinite
+
+
+#### Necessary Conditions {#necessary-conditions}
+
+<!--list-separator-->
+
+-  Energy Signal
+
+    Must be
+
+    -   Finite duration and Bounded
+    -   Infinite duration, Bounded and Decaying
+
+<!--list-separator-->
+
+-  Power Signal
+
+    -   Periodic signals are always power signals
+
+    Must be
+
+    -   Bounded
+    -   Infinite duration
+    -   Not decaying
+
+
+### Transformations of Independent Variable {#transformations-of-independent-variable}
 
 -   \\(x[n] \implies n \in \mathbb{Z}\\) [discrete]
 -   \\(x(n) \implies\\) continuous signal
 
 
-### Time Shrinkage Operation {#time-shrinkage-operation}
+#### Time Shrinkage {#time-shrinkage}
 
 -   Consider the function \\(x(\alpha t)\\):
     -   If \\(\alpha > 1\\): shrinks to \\(\frac{1}{\alpha}\\) of original
@@ -49,73 +102,18 @@ mathjax = "t"
     -   \\(\alpha < 1\\): Output for which input is fractional become zero
 
 
-### Advance-Delay {#advance-delay}
+#### Time Shift {#time-shift}
 
--   \\(x(t-t\_0\\): Delayed if \\(t\_0 > 0\\) else advance
-
-
-## Lec 3 {#lec-3}
-
--   Arrow indicates sample value is at n=0
-
-{{< figure src="/images/sas-dt-arrow.png" >}}
-
--   Absolutely summable sequence: \\[\sum\_{-\infty}^{\infty} |x(n)| \le P < \infty\\]
--   Square summable sequence: \\[\sum\_{-\infty}^{\infty} |x(n)|^2 \le Q < \infty\\]
-    -   Energy: \\(\sum\_{-\infty}^{\infty} |x(n)|^2\\)
+-   \\(x(t-t\_0\\): Delayed if \\(t\_0 > 0\\) else advanced
 
 
-## Lec 4 {#lec-4}
+#### Even and Odd Parts {#even-and-odd-parts}
+
+-   \\[\mathcal{Ev}\\{x(t)\\} = \frac{x(t)+x(-t)}{2}\\]
+-   \\[\mathcal{Od}\\{x(t)\\} = \frac{x(t)-x(-t)}{2}\\]
 
 
-### Power {#power}
-
-\\[P = \lim\_{T\to\infty} \frac{E}{T}\\]
-
-
-#### Discrete Time {#discrete-time}
-
-\\[ P = \lim\_{k\to\infty} \frac{1}{2k+1}\sum\_{-k}^k|x(n)|^2 \\]
-
-
-#### Continuous Time {#continuous-time}
-
-\\[ P = \lim\_{T\to\infty} \frac{1}{2T}\int\_{-T}^T|x(t)|^2 dt \\]
-
-
-### Types of Signals {#types-of-signals}
-
-1.  Energy Signal: Energy is finite, power is zero (\\(P = \lim\_{T\to\infty} \frac{E}{T}\\))
-2.  Power Signal: Power is finite, energy is infinite
-3.  Neither Energy Nor Power Signal: Both are infinite
-
-
-### Necessary Conditions {#necessary-conditions}
-
-
-#### Energy Signal {#energy-signal}
-
-Must be
-
--   Finite duration and Bounded
--   Infinite duration, Bounded and Decaying
-
-
-#### Power Signal {#power-signal}
-
--   Periodic signal are always power signals
-
-Must be
-
--   Bounded
--   Infinite duration
--   Not decaying
-
-
-## Lec 5 {#lec-5}
-
-
-### Impulse Signal {#impulse-signal}
+### Unit Impulse Signal {#unit-impulse-signal}
 
 
 #### CT {#ct}
@@ -130,29 +128,118 @@ Must be
 -   Energy signal
 
 
-## Lec 6 {#lec-6}
+### Basic System Properties {#basic-system-properties}
+
+
+#### Memoryless System {#memoryless-system}
 
 -   A system is memoryless if the output \\(y(n)\\) depends on the value of input \\(x(n)\\)at n only, for all values of n.
 
 
-## Lec 7 {#lec-7}
+#### Invertible System {#invertible-system}
+
+Distinct inputs lead to distinct outputs.
 
 
-### Time-invariant System {#time-invariant-system}
+#### Time-invariant System {#time-invariant-system}
 
-Delay at the input should not change the ouput.
+Delay at the input should produce an equal delay in output.
 
 
-### Causal System {#causal-system}
+#### Causal System {#causal-system}
 
 Output is independent of future values of input.
 
+<!--list-separator-->
 
-#### Noncausal System {#noncausal-system}
+-  Noncausal System
 
-Output depends on future inputs.
+    Output depends on future inputs.
+
+<!--list-separator-->
+
+-  Anticausal System
+
+    Output depends purely on future values of input.
 
 
-#### Anticausal System {#anticausal-system}
+#### Stable System {#stable-system}
 
-Output depends purely on future values of input.
+-   A stable system is one in which small inputs lead to responses that do not diverge.
+-   Bounded inputs lead to bounded outputs.
+
+
+## Linear Time-Invariant Systems {#linear-time-invariant-systems}
+
+
+### DT LTI Systems {#dt-lti-systems}
+
+
+#### DT Signals as Impulse Sums {#dt-signals-as-impulse-sums}
+
+-   \\[x[n] = \sum\_{k=-\infty}^{\infty}x[k]\delta[n-k]\\]
+
+-   Convolution sum
+
+\\[y[n] = x[n] \* h[n] ::= \sum\_{k=-\infty}^{\infty}y[k]h[n-k]\\]
+
+-   \\(h[n]\\) is the output of the system when \\(\delta[n]\\) is the input
+
+{{< figure src="/images/convolve-colour.png" >}}
+
+
+### Properties of LTI Systems {#properties-of-lti-systems}
+
+
+#### Commutativity {#commutativity}
+
+\\[x[n] \* h[n] = h[n] \* x[n]\\]
+
+
+#### Distributivity {#distributivity}
+
+\\[x \* (h\_1 + h\_2) = x \* h\_1 + x \* h\_2\\]
+
+
+#### Associativity {#associativity}
+
+\\[x \* (h\_1 \* h\_2) = (x \* h\_1) \* h\_2\\]
+
+
+#### Memory {#memory}
+
+-   If the output at some time should depend only on the input's value at that time, then \\(h[n] = 0 \text{ if } n \ne 0\\)
+-   \\[h[n] = K \delta [n]\\]
+
+\\(K = h[0]\\)
+
+-   Thus \\(y[n] = Kx[n]\\)
+
+
+#### Invertibility {#invertibility}
+
+If the inverse system has impulse response \\(h\_1(t)\\) then
+\\[h(t) \* h\_1(t) = \delta(t)\\]
+
+
+#### Causality {#causality}
+
+For a causal system, \\[h(t) < 0  \text{ for } t < 0\\]
+
+
+#### Stability {#stability}
+
+The impulse response must be absolutely integrable for \\(y(t)\\) to be bounded, and the system to be stable, i.e.
+\\[\int\_{-\infty}^{\infty} |h(\tau)|d\tau < \infty\\]
+
+
+### Unit Step Response {#unit-step-response}
+
+The unit step response \\(s[n]\\) of a system corresponds to the output when \\(x[n] = u[n]\\)
+\\[s[n] = u[n] \* h[n]\\]
+
+-   \\[s[n] = \sum\_{\infty}^n h[k]\\]
+    -   \\[h[n] = s[n] - s[n-1]\\]
+
+
+### System Description Via Diff Equations {#system-description-via-diff-equations}

@@ -93,6 +93,7 @@
 - We can model this non-ideality using the channel length modulation factor \(\lambda \propto \Delta L/ L\): \[I_{DS} = \frac{1}{2}\mu_{neff}C_{ox}\frac{W}{L}(V_{GS}-V_T)^2(1+\lambda V_{DS})\]
 - \(\frac{\partial I_{DS}}{\partial V_{DS}} = \lambda I_{DSAT}\)
   - Thus, resistance \[r_0 = \frac{1}{\lambda I_{DSAT}}\]
+- In terms of Early effect: \(\lambda = \frac{1}{V_A}\) where \(V_A\) is the Early voltage.
 ** Transconductance
 \[g_m = \frac{\partial I_{DS}}{\partial V_{GS}}\]
 \[g_m = k_n'(W/L)\overbrace{(V_{GS}-V_T)}^{overdrive}\]
@@ -125,8 +126,9 @@
 
 * Lec 8
 ** Transistor Amplifier
+[[/images/volt-amp-vtc.png]]
 \[A = \frac{v_o}{v_i} = -g_mR_D\]
-- Negative gain implies inverting amplifier, i.e. \(180^\degree\) phase between input and output.
+- Negative gain implies inverting amplifier, i.e. \(180^\circ\) phase between input and output.
 - When channel-length modulation is accounted for:
 \[A_v = \frac{v_o}{v_i} = -g_m(r_0||R_D)\]
 ** CMOS Amplifier
@@ -145,3 +147,97 @@
 - We can get an ideal current source by using another MOS in saturation
 [[/images/cs-amp.png]]
 - \[A_v = -g_{m1}(r_{o1}||r_{o2})\]
+  - As \(Q_1\) is converting the input voltage to output current, it is doing the transconductance
+
+* Lec 10
+** CS Stage with Source Resistance (Degeneration)
+[[/images/cs-amp-src-degen.png]]
+- We use \(R_S\) to control the magnitude of the signal \(v_{gs}\) and thereby ensure that \(v_{gs}\) does not become too large and cause unacceptably high nonlinear distortion.
+- But \(R_S\) will bring stability to gain at the cost of reducing it.
+- \[v_{gs} = \frac{v_{in}}{1+g_mR_S}\]
+  - \( v_o = - g_mv_{gs}R_D\)
+- \[A_v = \frac{v_o}{v_{in}} = \frac{-g_mR_D}{1+g_mR_S} = - \frac{R_D}{1/g_m + R_S} = -G_MR_D\]
+  - If a load resistance \(R_L\) is connected at the output, replace \(R_D\) by \(R_D || R_L\)
+  - The factor \((1+g_mR_s)\) is the amount of negative feedback introduced by \(R_s\)
+- Voltage gain from gate to drain =    \(- \frac{\text{Total resistance in drain}}{\text{Total resistance in source}}\)
+- \[R_{out} = r_o + (1+g_mr_o)R_S\]
+- \(R_{in} = \infty\)
+* Lec 11
+** Coupling Capacitor
+- In DC Analysis, treated as open
+- For small signal ac analysis, shorted
+- So, it only lets the ac component of the signal through.
+
+* Lec 12
+** Common Ground Amplifier
+[[/images/cg-amp.png]]
+- \(R_{in} = \frac{1}{g_m}\)
+- \(A_{v} = g_mR_D\)
+- \(R_{o} = R_D\)
+- The CS configuration suffers from a limitation on its high-frequency response
+  - Combining the CS amp with a CG amp can extend the bandwidth considerably
+* Lec 13
+** Source Follower (Common-Drain)
+- \[A_v = \frac{g_m(r_o||R_L)}{1+g_m(r_o||R_L)} = \frac{r_o||R_L}{\frac{1}{g_m}+(r_o||R_L)} \approx 1\]
+
+  - Thus, used as a voltage buffer.
+
+- \(R_{in} = \infty\)
+
+- \(R_{out} = \frac{1}{g_m}\)
+
+- \(R_L, (W/L), V_{GS}(\text{or } V_{ov})\) are the parameters to calculate for designing a circuit
+** Problems with Resistors
+- Occupy too much space on the SoC
+- Generate heat which heats up all the components around it and \(n_i^2 \propto e^{-1/T}\)
+  - We test the design at high temperatures to check for the worst case
+- Speed up transistor aging and \(I_D\) starts dropping
+Thus, other than discrete designs, resistors aren't used for biasing. We use /current source biasing/ in IC designs.
+
+* Lec 14
+** Cascode Amplifier
+- /Cascoding/: using a CG xtor to provide current buffering for the output of a CS/CE xtor
+[[/images/cascode-amp.png]]
+- \(R_{in} = \infty\) (gate)
+- Comparing with a source-degenerated CS amp, \(R_s = r_{o1}\) so \[R_o = (g_{m2}r_{o2}) \ r_{o1}\]
+- \[A_v = -g_{m1}R_o = -(g_{m1}r_{o1})(g_{m2}r_{o2})\]
+** Effective Transconductance
+\(A_v = - G_m R_{out}\)
+- To calculate the effective transconductance \(G_m\), ground the output and measure \(i_{out}\) as a function of \(v_{in}\)
+\[G_m = \frac{i_{out}}{v_{in}}\]
+- To calculate \(R_{out}\), short the input voltage and measure \(v_{out}\) as a function of \(i_{out}\)
+  \[R_{out} = \frac{v_{out}}{i_{out}}\]
+** Cascode Current Source
+[[/images/cascode-isrc.png]]
+- For a gain of \(A_0^2\), the load \(R_L\) must be the same order as \(R_o\) of the cascode amplifier
+- \(Q_3\) raises the output resistance of the current source \(Q_4\)
+** Cascode Amp with Cascode i-Src Load
+[[/images/cascode-amp-isrc-load.png]]
+\[A_v = -g_{m1}[R_{on} || R_{op}]\]
+- If all transistors are identical \[A_v = -\frac{1}{2}(g_mr_o)^2\]
+
+* Lec 15
+** Current Mirrors
+[[/images/current-mirror.png]]
+- \(I_{REF} = I_{D1} = \frac{1}{2}k_n'(W/L)_1(V_{GS}-V_{Tn})^2\)
+- \(I_O = I_{D2} = \frac{1}{2}k_n'(W/L)_2(V_{GS}-V_{Tn})^2\)
+- \[\frac{I_O}{I_{REF}} = \frac{(W/L)_2}{(W/L)_1}\]
+  - In case of identical xtors, the circuit becomes a *current mirror*
+*** Effect of \(V_O\) on \(I_O\)
+To ensure \(M_2\) is saturated,
+\(V_O \ge V_{GS}- V_{Tn}\)
+\(V_O \ge V_{OV}\)
+*** Channel Length Modulation
+\(R_O := \frac{\Delta V_O}{\Delta I_O} = r_{o2} = \frac{V_{A2}}{I_O}\)
+\[I_O =  \frac{(W/L)_2}{(W/L)_1}I_{REF}(1+\frac{V_O-V_{GS}}{V_{A2}}\]
+** Current Steering
+[[/images/i-steerer.png]]
+- Xtors \(M_1, M_2, M_3\) form a two-output current mirror.
+\[I_2 = I_{REF}\frac{(W/L)_2}{(W/L)_1}\]
+\[I_3 = I_{REF}\frac{(W/L)_3}{(W/L)_1}\]
+- \(I_3\) is fed to the input of a i-mirror formed by pMOS xtors \(M_4, M_5\)
+\[I_5 = I_4 \frac{(W/L)_5}{(W/L)_4}\]
+\[V_{D5} \le V_{DD} - |V_{OV5}|\]
+-  While \(M_2\) pulls its current \(I_2\) from a circuit (not shown), \(M_5\) pushes its current \(I_5\) into a circuit (not shown). Thus \(M_5\) is appropriately called a current source, whereas \(M_2\) should more properly be called a current sink. In an IC, both current sources and current sinks are usually needed.
+** Small Signal of Current Mirror
+\[A_{i} = \frac{g_{m2}}{g_{m1}} = \frac{(W/L)_2}{(W/L)_1}\]

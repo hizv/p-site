@@ -15,3 +15,13 @@
 
 
 - Poles are marked by X and zeroes by circles in complex plane
+* Laplace Transform
+| Time                | Frequency            |
+|---------------------+----------------------|
+| \(tf(t)\)           | \(-F'(s)\)           |
+| \(t^nf(t)\)         | \((-1)^nF^{(n)}(s)\) |
+| \(f(t-a)u(t-a)\)    | \(e^{-as}F(s)\)      |
+| \(f'(t)\)           | \(sF(s)-f(0^-)\)     |
+| \(\frac{1}{t}f(t)\) | \(\int_s^{\infty}F(\sigma)d\sigma\)    |
+| \(e^{at}f(t)\)      | \(F(s-a)\)           |
+| \(u(t-a)\)          | \(e^{-as}/s\)        |

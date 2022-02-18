@@ -14,70 +14,61 @@
 #+hugo_weight: auto
 #+hugo_auto_set_lastmod: t
 #+hugo_custom_front_matter: :mathjax t
-
-* Overview
-- LTI System: building block
-- Fourier Transform: Time to Frequency Domain (CT: continuous, DT: discrete)
-- Sampling: Natural signals need to converted to digital
-- Advanced Topics: Only covered if time remains
-- If midsem/compre offline: then exam will be closed book, else open book: only handwritten notes.
-- Quizzes could be online or offline: (15% weightage)
-  - Surprise: n quizzes -> best (n-1) considered
-  - Announced: n quizzes -> n considered
-- Assignments: MATLAB
-- Class recording only to those who attend, sometimes recording will not be provided
-* Lec 1
+* Signals and Systems
 - Signal: time-varying function that conveys information. Two types:
   - Analog: can continuously take on any value in a range
   - Digital: discretised. Fixed finite possible values.
 - Sample times can be discrete or continuous.
-* Lec 2
+  - Arrow indicates sample value is at n=0
+[[/images/sas-dt-arrow.png]]
+- Absolutely summable sequence: \[\sum_{-\infty}^{\infty} |x(n)| \le P < \infty\]
+- Square summable sequence: \[\sum_{-\infty}^{\infty} |x(n)|^2 \le Q < \infty\]
+** Energy
+*** Discrete
+  - \(E_{\infty} = \sum_{-\infty}^{\infty} |x[n]|^2\)
+*** Continuous
+  - \[E_{\infty} = \int_{-\infty}^{\infty} |x(t)|^2dt\]
+
+** Power
+\[P = \lim_{T\to\infty} \frac{E}{T}\]
+- Power of
+*** Discrete Time
+\[ P = \lim_{k  \to\infty} \frac{1}{2k+1}\sum_{-k}^k|x(n)|^2 \]
+*** Continuous Time
+\[ P = \lim_{T\to\infty} \frac{1}{2T}\int_{-T}^T|x(t)|^2 dt \]
+*** Types of Signals
+1. Energy Signal: Energy is finite, power is zero (\(P = \lim_{T\to\infty} \frac{E}{T}\))
+2. Power Signal: Power is finite, energy is infinite
+3. Neither Energy Nor Power Signal: Both are infinite
+
+*** Necessary Conditions
+**** Energy Signal
+Must be
+- Finite duration and Bounded
+- Infinite duration, Bounded and Decaying
+
+**** Power Signal
+- Periodic signals are always power signals
+Must be
+- Bounded
+- Infinite duration
+- Not decaying
+** Transformations of Independent Variable
 - \(x[n] \implies n \in \mathbb{Z}\) [discrete]
 - \(x(n) \implies\) continuous signal
-** Time Shrinkage Operation
+*** Time Shrinkage
 - Consider the function \(x(\alpha t)\):
   - If \(\alpha > 1\): shrinks to \(\frac{1}{\alpha}\) of original
   - If \(\alpha < 1\): expands to \(\alpha\) times original
 - For discrete signal \(x[\alpha t]\):
   - If \(\alpha > 1\):  remains same
   - \(\alpha < 1\): Output for which input is fractional become zero
-** Advance-Delay
-- \(x(t-t_0\): Delayed if \(t_0 > 0\) else advance
-* Lec 3
-- Arrow indicates sample value is at n=0
-[[/images/sas-dt-arrow.png]]
-- Absolutely summable sequence: \[\sum_{-\infty}^{\infty} |x(n)| \le P < \infty\]
-- Square summable sequence: \[\sum_{-\infty}^{\infty} |x(n)|^2 \le Q < \infty\]
-  - Energy: \(\sum_{-\infty}^{\infty} |x(n)|^2\)
-
-* Lec 4
-** Power
-\[P = \lim_{T\to\infty} \frac{E}{T}\]
-
-*** Discrete Time
-\[ P = \lim_{k\to\infty} \frac{1}{2k+1}\sum_{-k}^k|x(n)|^2 \]
-*** Continuous Time
-\[ P = \lim_{T\to\infty} \frac{1}{2T}\int_{-T}^T|x(t)|^2 dt \]
-** Types of Signals
-1. Energy Signal: Energy is finite, power is zero (\(P = \lim_{T\to\infty} \frac{E}{T}\))
-2. Power Signal: Power is finite, energy is infinite
-3. Neither Energy Nor Power Signal: Both are infinite
-
-** Necessary Conditions
-*** Energy Signal
-Must be
-- Finite duration and Bounded
-- Infinite duration, Bounded and Decaying
-
-*** Power Signal
-- Periodic signal are always power signals
-Must be
-- Bounded
-- Infinite duration
-- Not decaying
-
-* Lec 5
-** Impulse Signal
+*** Time Shift
+- \(x(t-t_0\): Delayed if \(t_0 > 0\) else advanced
+*** Even and Odd Parts
+- \[\mathcal{Ev}\{x(t)\} = \frac{x(t)+x(-t)}{2}\]
+- \[\mathcal{Od}\{x(t)\} = \frac{x(t)-x(-t)}{2}\]
+** Unit Impulse Signal
 *** CT
 - Infinite at x=0, and zero otherwise
 - NENP signal
@@ -85,14 +76,57 @@ Must be
 - 1 at n=0, and zero otherwise
 - Energy signal
 
-* Lec 6
+** Basic System Properties
+*** Memoryless System
 - A system is memoryless if the output \(y(n)\) depends on the value of input \(x(n)\)at n only, for all values of n.
-* Lec 7
-** Time-invariant System
-Delay at the input should not change the ouput.
-** Causal System
+*** Invertible System
+Distinct inputs lead to distinct outputs.
+*** Time-invariant System
+Delay at the input should produce an equal delay in output.
+*** Causal System
 Output is independent of future values of input.
-*** Noncausal System
+**** Noncausal System
 Output depends on future inputs.
-*** Anticausal System
+**** Anticausal System
 Output depends purely on future values of input.
+
+*** Stable System
+- A stable system is one in which small inputs lead to responses that do not diverge.
+- Bounded inputs lead to bounded outputs.
+
+* Linear Time-Invariant Systems
+** DT LTI Systems
+*** DT Signals as Impulse Sums
+
+ - \[x[n] = \sum_{k=-\infty}^{\infty}x[k]\delta[n-k]\]
+
+ - Convolution sum
+\[y[n] = x[n] * h[n] ::= \sum_{k=-\infty}^{\infty}y[k]h[n-k]\]
+   - \(h[n]\) is the output of the system when \(\delta[n]\) is the input
+[[/images/convolve-colour.png]]
+** Properties of LTI Systems
+*** Commutativity
+\[x[n] * h[n] = h[n] * x[n]\]
+*** Distributivity
+\[x * (h_1 + h_2) = x * h_1 + x * h_2\]
+*** Associativity
+\[x * (h_1 * h_2) = (x * h_1) * h_2\]
+*** Memory
+- If the output at some time should depend only on the input's value at that time, then \(h[n] = 0 \text{ if } n \ne 0\)
+- \[h[n] = K \delta [n]\]
+\(K = h[0]\)
+ - Thus \(y[n] = Kx[n]\)
+*** Invertibility
+If the inverse system has impulse response \(h_1(t)\) then
+\[h(t) * h_1(t) = \delta(t)\]
+*** Causality
+For a causal system, \[h(t) < 0  \text{ for } t < 0\]
+*** Stability
+The impulse response must be absolutely integrable for \(y(t)\) to be bounded, and the system to be stable, i.e.
+\[\int_{-\infty}^{\infty} |h(\tau)|d\tau < \infty\]
+** Unit Step Response
+The unit step response \(s[n]\) of a system corresponds to the output when \(x[n] = u[n]\)
+\[s[n] = u[n] * h[n]\]
+- \[s[n] = \sum_{\infty}^n h[k]\]
+  - \[h[n] = s[n] - s[n-1]\]
+** System Description Via Diff Equations
