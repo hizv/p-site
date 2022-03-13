@@ -61,10 +61,10 @@ Must be
   - If \(\alpha > 1\): shrinks to \(\frac{1}{\alpha}\) of original
   - If \(\alpha < 1\): expands to \(\alpha\) times original
 - For discrete signal \(x[\alpha t]\):
-  - If \(\alpha > 1\):  remains same
+  - If \(\alpha > 1\): samples get skipped
   - \(\alpha < 1\): Output for which input is fractional become zero
 *** Time Shift
-- \(x(t-t_0\): Delayed if \(t_0 > 0\) else advanced
+- \(x(t-t_0)\): Delayed if \(t_0 > 0\) else advanced
 *** Even and Odd Parts
 - \[\mathcal{Ev}\{x(t)\} = \frac{x(t)+x(-t)}{2}\]
 - \[\mathcal{Od}\{x(t)\} = \frac{x(t)-x(-t)}{2}\]
@@ -101,7 +101,7 @@ Output depends purely on future values of input.
  - \[x[n] = \sum_{k=-\infty}^{\infty}x[k]\delta[n-k]\]
 
  - Convolution sum
-\[y[n] = x[n] * h[n] ::= \sum_{k=-\infty}^{\infty}y[k]h[n-k]\]
+\[y[n] = x[n] * h[n] ::= \sum_{k=-\infty}^{\infty}x[k]h[n-k]\]
    - \(h[n]\) is the output of the system when \(\delta[n]\) is the input
 [[/images/convolve-colour.png]]
 ** Properties of LTI Systems
@@ -120,7 +120,7 @@ Output depends purely on future values of input.
 If the inverse system has impulse response \(h_1(t)\) then
 \[h(t) * h_1(t) = \delta(t)\]
 *** Causality
-For a causal system, \[h(t) < 0  \text{ for } t < 0\]
+For a causal system, \[h(t) = 0  \text{ for } t < 0\]
 *** Stability
 The impulse response must be absolutely integrable for \(y(t)\) to be bounded, and the system to be stable, i.e.
 \[\int_{-\infty}^{\infty} |h(\tau)|d\tau < \infty\]

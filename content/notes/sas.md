@@ -2,7 +2,7 @@
 title = "Signals and Systems"
 author = ["Himanish"]
 date = 2022-01-17
-lastmod = 2022-02-18T19:01:22+05:30
+lastmod = 2022-02-20T21:16:45+05:30
 categories = ["electronics"]
 draft = false
 mathjax = "t"
@@ -98,13 +98,13 @@ mathjax = "t"
     -   If \\(\alpha > 1\\): shrinks to \\(\frac{1}{\alpha}\\) of original
     -   If \\(\alpha < 1\\): expands to \\(\alpha\\) times original
 -   For discrete signal \\(x[\alpha t]\\):
-    -   If \\(\alpha > 1\\):  remains same
+    -   If \\(\alpha > 1\\): samples get skipped
     -   \\(\alpha < 1\\): Output for which input is fractional become zero
 
 
 #### Time Shift {#time-shift}
 
--   \\(x(t-t\_0\\): Delayed if \\(t\_0 > 0\\) else advanced
+-   \\(x(t-t\_0)\\): Delayed if \\(t\_0 > 0\\) else advanced
 
 
 #### Even and Odd Parts {#even-and-odd-parts}
@@ -181,7 +181,7 @@ Output is independent of future values of input.
 
 -   Convolution sum
 
-\\[y[n] = x[n] \* h[n] ::= \sum\_{k=-\infty}^{\infty}y[k]h[n-k]\\]
+\\[y[n] = x[n] \* h[n] ::= \sum\_{k=-\infty}^{\infty}x[k]h[n-k]\\]
 
 -   \\(h[n]\\) is the output of the system when \\(\delta[n]\\) is the input
 
@@ -224,7 +224,7 @@ If the inverse system has impulse response \\(h\_1(t)\\) then
 
 #### Causality {#causality}
 
-For a causal system, \\[h(t) < 0  \text{ for } t < 0\\]
+For a causal system, \\[h(t) = 0  \text{ for } t < 0\\]
 
 
 #### Stability {#stability}

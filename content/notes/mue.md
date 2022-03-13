@@ -2,7 +2,7 @@
 title = "Microelectronic Circuits"
 author = ["Himanish"]
 date = 2022-01-17
-lastmod = 2022-02-18T13:06:45+05:30
+lastmod = 2022-03-04T14:40:15+05:30
 categories = ["electronics", "analog"]
 draft = false
 mathjax = "t"
@@ -109,6 +109,11 @@ mathjax = "t"
 -   Thus, net gain &lt; \\(A\_v\\)
 
 
+#### Amplifier with Load and Signal {#amplifier-with-load-and-signal}
+
+{{< figure src="/images/loaded-amp-model.png" >}}
+
+
 ### Measurement {#measurement}
 
 -   Open ckt voltage gain
@@ -152,6 +157,7 @@ mathjax = "t"
 -   \\(\frac{\partial I\_{DS}}{\partial V\_{DS}} = \lambda I\_{DSAT}\\)
     -   Thus, resistance \\[r\_0 = \frac{1}{\lambda I\_{DSAT}}\\]
 -   In terms of Early effect: \\(\lambda = \frac{1}{V\_A}\\) where \\(V\_A\\) is the Early voltage.
+    -   \\[V\_A = V\_A' \cdot L\\]
 
 
 ### Transconductance {#transconductance}
@@ -272,12 +278,13 @@ mathjax = "t"
 -   In DC Analysis, treated as open
 -   For small signal ac analysis, shorted
 -   So, it only lets the ac component of the signal through.
+-   For large capacitance, area of cap needs to be high which is not possible in integrated ckts, so we have to use differential amps
 
 
 ## Lec 12 {#lec-12}
 
 
-### Common Ground Amplifier {#common-ground-amplifier}
+### Common Gate Amplifier {#common-gate-amplifier}
 
 {{< figure src="/images/cg-amp.png" >}}
 
@@ -293,6 +300,8 @@ mathjax = "t"
 
 ### Source Follower (Common-Drain) {#source-follower--common-drain}
 
+{{< figure src="/images/source-follower.png" >}}
+
 -   \\[A\_v = \frac{g\_m(r\_o||R\_L)}{1+g\_m(r\_o||R\_L)} = \frac{r\_o||R\_L}{\frac{1}{g\_m}+(r\_o||R\_L)} \approx 1\\]
     -   Thus, used as a voltage buffer.
 
@@ -301,6 +310,7 @@ mathjax = "t"
 -   \\(R\_{out} = \frac{1}{g\_m}\\)
 
 -   \\(R\_L, (W/L), V\_{GS}(\text{or } V\_{ov})\\) are the parameters to calculate for designing a circuit
+    ![](/images/mosfet-amps-char-table.png)
 
 
 ### Problems with Resistors {#problems-with-resistors}
@@ -401,3 +411,43 @@ To ensure \\(M\_2\\) is saturated,
 ### Small Signal of Current Mirror {#small-signal-of-current-mirror}
 
 \\[A\_{i} = \frac{g\_{m2}}{g\_{m1}} = \frac{(W/L)\_2}{(W/L)\_1}\\]
+
+
+## Lec 16 (Mane Arc Begins) {#lec-16--mane-arc-begins}
+
+\\[A\_v = \frac{\text{Output Resistance}}{\text{Resistance seen through source}}\\]
+![](/images/r-from-terminals.png)
+
+
+### MOS Differential Pair {#mos-differential-pair}
+
+![](/images/diff-amp.png)
+Two matched xtors whose sources are joined together and biased by a current source.
+
+
+#### Common-Mode Input Voltage {#common-mode-input-voltage}
+
+-   When equal voltages are applied at gate, i.e. \\(v\_{G1} = v\_{G2} = V\_{CM}\\)
+-   As xtors are matched, \\(i\_{D1} = i\_{D2} = I/2\\)
+    -   \\[\frac{I}{2} = \frac{1}{2}k\_n'(W/L)V\_{OV}^2\\]
+    -   \\[V\_{OV}= \sqrt{\frac{I}{k\_n'(W/L)}}\\]
+-   \\[v\_{D1} = v\_{D2} = V\_{DD} - (I/2)R\_D\\]
+    -   Thus, diff in output voltage will be zero, i.e. differential pair does not respond to common-mode inputs.
+-   Since both xtors must remain in saturation, there would be a range over which the diff-pair operates properly,
+    -   \\[V\_{CM\_{max}} = min(V\_{DD}, V\_{DD} - (I\_{SS}/2)R\_D + V\_T)\\]
+    -   \\[V\_{CM\_{min}} = -V\_{SS} + V\_{CS} + V\_T + V\_{OV}\\]
+    -   \\[V\_{CM\_{min}} = V\_{ISS} + V\_{GS\_1} = V\_{ISS} + V\_{OV} + V\_T \\]
+
+
+#### Differential Input Voltage {#differential-input-voltage}
+
+{{< figure src="/images/diff-pair-diff-input.png" >}}
+
+-   For all the current \\(I\_{SS}\\) to flow through \\(M\_1\\), the current through \\(M\_2\\) must be zero which happens at cutoff, i.e. \\(V\_{GS\_2} = V\_T\\)
+    -   \\(V\_{in\_1}-V\_{GS\_1}+V\_{GS\_2}-V\_{in\_2}=0\\)
+    -   \\(2V\_{in\_1}= V\_{GS\_1}- V\_{GS\_2}\\)
+    -   \\(2V\_{in\_1}= V\_{GS\_1}- V\_T = V\_{OV\_1}\\)
+    -   Thus, \\(v\_{id\_{max}} = \sqrt{2}V\_{OV}\\)
+-   Must be operated between the range:
+
+\\[-\sqrt{2}V\_{OV} \le v\_{id} \le \sqrt{2}V\_{OV}\\]

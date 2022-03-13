@@ -69,6 +69,8 @@
 - For ideal volt amp, \(R_{in} = \infty\), \(R_{out} = R_o = 0\)
 - only a fraction of the source signal v s actually reaches the input terminals of the amplifier
 - Thus, net gain < \(A_v\)
+*** Amplifier with Load and Signal
+  [[/images/loaded-amp-model.png]]
 ** Measurement
 - Open ckt voltage gain
 - \[R_{in} = \frac{v_i}{i_{in}}\]
@@ -94,6 +96,7 @@
 - \(\frac{\partial I_{DS}}{\partial V_{DS}} = \lambda I_{DSAT}\)
   - Thus, resistance \[r_0 = \frac{1}{\lambda I_{DSAT}}\]
 - In terms of Early effect: \(\lambda = \frac{1}{V_A}\) where \(V_A\) is the Early voltage.
+  - \[V_A = V_A' \cdot L\]
 ** Transconductance
 \[g_m = \frac{\partial I_{DS}}{\partial V_{GS}}\]
 \[g_m = k_n'(W/L)\overbrace{(V_{GS}-V_T)}^{overdrive}\]
@@ -167,9 +170,10 @@
 - In DC Analysis, treated as open
 - For small signal ac analysis, shorted
 - So, it only lets the ac component of the signal through.
+- For large capacitance, area of cap needs to be high which is not possible in integrated ckts, so we have to use differential amps
 
 * Lec 12
-** Common Ground Amplifier
+** Common Gate Amplifier
 [[/images/cg-amp.png]]
 - \(R_{in} = \frac{1}{g_m}\)
 - \(A_{v} = g_mR_D\)
@@ -178,6 +182,7 @@
   - Combining the CS amp with a CG amp can extend the bandwidth considerably
 * Lec 13
 ** Source Follower (Common-Drain)
+[[/images/source-follower.png]]
 - \[A_v = \frac{g_m(r_o||R_L)}{1+g_m(r_o||R_L)} = \frac{r_o||R_L}{\frac{1}{g_m}+(r_o||R_L)} \approx 1\]
 
   - Thus, used as a voltage buffer.
@@ -187,6 +192,7 @@
 - \(R_{out} = \frac{1}{g_m}\)
 
 - \(R_L, (W/L), V_{GS}(\text{or } V_{ov})\) are the parameters to calculate for designing a circuit
+  [[/images/mosfet-amps-char-table.png]]
 ** Problems with Resistors
 - Occupy too much space on the SoC
 - Generate heat which heats up all the components around it and \(n_i^2 \propto e^{-1/T}\)
@@ -241,3 +247,30 @@ To ensure \(M_2\) is saturated,
 -  While \(M_2\) pulls its current \(I_2\) from a circuit (not shown), \(M_5\) pushes its current \(I_5\) into a circuit (not shown). Thus \(M_5\) is appropriately called a current source, whereas \(M_2\) should more properly be called a current sink. In an IC, both current sources and current sinks are usually needed.
 ** Small Signal of Current Mirror
 \[A_{i} = \frac{g_{m2}}{g_{m1}} = \frac{(W/L)_2}{(W/L)_1}\]
+
+* Lec 16 (Mane Arc Begins)
+\[A_v = \frac{\text{Output Resistance}}{\text{Resistance seen through source}}\]
+[[/images/r-from-terminals.png]]
+** MOS Differential Pair
+[[/images/diff-amp.png]]
+Two matched xtors whose sources are joined together and biased by a current source.
+*** Common-Mode Input Voltage
+- When equal voltages are applied at gate, i.e. \(v_{G1} = v_{G2} = V_{CM}\)
+- As xtors are matched, \(i_{D1} = i_{D2} = I/2\)
+  - \[\frac{I}{2} = \frac{1}{2}k_n'(W/L)V_{OV}^2\]
+  - \[V_{OV}= \sqrt{\frac{I}{k_n'(W/L)}}\]
+- \[v_{D1} = v_{D2} = V_{DD} - (I/2)R_D\]
+  - Thus, diff in output voltage will be zero, i.e. differential pair does not respond to common-mode inputs.
+- Since both xtors must remain in saturation, there would be a range over which the diff-pair operates properly,
+  - \[V_{CM_{max}} = min(V_{DD}, V_{DD} - (I_{SS}/2)R_D + V_T)\]
+  - \[V_{CM_{min}} = -V_{SS} + V_{CS} + V_T + V_{OV}\]
+  - \[V_{CM_{min}} = V_{ISS} + V_{GS_1} = V_{ISS} + V_{OV} + V_T \]
+*** Differential Input Voltage
+[[/images/diff-pair-diff-input.png]]
+- For all the current \(I_{SS}\) to flow through \(M_1\), the current through \(M_2\) must be zero which happens at cutoff, i.e. \(V_{GS_2} = V_T\)
+  - \(V_{in_1}-V_{GS_1}+V_{GS_2}-V_{in_2}=0\)
+  - \(2V_{in_1}= V_{GS_1}- V_{GS_2}\)
+  - \(2V_{in_1}= V_{GS_1}- V_T = V_{OV_1}\)
+  - Thus, \(v_{id_{max}} = \sqrt{2}V_{OV}\)
+- Must be operated between the range:
+\[-\sqrt{2}V_{OV} \le v_{id} \le \sqrt{2}V_{OV}\]
