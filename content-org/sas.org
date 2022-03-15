@@ -130,3 +130,22 @@ The unit step response \(s[n]\) of a system corresponds to the output when \(x[n
 - \[s[n] = \sum_{\infty}^n h[k]\]
   - \[h[n] = s[n] - s[n-1]\]
 ** System Description Via Diff Equations
+* Fourier Series
+\[x(t) = \sum_{-\infty}^{\infty}a_ke^{jk\omega_0t}\]
+Continuous: \[ a_k = \frac{1}{T} \int_T x(t)e^{-jk\omega_0t}dt \]
+Discrete:\[ a_k = \frac{1}{N} \sum_N x[n]e^{-jk\omega_0n} \]
+[[/images/fourier-series-table.png]]
+- For a signal to be real valued, \(a_k^* = a_{-k}\)
+- For a signal to be even, \(a_k\) should be even.
+** Frequency Response (LTI Systems)
+\[H(j\omega) = \sum_{n=-\infty}^{\infty}h[n]e^{-j\omega n}\]
+\[H(j\omega) = \int_{=-\infty}^{\infty}h(t)e^{-j\omega t}dt\]
+\[x(t) = \sum_{k=-\infty}^{\infty}a_ke^{jk\omega_0 t}\]
+\[y(t) = \sum_{k=-\infty}^{\infty}a_kH(jk\omega_0)e^{jk\omega_0t}\]
+* Fourier Transform
+
+\[x(t) = \frac{1}{2\pi}\int_{-\infty}^{\infty}X(j\omega)e^{j\omega t}d\omega\]
+\[X(j\omega) = \int_{-\infty}^{\infty}x(t)e^{-j\omega t}dt\]
+** Periodic Signals
+\[X(j\omega) = \sum_{k=-\infty}^{\infty}2\pi a_k\delta(\omega-k\omega_0)\]
+[[/images/fourier-transform-table.png]]

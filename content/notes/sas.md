@@ -2,7 +2,7 @@
 title = "Signals and Systems"
 author = ["Himanish"]
 date = 2022-01-17
-lastmod = 2022-02-20T21:16:45+05:30
+lastmod = 2022-03-15T22:16:52+05:30
 categories = ["electronics"]
 draft = false
 mathjax = "t"
@@ -243,3 +243,34 @@ The unit step response \\(s[n]\\) of a system corresponds to the output when \\(
 
 
 ### System Description Via Diff Equations {#system-description-via-diff-equations}
+
+
+## Fourier Series {#fourier-series}
+
+\\[x(t) = \sum\_{-\infty}^{\infty}a\_ke^{jk\omega\_0t}\\]
+Continuous: \\[ a\_k = \frac{1}{T} \int\_T x(t)e^{-jk\omega\_0t}dt \\]
+Discrete:\\[ a\_k = \frac{1}{N} \sum\_N x[n]e^{-jk\omega\_0n} \\]
+![](/images/fourier-series-table.png)
+
+-   For a signal to be real valued, \\(a\_k^\* = a\_{-k}\\)
+-   For a signal to be even, \\(a\_k\\) should be even.
+
+
+### Frequency Response (LTI Systems) {#frequency-response--lti-systems}
+
+\\[H(j\omega) = \sum\_{n=-\infty}^{\infty}h[n]e^{-j\omega n}\\]
+\\[H(j\omega) = \int\_{=-\infty}^{\infty}h(t)e^{-j\omega t}dt\\]
+\\[x(t) = \sum\_{k=-\infty}^{\infty}a\_ke^{jk\omega\_0 t}\\]
+\\[y(t) = \sum\_{k=-\infty}^{\infty}a\_kH(jk\omega\_0)e^{jk\omega\_0t}\\]
+
+
+## Fourier Transform {#fourier-transform}
+
+\\[x(t) = \frac{1}{2\pi}\int\_{-\infty}^{\infty}X(j\omega)e^{j\omega t}d\omega\\]
+\\[X(j\omega) = \int\_{-\infty}^{\infty}x(t)e^{-j\omega t}dt\\]
+
+
+### Periodic Signals {#periodic-signals}
+
+\\[X(j\omega) = \sum\_{k=-\infty}^{\infty}2\pi a\_k\delta(\omega-k\omega\_0)\\]
+![](/images/fourier-transform-table.png)
