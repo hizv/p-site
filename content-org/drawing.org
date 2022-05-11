@@ -1,0 +1,43 @@
+#+TITLE: Drawing
+#+date: 2022-01-11
+#+author: Himanish
+
+#+hugo_section: notes
+#+hugo_categories: art
+#+hugo_menu: :menu "main" :weight 2001
+
+#+startup: content
+
+#+hugo_base_dir: ../
+#+hugo_section: ./
+
+#+hugo_weight: auto
+#+hugo_auto_set_lastmod: t
+
+* Resources
+- Loomis
+- Draw A Box
+- Stan Prokopenko
+- Brent Eviston
+- Peter Han
+
+* Introduction
+** Fundamentals
+- MARK MAKING: Smooth, confident, controlled.
+- OBSERVATION: Pay attention.
+- *SPATIAL REASONING*: despite drawing on a flat page, the things you're producing exist in a real, three dimensional world
+** Lines
+- Draw from your shoulder (greater range of motion)
+- Grip: tripod > overhand
+- Marks should be continuous and unbroken, flow smoothly, and have consistent trajectory.
+** Ellipses
+- An ellipse can be interpreted in two ways:
+  - in 2D, as an ellipse
+  - in 3D, a circle facing towards/away from the viewer.
+- /Degree/: angle of rotation of circle relative to viewer
+- Degree shift: degree can actually be changed just by moving the circle around in space, without necessarily having to rotate it.
+#+attr_html: :width 300px
+[[/images/deg-shift.jpg]]
+- The normal vector in 3D coincides with the minor axis in 2D, so if we need our circle oriented in a specific way, start out with a normal vector line and use it as a minor axis
+** Boxes
+- Vanishing Points

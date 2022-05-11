@@ -1,0 +1,51 @@
++++
+title = "Economics"
+author = ["Himanish"]
+date = 2022-03-29
+lastmod = 2022-03-29T11:13:02+05:30
+categories = ["econ"]
+draft = false
+mathjax = "t"
+[menu.main]
+  identifier = "economics"
+  weight = 2001
++++
+
+## Firms in Competitive Markets {#firms-in-competitive-markets}
+
+
+### The Meaning of Competition {#the-meaning-of-competition}
+
+
+#### Competitive Market {#competitive-market}
+
+-   A market with many buyers and sellers trading identical products so that each buyer and seller is a price taker
+    -   There are many buyers and many sellers in the market.
+    -   The goods offered by the various sellers are largely the same.
+    -   Firms can freely enter or exit the market.
+
+
+#### Revenue {#revenue}
+
+-   Average revenue: For all firms, equals the price of the good
+-   Marginal revenue: For competitive firms, equals the price of good
+
+
+### Profit Maximisation {#profit-maximisation}
+
+One of the Ten Principles of Economics is that rational people think at the margin.
+
+-   At p = MR = MC, quantity at which profit is maximised
+
+
+#### Short-Run Decision to Shut Down {#short-run-decision-to-shut-down}
+
+-   A shutdown refers to a short-run decision not to produce anything during a specific period of time because of current market conditions.
+-   Exit refers to a long-run decision to leave the market.
+-   The short-run and long-run decisions differ because most firms cannot avoid their fixed costs in the short run but can do so in the long run. That is, a firm that shuts down temporarily still has to pay its fixed costs, whereas a firm that exits the market does not have to pay any costs at all, fixed or variable.
+-   For example, consider the production decision that a farmer faces. The cost of the land is one of the farmer’s fixed costs. If the farmer decides not to produce any crops one season, the land lies fallow, and he cannot recover this cost. When making the short-run decision of whether to shut down for a season, the fixed cost of land is said to be a sunk cost. By contrast, if the farmer decides to leave farming altogether, he can sell the land.
+-   If the firm shuts down, it loses all revenue from the sale of its product. At the same time, it saves the variable costs of making its product (but must still pay the fixed costs).
+    -   \\[\text{Shut down if TR < VC.}\\]
+    -   Divide both by Q.
+    -   \\[\text{Shut down if P < AVC.}\\]
+    -   The firm still loses money (because it has to pay fixed costs), but it would lose even more money by staying open.
