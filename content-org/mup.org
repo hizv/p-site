@@ -39,3 +39,84 @@
 ** Branch Instruction
 - je/jz
 - jne/jnz
+
+* Memory Interfacing
+** 8088
+- Absolute Addressing: all address lines from \(A_0 - A_{19}\) are used
+
+  - Preferred because later we might expand memory
+
+- Incremental Addressing: Only the required address lines are used
+
+** 8086
+- To complete memory read or write in one clock cycle, the memory is set up as two banks: odd and even banks, each of size 512K.
+- Lower order data bus \(D_0 - D_7\) is connected to even address bank and higher order to odd address bank.
+- \(A_0\) is used for enabling the even memory and \(BHE'\) for enabling the odd memory.
+- Word transfer starting at an odd address takes two bus cycles
+  - When a word is read from an odd address, one byte is in one word, the other byte in another.
+  - You cannot address both bytes at the same time. If the 8086 wants to read a word at addresses 125-126, it can't get it this way, because those two addresses have different bits on A19:A1.
+
+* Interrupts
+** Hardware Interrupts
+- If IF=0, maskable interrupts (INTR) are disabled and aren't responded to
+- Non-maskable interrupts (NMI) are always responded to
+** Software Interrupts
+- INT instruction
+- Internal interrupt, exception in program execution
+- Trap, single-step mode of operation: interrupt after every instruction
+  - Trace Flag (TF) should be enabled
+  - Used to check if program is running properly
+*** IVT
+- Only in real mode
+- 256 interrupts with 4 memory locations (CS:IP) so 1KB of memory used up
+- Interrupt vector number multiplied by 4 gives entry
+
+*** IDT (Interrupt Descriptor Table)
+- Protected mode
+- 256 interrupts, 8 memory loc so 2K of memory
+- Interrupt vector number multiplied by 8 gives entry
+** List of Interrupts
+
+- INT 0: Divide by Zero, quotient is too large
+- INT 1: Single step interrupt, will be executed after every instruction if trap flag is set
+- INT 2: NMI, rising edge triggered, cannot be disabled
+- INT 3: Breakpoint routines, used for debugging
+- INT 4/INTO: If overflow after arithmetic operation, interrupt invoked else nop
+- INT 5:
+- INT 6: Invalid opcode
+- INT 8: double fault, two errors at once e.g. div
+- INT 9: in real mode, data/code segment shouldn't exceed 64K
+- INT B: Segment not present, P=0
+*** 386
+- INT E: Page fault
+- INT 11: Alignment violation
+
+* I/O Interfacing
+- Most I/O devices will be 8-bit (only \(D_0-D_7\)
+- Unlike in memory interfacing, either only even or only odd bank is used in I/O interfacing
+  - This reduces theoretical 256 device connections to 128
+
+- 32-bit processors: 64 input devices can be connected (Only every 4th address can be used)
+- Simplest input device: Switch
+- Simplest output device: LED
+- We need buffers for input devices and latches for output devices
+  - So we connect the i/o devices to a port which connects them to the processor
+    - Ports are also known as interfacing devices/interfacing controllers/peripheral devices
+    - e.g. 8255
+- Polling: keeps checking if data available, waste
+  - Interrupt is preferred to know if data available
+
+  - CS: [[https://en.wikipedia.org/wiki/Chip_select][Chip select]]
+* 8253/8254
+- Generation of accurate time delays under software control
+- Three identical 16 bit down counters that can operate independently
+- To operate a counter, a 16-bit count is loaded in its register and, on command, it begins to decrement the count until it reaches 0. At the end of the count, it generates a pulse that can be used to interrupt the CPU
+  - Counts either in binary or BCD
+  - 8254 is a superset of 8253
+    - Max operating freq of 10 MHz compared to 2.6 in 8253
+    - Read-back command available unlike 8253
+    - Reads and writes of the same counter can be interleaved unlike 8253
+
+* 8259
+- Programmable interrupt controller (PIC)
+- PICs typically have a common set of registers: interrupt request register (IRR), in-service register (ISR), and interrupt mask register (IMR). The IRR specifies which interrupts are pending acknowledgement, and is typically a symbolic register which can not be directly accessed. The ISR register specifies which interrupts have been acknowledged, but are still waiting for an end of interrupt (EOI). The IMR specifies which interrupts are to be ignored and not acknowledged. A simple register schema such as this allows up to two distinct interrupt requests to be outstanding at one time, one waiting for acknowledgement, and one waiting for EOI.

@@ -274,3 +274,28 @@ Two matched xtors whose sources are joined together and biased by a current sour
   - Thus, \(v_{id_{max}} = \sqrt{2}V_{OV}\)
 - Must be operated between the range:
 \[-\sqrt{2}V_{OV} \le v_{id} \le \sqrt{2}V_{OV}\]
+
+\[\\ \text{offline modo hiatus} \\ \]
+* Frequency Response
+- Thus far, we have been assuming that our amplifiers are operating in the middle-frequency band or midband, where the gain is almost constant.
+  [[/images/gain-vs-freq.png]]
+- However, at lower frequencies, the magnitude of the amplifier gain falls off.
+  - Coupling and bypass caps no longer have low impedances
+- \(r_o\) is neglected, as has a negligible effect in discrete-circuit amps
+*** Bandwidth
+- \(BW = f_H - f_L\) [discrete circuit amps]
+- \(BW = f_H \) [integrated circuit amps]
+Here, \(f_H\) is the upper end of the midband.
+*** Gain-Bandwidth Product
+\[GB = |A_M|\text{BW}\]
+
+*** Unity-Gain Frequency
+\[f_T = \frac{g_m}{2\pi(C_{gs}+C_{gd})}\]
+
+** High Frequency Model
+[[/images/high-freq-model-ckt.png]]
+[[/images/high-freq-params.png]]
+
+** Miller's Theorem
+*** Miller Multiplication
+\[C_{in} = C_{gs} + (1 - A_v)C_{gd}\]

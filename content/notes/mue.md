@@ -2,7 +2,7 @@
 title = "Microelectronic Circuits"
 author = ["Himanish"]
 date = 2022-01-17
-lastmod = 2022-03-04T14:40:15+05:30
+lastmod = 2022-04-19T08:16:08+05:30
 categories = ["electronics", "analog"]
 draft = false
 mathjax = "t"
@@ -451,3 +451,46 @@ Two matched xtors whose sources are joined together and biased by a current sour
 -   Must be operated between the range:
 
 \\[-\sqrt{2}V\_{OV} \le v\_{id} \le \sqrt{2}V\_{OV}\\]
+
+\\[\\\ \text{offline modo hiatus} \\\ \\]
+
+
+## Frequency Response {#frequency-response}
+
+-   Thus far, we have been assuming that our amplifiers are operating in the middle-frequency band or midband, where the gain is almost constant.
+    ![](/images/gain-vs-freq.png)
+-   However, at lower frequencies, the magnitude of the amplifier gain falls off.
+    -   Coupling and bypass caps no longer have low impedances
+-   \\(r\_o\\) is neglected, as has a negligible effect in discrete-circuit amps
+
+
+#### Bandwidth {#bandwidth}
+
+-   \\(BW = f\_H - f\_L\\) [discrete circuit amps]
+-   \\(BW = f\_H \\) [integrated circuit amps]
+
+Here, \\(f\_H\\) is the upper end of the midband.
+
+
+#### Gain-Bandwidth Product {#gain-bandwidth-product}
+
+\\[GB = |A\_M|\text{BW}\\]
+
+
+#### Unity-Gain Frequency {#unity-gain-frequency}
+
+\\[f\_T = \frac{g\_m}{2\pi(C\_{gs}+C\_{gd})}\\]
+
+
+### High Frequency Model {#high-frequency-model}
+
+![](/images/high-freq-model-ckt.png)
+![](/images/high-freq-params.png)
+
+
+### Miller's Theorem {#miller-s-theorem}
+
+
+#### Miller Multiplication {#miller-multiplication}
+
+\\[C\_{in} = C\_{gs} + (1 - A\_v)C\_{gd}\\]

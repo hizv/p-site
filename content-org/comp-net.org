@@ -27,15 +27,27 @@
 *** What's a protocol
 - Defines format, order of messages sent and received, actions taken on former
 
-* TCP
+** Four Layer Model
+
+[[/images/net-4-layer-model.png]]
+
+* Network Layer
+-
+* Application Layer
+- Most common communication model of applications: a reliable, bidirectional byte stream, which allows two programs on diff computers to exchange data.
+  - Abstracts away the entire network to a simple read/write relationship
+
+
+* Transport Layer
+** TCP
 Transmission Control Protocol
 - Most applications want to communicate over a reliable, bi-directional byte-stream
-** Three Way Handshake
+*** Three Way Handshake
 - Host A sends SYN (synchronise) message to Host B, indicating that A wants to establish a TCP connection with B
 - B responds with a SYN + ACK (acknowledge), ACK indicate correct delivery (/reliable delivery/)
 - A responds with an ACK
 - Stream of Bytes: Emulated using TCP segments
 
-** Connection Teardown
+*** Connection Teardown
 - A sends FIN to B, B responds with (Data +) Ack, and B stops receiving data from A
 - But B keeps sending data to A till B's FIN message
