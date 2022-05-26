@@ -1,0 +1,16 @@
+{{ $output := "" }}
+{{ with .Description }}
+    {{ $output = . | markdownify | plainify }}
+{{ else }}
+    {{ if .IsPage }}
+        {{ $output = (partial "summary_minus_toc.html" .) | markdownify | plainify }}
+    {{ else }}
+        {{ with site.Params.description }}
+            {{ $output = . | markdownify | plainify }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+{{ if (not $output) }}
+    {{ $output = site.Param "description" }}
+{{ end }}
+{{ return $output }}

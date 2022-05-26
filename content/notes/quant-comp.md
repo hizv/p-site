@@ -2,7 +2,7 @@
 title = "Quantum Computing"
 author = ["Himanish"]
 date = 2022-05-26
-lastmod = 2022-05-26T16:11:27+05:30
+lastmod = 2022-05-26T16:34:41+05:30
 categories = ["hum"]
 draft = false
 mathjax = "t"

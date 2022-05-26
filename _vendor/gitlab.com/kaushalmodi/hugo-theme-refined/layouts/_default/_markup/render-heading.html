@@ -1,0 +1,3 @@
+{{- $anchor := .Anchor | safeURL -}}
+<!-- Headline hash -->
+<h{{ .Level }} id="{{ $anchor }}">{{ .Text | safeHTML }}&nbsp;<a class="headline-hash no-text-decoration" href="#{{ $anchor }}">#</a></h{{ .Level }}>
