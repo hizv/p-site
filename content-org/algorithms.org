@@ -133,12 +133,11 @@ else
 *** Divide
 - Divide the matrix into quadrants, similiar to how we divided a number into halves in Karatsuba multiplication.
 - The quadrants behave like normal matrix elements for matrix multiplication i.e. if
-\[ X =\left(\begin{array}{c|c}
+\[X =\left(\begin{array}{c|c}
   A & B \\\
   \hline
   C & D
-\end{array}
-\right), \quad
+\end{array}\right), \quad
 Y =\left(\begin{array}{c|c}
   E & F \\\
   \hline
@@ -357,6 +356,10 @@ def dfs_iter(G, v):
 #+end_src
 * Data Structures
 - Choose the minimal data structure that supports all the operations you need.
+** Sets and Multisets
+*** Policy-Based Sets
+** Maps
+** Queues and Dequeues
 ** Trees
 *** DFS
 
@@ -374,6 +377,21 @@ Both operations: \(\mathcal{O}(\log n)\)
   - Mass Insert would take \(\mathcal{O}(n \log n)\), better to use *Heapify*, which takes \(\mathcal{O}(n)\) for n batched Inserts
 - *Extract-Min*: Remove an object in heap with min key value. (Supports Extract-Max equally well, but not both at the same time)
   - Mass removal can be done by Delete in \(\mathcal{O}(\log n)\)
+
+** Priority Queue
+- Multiset that supports
+  - Insert: \(\mathcal{O}(\log n)\)
+  - Extract-Min/Extract-Max (but not both together): retrieval and removal in \(\mathcal{O}(\log n)\)
+  - Only retrieval: \(\mathcal{O}(1)\)
+- Based on a heap
+*** C++
+#+begin_src cpp
+priority_queue<int> max; // based on Max-Heap
+max.push(3);
+cout << max.top() << '\n';
+max.pop();
+priority_queue<int,vector<int>,greater<int>> min; // Min-Heap
+#+end_src
 
 ** Balanced BST
 - A sorted array but with fast (logarithmic) inserts+deletes
@@ -431,3 +449,9 @@ On comparing weighted sums, we see that Alg #1 gives the wrong answer. So we use
 - /Output/: Binary tree \(T\) minimising the average encoding length \(L(T)\)
 *** Huffman's Algorithm
 [[/images/huffman-algo.png]]
+
+* Amortised Analysis
+** Two Pointers Method
+Two pointers walk through an array.
+- Both pointers move to one direction only.
+* Dynamic Programming

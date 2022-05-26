@@ -2,7 +2,7 @@
 title = "Artificial Intelligence"
 author = ["Himanish"]
 date = 2022-01-26
-lastmod = 2022-04-04T11:59:50+05:30
+lastmod = 2022-05-19T13:12:03+05:30
 categories = ["cs"]
 draft = false
 mathjax = "t"
@@ -115,3 +115,11 @@ mathjax = "t"
 
 -   Suppose s and t are vectors of the same dimension. Then the Hadamard product is the elementwise product of the two vectors.
 -   The components of \\(s \odot t\\) are \\[(s \odot t)\_j = s\_j t\_j\\]
+
+
+## Computer Vision {#computer-vision}
+
+
+## Natural Language Processing {#natural-language-processing}
+
+[Linguistics](/notes/linguistics)

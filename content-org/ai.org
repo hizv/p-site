@@ -79,3 +79,7 @@
 *** Hadamard product
 - Suppose s and t are vectors of the same dimension. Then the Hadamard product is the elementwise product of the two vectors.
 - The components of \(s \odot t\) are \[(s \odot t)_j = s_j t_j\]
+
+* Computer Vision
+* Natural Language Processing
+[[/notes/linguistics][Linguistics]]

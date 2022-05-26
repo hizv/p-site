@@ -2,7 +2,7 @@
 title = "Algorithms"
 author = ["Himanish"]
 date = 2021-12-23
-lastmod = 2022-01-23T22:12:24+05:30
+lastmod = 2022-05-26T11:47:38+05:30
 categories = ["cs"]
 draft = false
 mathjax = "t"
@@ -112,7 +112,7 @@ end
 #### Problem {#problem}
 
 -   _Input_: Array with integers 1, 2, ... in some arbitary order
--   _Output_: Number of inversions i.e. number of pairs of array indices with i < j but A[i] > A[j]
+-   _Output_: Number of inversions i.e. number of pairs of array indices with i &lt; j but A[i] &gt; A[j]
 -   _Motivation_: measuring similarity between two ranked lists, relevant for making good recommendations to someone based on your knowledge of their and others' preferences ("collaborative filtering").
 -   Brute-force would cost \\( \mathcal{O}(n^2)\\)
 
@@ -122,8 +122,8 @@ end
 Differentiate between inversions and count them separately:
 
 -   Left inversion: if \\(i, j \le n/2\\)
--   Right inversion: if i, j > n/2
--   Split inversion: if i < n/2 < j
+-   Right inversion: if i, j &gt; n/2
+-   Split inversion: if i &lt; n/2 &lt; j
 
 So now we need an algorithm somewhat like:
 
@@ -162,12 +162,11 @@ We want CountSplitInv to be linear (\\(\mathcal{O}(n)\\))  so that Count will ru
 -   Divide the matrix into quadrants, similiar to how we divided a number into halves in Karatsuba multiplication.
 -   The quadrants behave like normal matrix elements for matrix multiplication i.e. if
 
-\\[ X =\left(\begin{array}{c|c}
+\\[X =\left(\begin{array}{c|c}
   A & B \\\\\
   \hline
   C & D
-\end{array}
-\right), \quad
+\end{array}\right), \quad
 Y =\left(\begin{array}{c|c}
   E & F \\\\\
   \hline
@@ -470,6 +469,18 @@ def dfs_iter(G, v):
 -   Choose the minimal data structure that supports all the operations you need.
 
 
+### Sets and Multisets {#sets-and-multisets}
+
+
+#### Policy-Based Sets {#policy-based-sets}
+
+
+### Maps {#maps}
+
+
+### Queues and Dequeues {#queues-and-dequeues}
+
+
 ### Trees {#trees}
 
 
@@ -497,6 +508,26 @@ Both operations: \\(\mathcal{O}(\log n)\\)
     -   Mass Insert would take \\(\mathcal{O}(n \log n)\\), better to use **Heapify**, which takes \\(\mathcal{O}(n)\\) for n batched Inserts
 -   **Extract-Min**: Remove an object in heap with min key value. (Supports Extract-Max equally well, but not both at the same time)
     -   Mass removal can be done by Delete in \\(\mathcal{O}(\log n)\\)
+
+
+### Priority Queue {#priority-queue}
+
+-   Multiset that supports
+    -   Insert: \\(\mathcal{O}(\log n)\\)
+    -   Extract-Min/Extract-Max (but not both together): retrieval and removal in \\(\mathcal{O}(\log n)\\)
+    -   Only retrieval: \\(\mathcal{O}(1)\\)
+-   Based on a heap
+
+
+#### C++ {#c-plus-plus}
+
+```cpp
+priority_queue<int> max; // based on Max-Heap
+max.push(3);
+cout << max.top() << '\n';
+max.pop();
+priority_queue<int,vector<int>,greater<int>> min; // Min-Heap
+```
 
 
 ### Balanced BST {#balanced-bst}
@@ -593,3 +624,16 @@ On comparing weighted sums, we see that Alg #1 gives the wrong answer. So we use
 #### Huffman's Algorithm {#huffman-s-algorithm}
 
 {{< figure src="/images/huffman-algo.png" >}}
+
+
+## Amortised Analysis {#amortised-analysis}
+
+
+### Two Pointers Method {#two-pointers-method}
+
+Two pointers walk through an array.
+
+-   Both pointers move to one direction only.
+
+
+## Dynamic Programming {#dynamic-programming}

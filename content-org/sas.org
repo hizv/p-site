@@ -149,3 +149,8 @@ Discrete:\[ a_k = \frac{1}{N} \sum_N x[n]e^{-jk\omega_0n} \]
 ** Periodic Signals
 \[X(j\omega) = \sum_{k=-\infty}^{\infty}2\pi a_k\delta(\omega-k\omega_0)\]
 [[/images/fourier-transform-table.png]]
+
+* Z-Transform
+
+- Absolutely summable signal: ROC must include unit circle
+- Finite length signal: ROC must include entire z-plane

@@ -2,7 +2,7 @@
 title = "Signals and Systems"
 author = ["Himanish"]
 date = 2022-01-17
-lastmod = 2022-03-15T22:16:52+05:30
+lastmod = 2022-05-12T19:37:22+05:30
 categories = ["electronics"]
 draft = false
 mathjax = "t"
@@ -274,3 +274,9 @@ Discrete:\\[ a\_k = \frac{1}{N} \sum\_N x[n]e^{-jk\omega\_0n} \\]
 
 \\[X(j\omega) = \sum\_{k=-\infty}^{\infty}2\pi a\_k\delta(\omega-k\omega\_0)\\]
 ![](/images/fourier-transform-table.png)
+
+
+## Z-Transform {#z-transform}
+
+-   Absolutely summable signal: ROC must include unit circle
+-   Finite length signal: ROC must include entire z-plane
