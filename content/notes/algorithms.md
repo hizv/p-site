@@ -2,7 +2,7 @@
 title = "Algorithms"
 author = ["Himanish"]
 date = 2021-12-23
-lastmod = 2022-05-26T11:47:38+05:30
+lastmod = 2022-06-26T22:26:46+05:30
 categories = ["cs"]
 draft = false
 mathjax = "t"
@@ -484,10 +484,54 @@ def dfs_iter(G, v):
 ### Trees {#trees}
 
 
+#### Binary Search Tree {#binary-search-tree}
+
+A binary search tree is a binary tree where for every node, any descendant of Node.left has a value strictly less than Node.val, and any descendant of Node.right has a value strictly greater than Node.val.
+
+
 #### DFS {#dfs}
+
+-   Three popular tree traversal orderings:
+    -   pre-order: first process the root node, then traverse the left subtree, then traverse the right subtree
+    -   in-order: first traverse the left subtree, then process the root node, then traverse the right subtree
+    -   post-order: first traverse the left subtree, then traverse the right subtree, then process the root node
+-   If we know the pre-order and in-order of a tree, we can reconstruct its exact structure.  Same with post-order and in-order. But not post and pre.
 
 
 #### BFS {#bfs}
+
+```nil
+1) Create an empty queue q
+2) temp_node = root (start from root)
+3) Loop while temp_node is not NULL
+    a) print temp_node->data.
+    b) Enqueue temp_node’s children
+      (first left then right children) to q
+    c) Dequeue a node from q.
+```
+
+```cpp
+void printLevelOrder(TreeNode* root) {
+// Base Case
+  if (!root) return;
+// Create an empty queue for level order traversal
+  queue<TreeNode*> q;
+
+// Enqueue Root and initialize height
+  q.push(root);
+  while (q.empty() == false) {
+// Print front of queue and remove it from
+    queue TreeNode* node = q.front();
+    cout << node->data << " "; q.pop();
+
+// Enqueue left child
+    if (node->left) q.push(node->left);
+
+// Enqueue right child
+    if (node->right) q.push(node->right);
+  }
+}
+```
 
 
 ### Heaps {#heaps}
@@ -636,4 +680,43 @@ Two pointers walk through an array.
 -   Both pointers move to one direction only.
 
 
+### Sliding Window {#sliding-window}
+
+
+#### Shrinkable Window {#shrinkable-window}
+
+```cpp
+int i = 0, j = 0, ans = 0;
+for (; j < N; ++j) {
+    // CODE: use A[j] to update state which might make the window invalid
+    for (; invalid(); ++i) { // when invalid, keep shrinking the left edge until it's valid again
+        // CODE: update state using A[i]
+    }
+    ans = max(ans, j - i + 1); // the window [i, j] is the maximum window we've found thus far
+}
+return ans;
+
+```
+
+
+#### Non-Shrinkable Window {#non-shrinkable-window}
+
+```cpp
+int i = 0, j = 0;
+for (; j < N; ++j) {
+    // CODE: use A[j] to update state which might make the window invalid
+    if (invalid()) { // Increment the left edge ONLY when the window is invalid. In this way, the window GROWs when it's valid, and SHIFTs when it's invalid
+        // CODE: update state using A[i]
+        ++i;
+    }
+    // after `++j` in the for loop, this window `[i, j)` of length `j - i` MIGHT be valid.
+}
+return j - i; // There must be a maximum window of size `j - i`.
+```
+
+
 ## Dynamic Programming {#dynamic-programming}
+
+```nil
+#justdoit
+```

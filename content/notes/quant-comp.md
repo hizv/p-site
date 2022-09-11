@@ -2,7 +2,7 @@
 title = "Quantum Computing"
 author = ["Himanish"]
 date = 2022-05-26
-lastmod = 2022-05-26T16:34:41+05:30
+lastmod = 2022-05-27T12:02:46+05:30
 categories = ["hum"]
 draft = false
 mathjax = "t"
@@ -11,21 +11,20 @@ mathjax = "t"
   weight = 2001
 +++
 
+> The theory of computation has traditionally been studied almost entirely in the abstract, as a topic in pure mathematics. This is to miss the point of it. Computers are physical objects, and computations are physical processes. What computers can or cannot compute is determined by the laws of physics alone, and not by pure mathematics.
+>
+> — David Deutsch
+
+
 ## Qubits {#qubits}
 
 
 #### Computational Basis States {#computational-basis-states}
 
-\\(\ket{0} := \begin{bmatrix}
-1 \\\\
-0
-\end{bmatrix}
+\\(\ket{0} := \begin{bmatrix} 1 \\\ 0 \end{bmatrix}
 \\)
-\\(\ket{1} := \begin{bmatrix}
-0 \\\\
-1
-\end{bmatrix}
-\\)
+
+\\(\ket{1} := \begin{bmatrix} 0 \\\ 1 \end{bmatrix}\\)
 
 
 #### Quantum State {#quantum-state}
@@ -85,3 +84,17 @@ The quantum state of a qubit is a vector of unit length in a two-dimensional com
 {{% sidenote %}}
 \\(\dag\\) is called the dagger operation, or Hermitian conjugation, or just the conjugation operation.
 {{% /sidenote %}}
+
+-   Unitary matrices preserve the length of their inputs
+
+
+### Controlled-NOT gate {#controlled-not-gate}
+
+-   The wire with the small filled dot is the _control_ qubit and the one with the larger unfilled circle is the _target_ qubit.
+
+{{< figure src="/images/cnot-gate.png" >}}
+
+-   For a two-qubit system, the general state is a superposition of the four computational basis states: \\[\alpha\ket{00} + \beta \ket{01} + \gamma \ket{10} + \delta \ket{11}\\]
+    -   Normalisation condition: \\(|\alpha|^2+|\beta|^2+|\gamma|^2+|\delta|^2 = 1\\)
+-   If control bit is set to 1, then the target qubit is flipped (NOT'd), else no change.  \\[ \ket{x, y} \rightarrow \ket{x, y \oplus x}\\]
+    -   \\(\oplus\\): XOR, addition modulo 2
