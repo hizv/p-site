@@ -2,13 +2,14 @@
 title = "Algorithms"
 author = ["Himanish"]
 date = 2021-12-23
-lastmod = 2022-06-26T22:26:46+05:30
+lastmod = 2022-10-16T10:26:10+05:30
 categories = ["cs"]
 draft = false
 mathjax = "t"
-[menu.main]
-  identifier = "algorithms"
-  weight = 2001
+[menu]
+  [menu.main]
+    identifier = "algorithms"
+    weight = 2001
 +++
 
 > “Perhaps the most important principle for the good algorithm designer is to refuse to be content.”
@@ -52,6 +53,30 @@ mathjax = "t"
 #### Little Oh {#little-oh}
 
 \\[T(n) = o(f(n)) \text{ iff } \forall \ c>0 \ \exists \ n\_0 \text{ such that } T(n) \le cf(n) \ \forall \ n \ge n\_0\\]
+
+
+## Recursive Algorithms {#recursive-algorithms}
+
+
+### Generating Subsets {#generating-subsets}
+
+```cpp
+void search(int k) {
+  if (k == n+1) {
+    // process subset
+  } else {
+    // include k in the subset
+    subset.push_back(k);
+    search(k+1);
+    subset.pop_back();
+
+    // don’t include k in the subset
+    search(k+1);
+}
+```
+
+-   The function maintains a `vector<int> subset` that contains the element of each subset
+-   When the function search is called with parameter k, it decides whether to include the element k in the subset or not, and in both cases, then calls itself with parameter k+1. Then, if k = n+1, the function notices that all elements have been processed and a subset has been generated.
 
 
 ## Divide and Conquer Paradigm {#divide-and-conquer-paradigm}
@@ -720,3 +745,32 @@ return j - i; // There must be a maximum window of size `j - i`.
 ```nil
 #justdoit
 ```
+
+
+## Union Find (Disjoint Set) {#union-find--disjoint-set}
+
+-   Keep track of elements split into disjoint sets.
+
+
+### Applications {#applications}
+
+-   Kruskal's MST Algorithm
+-   LCA in Trees
+-   Grid percolation
+
+
+### Time Complexities {#time-complexities}
+
+-   Construction: \\(\mathcal{O}(n)\\)
+-   Union: \\(\alpha(n)\\) [\\(\alpha\\): amortised constant time]
+-   Find: \\(\alpha(n)\\)
+-   Count components: \\(\mathcal{O}(1)\\)
+
+
+### Kruskal's MST {#kruskal-s-mst}
+
+Minimum Spanning Tree (may not be unique) connects graph vertices such that total edge cost is minimised.
+
+1.  Sort edges by ascending edge weight
+2.  Traverse sorted edges. Look at the two nodes the edge connects, if already unified don't include it, else include and unify nodes.
+3.  Terminate when all edges have been processed or all nodes unified.

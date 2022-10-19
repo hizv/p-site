@@ -2,16 +2,17 @@
 title = "Signals and Systems"
 author = ["Himanish"]
 date = 2022-01-17
-lastmod = 2022-05-12T19:37:22+05:30
+lastmod = 2022-10-16T14:09:02+05:30
 categories = ["electronics"]
 draft = false
 mathjax = "t"
-[menu.main]
-  identifier = "signals-and-systems"
-  weight = 2001
+[menu]
+  [menu.main]
+    identifier = "signals-and-systems"
+    weight = 2001
 +++
 
-## Signals and Systems {#signals-and-systems}
+## Basics {#basics}
 
 -   Signal: time-varying function that conveys information. Two types:
     -   Analog: can continuously take on any value in a range
@@ -37,6 +38,10 @@ mathjax = "t"
 
 -   \\[E\_{\infty} = \int\_{-\infty}^{\infty} |x(t)|^2dt\\]
 
+<!--listend-->
+
+-   if \\(x(t)\\) and \\(y(t)\\) are orthogonal signals and \\(z(t) = x(t) + y(t)\\), then \\[E\_z = E\_x + E\_y\\]
+
 
 ### Power {#power}
 
@@ -55,11 +60,13 @@ mathjax = "t"
 \\[ P = \lim\_{T\to\infty} \frac{1}{2T}\int\_{-T}^T|x(t)|^2 dt \\]
 
 
-#### Types of Signals {#types-of-signals}
+### Energy and Power Signals {#energy-and-power-signals}
 
 1.  Energy Signal: Energy is finite, power is zero (\\(P = \lim\_{T\to\infty} \frac{E}{T}\\))
 2.  Power Signal: Power is finite, energy is infinite
 3.  Neither Energy Nor Power Signal: Both are infinite
+
+Every signal observed in real life is an energy signal. A power signal must have infinite duration.
 
 
 #### Necessary Conditions {#necessary-conditions}
@@ -95,8 +102,8 @@ mathjax = "t"
 #### Time Shrinkage {#time-shrinkage}
 
 -   Consider the function \\(x(\alpha t)\\):
-    -   If \\(\alpha > 1\\): shrinks to \\(\frac{1}{\alpha}\\) of original
-    -   If \\(\alpha < 1\\): expands to \\(\alpha\\) times original
+    -   If \\(\alpha > 1\\): shrinks to \\(\frac{1}{\alpha}\\) of original (speed increases)
+    -   If \\(\alpha < 1\\): expands to \\(\alpha\\) times original (slows down)
 -   For discrete signal \\(x[\alpha t]\\):
     -   If \\(\alpha > 1\\): samples get skipped
     -   \\(\alpha < 1\\): Output for which input is fractional become zero
@@ -105,6 +112,8 @@ mathjax = "t"
 #### Time Shift {#time-shift}
 
 -   \\(x(t-t\_0)\\): Delayed if \\(t\_0 > 0\\) else advanced
+-   Example: \\(x(-2t+6) = x(-2(t-3))\\)
+    -   First **scale then shift**: scaled by -2 and delayed by 3
 
 
 #### Even and Odd Parts {#even-and-odd-parts}
@@ -120,6 +129,8 @@ mathjax = "t"
 
 -   Infinite at x=0, and zero otherwise
 -   NENP signal
+
+\\(\frac{d}{dt}u(t) = \delta(t)\\)
 
 
 #### DT {#dt}
@@ -145,6 +156,8 @@ Distinct inputs lead to distinct outputs.
 
 Delay at the input should produce an equal delay in output.
 
+-   Rule of thumb: breaks if \\(t\\) outside \\(x(t)\\) or messing with \\(t\\) inside \\(x(t)\\) e.g. \\(x(\frac{t}{3})\\)
+
 
 #### Causal System {#causal-system}
 
@@ -167,6 +180,34 @@ Output is independent of future values of input.
 
 -   A stable system is one in which small inputs lead to responses that do not diverge.
 -   Bounded inputs lead to bounded outputs.
+
+
+### Deterministic and Random Signals {#deterministic-and-random-signals}
+
+-   Deterministic signal: Physical description is known completely, either mathematical or graphical form
+-   Random signal: Only known in terms of probabilistic description e.g. most noise signals
+
+
+### Approximating a Signal {#approximating-a-signal}
+
+A signal \\(g(t)\\) is approximated by another signal \\(x(t)\\) as \\[g(t) \approx cx(t)\\] when
+\\[ c = \frac{\int\_{t\_1}^{t\_2} g(t)x(t)dt}{\int\_{t\_1}^{t\_2}x^2(t)dt} = \frac{1}{E\_x} \int\_{t\_1}^{t\_2}g(t)x^{\*}(t)dt\\]
+
+
+### Correlation {#correlation}
+
+Similiarity index
+\\[\rho := \frac{1}{\sqrt{E\_gE\_x}}\int\_{-\infty}^{\infty}g(t)x^{\*}(t)dt\\]
+
+
+#### Cross-correlation {#cross-correlation}
+
+\\[\psi\_{zg}(\tau) := \int\_{-\infty}^{\infty}z(t)g^{\*}(t-\tau)dt\\]
+
+
+#### Autocorrelation {#autocorrelation}
+
+\\[\psi\_g(\tau) := \int\_{-\infty}^{\infty}g(t)g(t+\tau)dt\\]
 
 
 ## Linear Time-Invariant Systems {#linear-time-invariant-systems}
@@ -274,6 +315,10 @@ Discrete:\\[ a\_k = \frac{1}{N} \sum\_N x[n]e^{-jk\omega\_0n} \\]
 
 \\[X(j\omega) = \sum\_{k=-\infty}^{\infty}2\pi a\_k\delta(\omega-k\omega\_0)\\]
 ![](/images/fourier-transform-table.png)
+![](/images/standard-fourier-transforms.png)
+
+
+## Filters {#filters}
 
 
 ## Z-Transform {#z-transform}

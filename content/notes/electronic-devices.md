@@ -2,13 +2,14 @@
 title = "Electronic Devices"
 author = ["Himanish"]
 date = 2021-09-07
-lastmod = 2021-12-07T14:39:29+05:30
+lastmod = 2022-10-16T10:23:20+05:30
 categories = ["electronics"]
 draft = false
 mathjax = "t"
-[menu.main]
-  identifier = "electronic-devices"
-  weight = 2001
+[menu]
+  [menu.main]
+    identifier = "electronic-devices"
+    weight = 2001
 +++
 
 ## Important Values (Si) {#important-values--si}
@@ -70,9 +71,10 @@ Three integers used to describe a plane.
 
 ### Atomic Densities {#atomic-densities}
 
--   \\(1 Å = 10^{-8} cm\\)
--   \\[\text{Volume density} =\frac{\text{# atoms in cell}}{V\_{cell}} \\]
--   \\[\text{Areal density} =\frac{\text{# atoms in cell}}{SA\_{cell}} \\]
+\\(1 Å = 10^{-8} cm\\)
+
+1.  \\[\text{Volume density} =\frac{\text{\\# atoms in cell}}{V\_{cell}} \\]
+2.  \\[\text{Areal density} =\frac{\text{\\# atoms in cell}}{SA\_{cell}} \\]
 
 
 ### Diamond Lattice {#diamond-lattice}
@@ -140,7 +142,7 @@ For energies much greater than the Fermi energy (\\(E-E\_F \geq 3\\) kT), the di
 
 \\(v\_d = \\)
 \\(\begin{cases}
-\mu E & E < E\_c \text{ [low field]}\\\\\\
+\mu E & E < E\_c \text{ [low field]}\\\\
 v\_{sat} & E \geq E\_c \text{ [high field]}
 \end{cases} \\)
 \\(\text{where } \mu: \text{mobility } =  \frac{q\tau}{m^\*}\\)
@@ -203,7 +205,7 @@ Excess carriers are different from doping; in doping, the semiconductor stays in
 -   \\[J = q[n\mu\_n+p\mu\_p]\mathcal{E} = \sigma E \\]
 
 \\(\sigma = \\) \\(\begin{cases}
-\sigma\_n & [n-type]\\\\\\
+\sigma\_n & [n-type]\\\\
 \sigma\_p & [p-type]
 \end{cases} \\)
 
@@ -212,8 +214,8 @@ Excess carriers are different from doping; in doping, the semiconductor stays in
 
 #### Formal Analysis {#formal-analysis}
 
--   As a system always tries to re-establish equilibrium, when light is impinged on a semiconductor, creating excess carriers i.e.\\(np > n\_i^2\\), recombination rate R shoots up to go back home. [net recombination occurs: R > G]
--   On the flip side, when carriers are extracted e.g. in a pn junction, thus making \\(np < n\_i^2\\), G>R.
+-   As a system always tries to re-establish equilibrium, when light is impinged on a semiconductor, creating excess carriers i.e.\\(np > n\_i^2\\), recombination rate R shoots up to go back home. [net recombination occurs: R &gt; G]
+-   On the flip side, when carriers are extracted e.g. in a pn junction, thus making \\(np < n\_i^2\\), G&gt;R.
 
 
 ### Carrier Lifetime and Photoconductivity {#carrier-lifetime-and-photoconductivity}
@@ -222,7 +224,7 @@ Excess carriers are different from doping; in doping, the semiconductor stays in
     \\[\frac{\partial n}{\partial t} = -\frac{\Delta n}{\tau\_n} [\text{p-type}]\\]
 -   Continuity Equation \\[\boxed{\frac{\partial p}{\partial t} = G - R - \frac{1}{q}\frac{\partial J\_p}{\partial x}}\\]
 
-\\[\\delta n(t) = \Delta n e^{-t/\tau\_n} \\ | \\ \tau\_n = (\alpha\_rp\_0)^{-1}\\]
+\\[\\\delta n(t) = \Delta n e^{-t/\tau\_n} \\\ | \\\ \tau\_n = (\alpha\_rp\_0)^{-1}\\]
 
 -   In general, \\(\tau\_n = \frac{1}{\alpha\_r(n\_0+p\_0)}\\)
 -   Excess carrier concentration in terms of optical generation rate\\[\delta n = \delta p = g\_{op}\tau\_n\\]
@@ -329,7 +331,7 @@ When a zero bias voltage is applied across the junction, the junction is in equi
 ### Non-idealities {#non-idealities}
 
 -   If \\(V\_A ~ 0.7 - 1 V\\), the series resistance of p and n side kicks in and limits the current, i.e. current reaches saturation at high voltages. At small currents, contact resistance can be neglected.
--   Recap: R > G if \\(np > n\_i^2\\) else R < G.
+-   Recap: R &gt; G if \\(np > n\_i^2\\) else R &lt; G.
 
 
 #### Space Charge Generation-Recombination Current {#space-charge-generation-recombination-current}
@@ -439,7 +441,7 @@ When a zero bias voltage is applied across the junction, the junction is in equi
 #### Charge profile {#charge-profile}
 
 \\[\rho = \begin{cases}
-0 & x > x\_d \\\\\\
+0 & x > x\_d \\\\
 -qN\_A & 0 \le x \le x\_d
  \end{cases}\\]
 

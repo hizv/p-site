@@ -2,8 +2,8 @@
 title = "Quantum Computing"
 author = ["Himanish"]
 date = 2022-05-26
-lastmod = 2022-05-27T12:02:46+05:30
-categories = ["hum"]
+lastmod = 2022-09-14T18:43:52+05:30
+categories = ["phy", "cs"]
 draft = false
 mathjax = "t"
 [menu.main]
@@ -14,6 +14,17 @@ mathjax = "t"
 > The theory of computation has traditionally been studied almost entirely in the abstract, as a topic in pure mathematics. This is to miss the point of it. Computers are physical objects, and computations are physical processes. What computers can or cannot compute is determined by the laws of physics alone, and not by pure mathematics.
 >
 > — David Deutsch
+
+
+## Dirac Notation {#dirac-notation}
+
+-   \\(\bra{a} = \ket{a}^\dag\\)
+
+{{% sidenote %}}
+\\(\dag\\) is called the dagger operation, or Hermitian conjugation, or just the conjugation operation.
+{{% /sidenote %}}
+
+-   \\(\braket{b|a}\\): inner product
 
 
 ## Qubits {#qubits}
@@ -80,12 +91,7 @@ The quantum state of a qubit is a vector of unit length in a two-dimensional com
 ### General single-qubit gates {#general-single-qubit-gates}
 
 -   A matrix  \\(U\\) is unitary if \\(U^{\dag}U = I\\) where \\(U^{\dag}\\) is the adjoint of  \\(U\\): \\[U^{\dag} := (U^T)^\*\\]
-
-{{% sidenote %}}
-\\(\dag\\) is called the dagger operation, or Hermitian conjugation, or just the conjugation operation.
-{{% /sidenote %}}
-
--   Unitary matrices preserve the length of their inputs
+    Unitary matrices preserve the length of their inputs
 
 
 ### Controlled-NOT gate {#controlled-not-gate}

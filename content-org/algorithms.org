@@ -44,7 +44,7 @@
 *** Little Oh
 \[T(n) = o(f(n)) \text{ iff } \forall \ c>0 \ \exists \ n_0 \text{ such that } T(n) \le cf(n) \ \forall \ n \ge n_0\]
 
-* COMMENT Recursive Algorithms
+* Recursive Algorithms
 ** Generating Subsets
 #+begin_src cpp
 void search(int k) {
@@ -445,6 +445,7 @@ priority_queue<int,vector<int>,greater<int>> min; // Min-Heap
   - Delete
   - Min
 - Prefer hash table (constant time look ups) when you don't need min/max, and ordering on keys, i.e. only need to know what's there and what's not.
+
 * Greedy Algorithms
 - Iteratively make myopic decisions, and hope everything works out in the end.
 - *DANGER*: Most greedy algorithms are NOT correct
@@ -529,3 +530,22 @@ return j - i; // There must be a maximum window of size `j - i`.
 #+begin_src
 #justdoit
 #+end_src
+
+
+* Union Find (Disjoint Set)
+- Keep track of elements split into disjoint sets.
+** Applications
+- Kruskal's MST Algorithm
+- LCA in Trees
+- Grid percolation
+
+** Time Complexities
+- Construction: \(\mathcal{O}(n)\)
+- Union: \(\alpha(n)\) [\(\alpha\): amortised constant time]
+- Find: \(\alpha(n)\)
+- Count components: \(\mathcal{O}(1)\)
+** Kruskal's MST
+Minimum Spanning Tree (may not be unique) connects graph vertices such that total edge cost is minimised.
+1. Sort edges by ascending edge weight
+2. Traverse sorted edges. Look at the two nodes the edge connects, if already unified don't include it, else include and unify nodes.
+3. Terminate when all edges have been processed or all nodes unified.

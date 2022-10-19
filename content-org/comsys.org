@@ -1,0 +1,43 @@
+#+title: Communication Systems
+#+date: 2022-09-19
+#+author: Himanish
+
+#+hugo_section: notes
+#+hugo_categories: comms electronics
+#+hugo_menu: :menu "main" :weight 2001
+
+#+startup: content
+
+#+hugo_base_dir: ../
+#+hugo_section: ./
+
+#+hugo_weight: auto
+#+hugo_auto_set_lastmod: t
+#+hugo_custom_front_matter: :mathjax t
+
+* Introduction
+
+** Major Functional Blocks
+[[/images/comm-sys-blocks.png]]
+- Transducer: converts nonelectric message to electric signal
+
+** Analog to Digital
+- Signal distortion increases with distance
+- Digital signals have enhanced immunity to noise and interferences
+  - A finite alphabet makes the the receiver's decision more certain
+- Analog systems: signals and noise within same BW can't be separated
+- The sampling theorem states that if the highest frequency in the signal spectrum is B (in hertz), the signal can be reconstructed from its discrete samples, taken uniformly at a rate above 2B samples per second
+- A quantizer partitions the signal range into L intervals. Each sample amplitude is approximated by the midpoint of the interval in which the sample value falls
+** Channel Parameters
+*** Bandwidth and Power
+- Channel bandwidth B and the signal power \(P_s\) control the connection’s rate and quality
+- The faster a signal changes, the higher its maximum frequency is, and the larger its bandwidth is
+- Increasing \(P_s\)strengthens the signal pulse and suppresses the effect of channel noise and interference, to maintain a minimum SNR (signal-noise-ratio) over a longer distance
+*** Capacity
+\[C = B \log_2(1+\text{SNR})\]
+
+* Amplitude Modulation (AM)
+** Baseband versus Carrier
+- *Baseband*. freq band of original message before modulation, measured close from zero. Much lower freq than modulated signal.
+- Carrier has high frequency. Sinusoidal carrier can be formed from AM, FM or PM. (amplitude, freq, phase modulations)
+** Double-Sideband (DSB) AM

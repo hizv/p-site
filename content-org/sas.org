@@ -14,7 +14,7 @@
 #+hugo_weight: auto
 #+hugo_auto_set_lastmod: t
 #+hugo_custom_front_matter: :mathjax t
-* Signals and Systems
+*  Basics
 - Signal: time-varying function that conveys information. Two types:
   - Analog: can continuously take on any value in a range
   - Digital: discretised. Fixed finite possible values.
@@ -29,6 +29,7 @@
 *** Continuous
   - \[E_{\infty} = \int_{-\infty}^{\infty} |x(t)|^2dt\]
 
+- if \(x(t)\) and \(y(t)\) are orthogonal signals and \(z(t) = x(t) + y(t)\), then \[E_z = E_x + E_y\]
 ** Power
 \[P = \lim_{T\to\infty} \frac{E}{T}\]
 - Power of
@@ -36,10 +37,12 @@
 \[ P = \lim_{k  \to\infty} \frac{1}{2k+1}\sum_{-k}^k|x(n)|^2 \]
 *** Continuous Time
 \[ P = \lim_{T\to\infty} \frac{1}{2T}\int_{-T}^T|x(t)|^2 dt \]
-*** Types of Signals
+** Energy and Power Signals
 1. Energy Signal: Energy is finite, power is zero (\(P = \lim_{T\to\infty} \frac{E}{T}\))
 2. Power Signal: Power is finite, energy is infinite
 3. Neither Energy Nor Power Signal: Both are infinite
+
+Every signal observed in real life is an energy signal. A power signal must have infinite duration.
 
 *** Necessary Conditions
 **** Energy Signal
@@ -58,13 +61,16 @@ Must be
 - \(x(n) \implies\) continuous signal
 *** Time Shrinkage
 - Consider the function \(x(\alpha t)\):
-  - If \(\alpha > 1\): shrinks to \(\frac{1}{\alpha}\) of original
-  - If \(\alpha < 1\): expands to \(\alpha\) times original
+  - If \(\alpha > 1\): shrinks to \(\frac{1}{\alpha}\) of original (speed increases)
+  - If \(\alpha < 1\): expands to \(\alpha\) times original (slows down)
 - For discrete signal \(x[\alpha t]\):
   - If \(\alpha > 1\): samples get skipped
   - \(\alpha < 1\): Output for which input is fractional become zero
 *** Time Shift
 - \(x(t-t_0)\): Delayed if \(t_0 > 0\) else advanced
+- Example: \(x(-2t+6) = x(-2(t-3))\)
+  - First *scale then shift*: scaled by -2 and delayed by 3
+
 *** Even and Odd Parts
 - \[\mathcal{Ev}\{x(t)\} = \frac{x(t)+x(-t)}{2}\]
 - \[\mathcal{Od}\{x(t)\} = \frac{x(t)-x(-t)}{2}\]
@@ -72,6 +78,7 @@ Must be
 *** CT
 - Infinite at x=0, and zero otherwise
 - NENP signal
+\(\frac{d}{dt}u(t) = \delta(t)\)
 *** DT
 - 1 at n=0, and zero otherwise
 - Energy signal
@@ -83,6 +90,8 @@ Must be
 Distinct inputs lead to distinct outputs.
 *** Time-invariant System
 Delay at the input should produce an equal delay in output.
+- Rule of thumb: breaks if \(t\) outside \(x(t)\) or messing with \(t\) inside \(x(t)\) e.g. \(x(\frac{t}{3})\)
+
 *** Causal System
 Output is independent of future values of input.
 **** Noncausal System
@@ -94,6 +103,20 @@ Output depends purely on future values of input.
 - A stable system is one in which small inputs lead to responses that do not diverge.
 - Bounded inputs lead to bounded outputs.
 
+** Deterministic and Random Signals
+- Deterministic signal: Physical description is known completely, either mathematical or graphical form
+- Random signal: Only known in terms of probabilistic description e.g. most noise signals
+
+** Approximating a Signal
+A signal \(g(t)\) is approximated by another signal \(x(t)\) as \[g(t) \approx cx(t)\] when
+\[ c = \frac{\int_{t_1}^{t_2} g(t)x(t)dt}{\int_{t_1}^{t_2}x^2(t)dt} = \frac{1}{E_x} \int_{t_1}^{t_2}g(t)x^{*}(t)dt\]
+** Correlation
+Similiarity index
+\[\rho := \frac{1}{\sqrt{E_gE_x}}\int_{-\infty}^{\infty}g(t)x^{*}(t)dt\]
+*** Cross-correlation
+\[\psi_{zg}(\tau) := \int_{-\infty}^{\infty}z(t)g^{*}(t-\tau)dt\]
+*** Autocorrelation
+\[\psi_g(\tau) := \int_{-\infty}^{\infty}g(t)g(t+\tau)dt\]
 * Linear Time-Invariant Systems
 ** DT LTI Systems
 *** DT Signals as Impulse Sums
@@ -149,7 +172,8 @@ Discrete:\[ a_k = \frac{1}{N} \sum_N x[n]e^{-jk\omega_0n} \]
 ** Periodic Signals
 \[X(j\omega) = \sum_{k=-\infty}^{\infty}2\pi a_k\delta(\omega-k\omega_0)\]
 [[/images/fourier-transform-table.png]]
-
+[[/images/standard-fourier-transforms.png]]
+* Filters
 * Z-Transform
 
 - Absolutely summable signal: ROC must include unit circle
