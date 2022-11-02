@@ -2,7 +2,7 @@
 title = "Communication Systems"
 author = ["Himanish"]
 date = 2022-09-19
-lastmod = 2022-10-16T10:22:40+05:30
+lastmod = 2022-11-01T16:03:11+05:30
 categories = ["comms", "electronics"]
 draft = false
 mathjax = "t"
@@ -45,9 +45,12 @@ mathjax = "t"
 #### Capacity {#capacity}
 
 \\[C = B \log\_2(1+\text{SNR})\\]
+It is impossible to transmit at a rate higher than C without incurring a large number of errors.
 
 
 ## Amplitude Modulation (AM) {#amplitude-modulation--am}
+
+-   Tone modulation: Modulation signal contains single frequency e.g. pure sinusoidal, so impulse arrows instead of continuous spectrum
 
 
 ### Baseband versus Carrier {#baseband-versus-carrier}
@@ -56,4 +59,109 @@ mathjax = "t"
 -   Carrier has high frequency. Sinusoidal carrier can be formed from AM, FM or PM. (amplitude, freq, phase modulations)
 
 
-### Double-Sideband (DSB) AM {#double-sideband--dsb--am}
+### Double-Sideband (DSB) Supressed Carrier AM {#double-sideband--dsb--supressed-carrier-am}
+
+Carrier frequency should be greater than bandwidth of modulating signal
+
+
+#### Synchronous/Coherent Demodulation {#synchronous-coherent-demodulation}
+
+Demodulation can be done by repeating the modulation process, and the original message can be obtained via a LPF. But it requires a signal with same frequency as carrier, which is difficult. Signal attenuates/time delay so receiver complexity increases. This is fine for point to point but not broadcast.
+
+
+### Conventional AM (DSB Full Carrier) {#conventional-am--dsb-full-carrier}
+
+-   The carrier is sent with the modulated signal. This can be done by a dc offset \\(A\_c\\) before modulation.
+    -   \\(|A\_c + m(t)| \geq 0\\) to avoid zero crossing to prevent phase reversal in freq domain, which distorts the envelope
+-   By following the envelope, we can recover the original signal
+    -   \\(f\_c >> f\_m\\) (max freq of message signal)
+
+
+#### Envelope Detection {#envelope-detection}
+
+-   Diode removes negative half
+-   RC circuit slowly discharges to follow the envelope
+-   \\(2\pi B < \frac{1}{RC} < \omega\_c\\)
+-   \\(RC \le \frac{1}{\omega\_c}\frac{\sqrt{1-\mu^2}}{\mu}\\)
+
+
+#### Modulation Index {#modulation-index}
+
+-   \\[\mu = \frac{A\_m}{A\_c}\\]
+
+    -   \\(\mu < 1\\) to prevent overmodulation
+    -   \\(A\_c = \frac{V\_{max} + V\_{min}}{2}\\)
+    -   \\(A\_m = \frac{V\_{max} - V\_{min}}{2}\\)
+
+    \\[\mu = \frac{V\_{max} - V\_{min}}{V\_{max} + V\_{min}}\\]
+
+    -   \\(\mu = \frac{V\_{max} - V\_{min}}{2V\_C + V\_{max} + V\_{min}}\\) for non zero offset
+-   For multi-tone modulation \\(\mu\_T = \sqrt{\mu\_1^2+\cdots+\mu\_n^2}\\)
+
+
+#### Power {#power}
+
+-   For singletone
+    \\[ P\_{SB} = P\_c \cdot \frac{\mu^2}{2}\\]
+    -   \\(P\_{tot} = P\_c (1 + \frac{\mu^2}{2})\\)
+-   In general,
+    \\[P\_T = \frac{\overline{m^2(t)}}{2} + \frac{A\_c^2}{2}\\]
+
+
+#### Efficiency {#efficiency}
+
+Useful power resides in sidebands, whereas carrier power is only for convenience in mod-demod.
+\\[\eta = \frac{P\_c}{P\_{c}+P\_{SB}} = \frac{\mu^2}{2+\mu^2}\\]
+
+
+### Single Sideband (SSB) {#single-sideband--ssb}
+
+\\[\phi\_{\text{USB, LSB}}(t) = m(t)\cos\omega\_ct \mp m\_h(t) \sin\omega\_ct\\]
+
+
+## Angle Modulation {#angle-modulation}
+
+{{< figure src="/images/angle-modulation.png" >}}
+
+-   Constant amplitude hence \\(P\_{av} = \frac{A^2}{2}\\)
+-   Bandwidth required more than AM and depends on modulation index unlike AM
+-   Better noise immunity than AM and can be increases with \\(\Delta f\\)
+-   Transmitters and receivers are more complex than AM
+-   All transmitted power is useful (no carrier and sidebands)
+
+    <https://www.youtube.com/watch?v=g1RiAmB1J5k>
+
+
+### Single Tone {#single-tone}
+
+-   Carrier signal \\(A\_c\cos\omega\_ct\\)
+-   Freq deviation \\(\Delta f = k\_fA\_m\\)
+-   Modulation index  \\(\beta = \frac{\Delta f}{f\_m}\\)
+    \\[\phi\_{FM}(t) = A\_c\cos(\omega\_ct + \beta \sin\omega\_mt)\\]
+
+
+### NBFM (Narrowband) {#nbfm--narrowband}
+
+If  \\[\left|k\_f \int\_{-\infty}^t m(\alpha)d\alpha\right| \ll 1\\] then \\(k\_f \int\_{-\infty}^t m(\alpha)d\alpha \approx k\_f\sin\omega\_mt\\)
+
+-   Bandwidth \\(B\_{FM} \approx 2f\_m\\) comparable to AM
+-   Requires \\(\beta \le 0.3\\) rad
+
+
+### WBFM (Wideband) {#wbfm--wideband}
+
+\\[\beta > 0.3\\]
+\\(B\_{FM}^{WB} \approx 2(\Delta f + B) = 2B(\beta+1)\\) [Carson's rule]
+
+
+### Phase Locked Loop (PLL) {#phase-locked-loop--pll}
+
+-   Phase detector: output proportional to phase difference between inputs
+-   VCO (Voltage Controlled Oscillator): monotonic frequency-vs-voltage characteristic (unstable)
+-   Loop filter: removes hi-freq components
+-   Stable hi-freq output using a reference lo-freq oscillator
+
+
+### Superheterodyne Receiver {#superheterodyne-receiver}
+
+<https://www.youtube.com/watch?v=dk6DdG4vs4Y>

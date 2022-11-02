@@ -35,9 +35,77 @@
 - Increasing \(P_s\)strengthens the signal pulse and suppresses the effect of channel noise and interference, to maintain a minimum SNR (signal-noise-ratio) over a longer distance
 *** Capacity
 \[C = B \log_2(1+\text{SNR})\]
-
+It is impossible to transmit at a rate higher than C without incurring a large number of errors.
 * Amplitude Modulation (AM)
+
+- Tone modulation: Modulation signal contains single frequency e.g. pure sinusoidal, so impulse arrows instead of continuous spectrum
+
 ** Baseband versus Carrier
 - *Baseband*. freq band of original message before modulation, measured close from zero. Much lower freq than modulated signal.
 - Carrier has high frequency. Sinusoidal carrier can be formed from AM, FM or PM. (amplitude, freq, phase modulations)
-** Double-Sideband (DSB) AM
+** Double-Sideband (DSB) Supressed Carrier AM
+Carrier frequency should be greater than bandwidth of modulating signal
+*** Synchronous/Coherent Demodulation
+Demodulation can be done by repeating the modulation process, and the original message can be obtained via a LPF. But it requires a signal with same frequency as carrier, which is difficult. Signal attenuates/time delay so receiver complexity increases. This is fine for point to point but not broadcast.
+** Conventional AM (DSB Full Carrier)
+- The carrier is sent with the modulated signal. This can be done by a dc offset \(A_c\) before modulation.
+  - \(|A_c + m(t)| \geq 0\) to avoid zero crossing to prevent phase reversal in freq domain, which distorts the envelope
+- By following the envelope, we can recover the original signal
+  - \(f_c >> f_m\) (max freq of message signal)
+*** Envelope Detection
+- Diode removes negative half
+- RC circuit slowly discharges to follow the envelope
+- \(2\pi B < \frac{1}{RC} < \omega_c\)
+- \(RC \le \frac{1}{\omega_c}\frac{\sqrt{1-\mu^2}}{\mu}\)
+*** Modulation Index
+
+- \[\mu = \frac{A_m}{A_c}\]
+  - \(\mu < 1\) to prevent overmodulation
+  - \(A_c = \frac{V_{max} + V_{min}}{2}\)
+  - \(A_m = \frac{V_{max} - V_{min}}{2}\)
+ \[\mu = \frac{V_{max} - V_{min}}{V_{max} + V_{min}}\]
+  - \(\mu = \frac{V_{max} - V_{min}}{2V_C + V_{max} + V_{min}}\) for non zero offset
+- For multi-tone modulation \(\mu_T = \sqrt{\mu_1^2+\cdots+\mu_n^2}\)
+*** Power
+- For singletone
+   \[ P_{SB} = P_c \cdot \frac{\mu^2}{2}\]
+  - \(P_{tot} = P_c (1 + \frac{\mu^2}{2})\)
+- In general,
+  \[P_T = \frac{\overline{m^2(t)}}{2} + \frac{A_c^2}{2}\]
+*** Efficiency
+Useful power resides in sidebands, whereas carrier power is only for convenience in mod-demod.
+\[\eta = \frac{P_c}{P_{c}+P_{SB}} = \frac{\mu^2}{2+\mu^2}\]
+
+** Single Sideband (SSB)
+\[\phi_{\text{USB, LSB}}(t) = m(t)\cos\omega_ct \mp m_h(t) \sin\omega_ct\]
+* Angle Modulation
+[[/images/angle-modulation.png]]
+
+- Constant amplitude hence \(P_{av} = \frac{A^2}{2}\)
+- Bandwidth required more than AM and depends on modulation index unlike AM
+- Better noise immunity than AM and can be increases with \(\Delta f\)
+- Transmitters and receivers are more complex than AM
+- All transmitted power is useful (no carrier and sidebands)
+
+  https://www.youtube.com/watch?v=g1RiAmB1J5k
+** Single Tone
+- Carrier signal \(A_c\cos\omega_ct\)
+- Freq deviation \(\Delta f = k_fA_m\)
+- Modulation index  \(\beta = \frac{\Delta f}{f_m}\)
+ \[\phi_{FM}(t) = A_c\cos(\omega_ct + \beta \sin\omega_mt)\]
+
+** NBFM (Narrowband)
+If  \[\left|k_f \int_{-\infty}^t m(\alpha)d\alpha\right| \ll 1\] then \(k_f \int_{-\infty}^t m(\alpha)d\alpha \approx k_f\sin\omega_mt\)
+- Bandwidth \(B_{FM} \approx 2f_m\) comparable to AM
+- Requires \(\beta \le 0.3\) rad
+** WBFM (Wideband)
+\[\beta > 0.3\]
+\(B_{FM}^{WB} \approx 2(\Delta f + B) = 2B(\beta+1)\) [Carson's rule]
+
+** Phase Locked Loop (PLL)
+- Phase detector: output proportional to phase difference between inputs
+- VCO (Voltage Controlled Oscillator): monotonic frequency-vs-voltage characteristic (unstable)
+- Loop filter: removes hi-freq components
+- Stable hi-freq output using a reference lo-freq oscillator
+** Superheterodyne Receiver
+[[https://www.youtube.com/watch?v=dk6DdG4vs4Y]]
