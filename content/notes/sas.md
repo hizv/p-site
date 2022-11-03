@@ -2,7 +2,7 @@
 title = "Signals and Systems"
 author = ["Himanish"]
 date = 2022-01-17
-lastmod = 2022-10-16T14:09:02+05:30
+lastmod = 2022-11-02T22:04:46+05:30
 categories = ["electronics"]
 draft = false
 mathjax = "t"
@@ -325,3 +325,8 @@ Discrete:\\[ a\_k = \frac{1}{N} \sum\_N x[n]e^{-jk\omega\_0n} \\]
 
 -   Absolutely summable signal: ROC must include unit circle
 -   Finite length signal: ROC must include entire z-plane
+
+{{< figure src="/images/common-rocs.png" >}}
+
+![](/images/z-transform-properties.png)
+![](/images/common-ztransform-properties.png)

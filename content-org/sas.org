@@ -178,3 +178,8 @@ Discrete:\[ a_k = \frac{1}{N} \sum_N x[n]e^{-jk\omega_0n} \]
 
 - Absolutely summable signal: ROC must include unit circle
 - Finite length signal: ROC must include entire z-plane
+
+[[/images/common-rocs.png]]
+
+[[/images/z-transform-properties.png]]
+[[/images/common-ztransform-properties.png]]
