@@ -2,7 +2,7 @@
 title = "Communication Systems"
 author = ["Himanish"]
 date = 2022-09-19
-lastmod = 2022-11-01T16:03:11+05:30
+lastmod = 2022-12-17T11:21:51+05:30
 categories = ["comms", "electronics"]
 draft = false
 mathjax = "t"
@@ -165,3 +165,39 @@ If  \\[\left|k\_f \int\_{-\infty}^t m(\alpha)d\alpha\right| \ll 1\\] then \\(k\_
 ### Superheterodyne Receiver {#superheterodyne-receiver}
 
 <https://www.youtube.com/watch?v=dk6DdG4vs4Y>
+
+
+## Digital Communication {#digital-communication}
+
+![](/images/digital-comms-flowchart.png)
+\\[x(t) = \sum\_k a\_kp\_T(t-kT) | T: \text{symbol duration}\\]
+
+
+### Spectrum of Transmitted Signal {#spectrum-of-transmitted-signal}
+
+-   Cannot find direct expectation of pulse as that would imply spectrum is zero but we need a spectrum to transmit a signal.
+-   Hence, power spectral density comes in. For that we need the autocorrelation.
+    -   \\(R\_{xx}(\tau) = E{x(t)x(t+\tau)} = \frac{P\_d}{T}R\_{P\_TP\_T}(\tau)\\)
+    -   \\(= \sum\_kE{a\_k^2}p(t-kT)p(t+\tau-kT)\\)
+    -   Data Symbol Power \\(P\_d = E{a\_k^2} = A^2\\)
+    -   Taking Fourier transform, on both sides,  \\[\overline{S\_{xx}(f)}^{\text{PSD of x(t)}} = \frac{P\_d}{T} \overline{S\_{PP}(f)}^{\text{Energy Spectral Density}}\\]
+-   \\(S\_{xx}(f) = \frac{P\_d}{T}|P\_T(f)|^2 = P\_dT sinc^2(fT)\\)
+
+
+### AWGN {#awgn}
+
+-   Additive: \\(y = x + n\\)
+-   White: Noise samples at any two different times are uncorrelated.
+    -   \\(R\_{NN}(\tau) = \frac{n}{2}\delta(\tau)\\)
+    -   \\(S\_{NN} = \frac{n}{2}\\) i.e. power spread equally across all frequencies just like white light
+-   Remains Gaussian after any filtering as filter is linear
+
+
+## Data Coding {#data-coding}
+
+
+### Convolutional Code {#convolutional-code}
+
+-   If size of shift register is \\(n\\), rate of code is \\(1/n\\), i.e. input sequence is \\(1/n\\) as long as output
+-   Either send the code \\(n\\) times faster so BW required is \\(n\\) times and energy per coded bit becomes \\(1/n\\)th so more chance of error in a bit. But we can use parity checks to correct these errors.
+-   Or send at the same rate but use a higher order modulation e.g. for 3-bit shift register use 8-PSK instead of BPSK so you can send 3 bits at once

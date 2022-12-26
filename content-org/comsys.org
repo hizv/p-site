@@ -109,3 +109,28 @@ If  \[\left|k_f \int_{-\infty}^t m(\alpha)d\alpha\right| \ll 1\] then \(k_f \int
 - Stable hi-freq output using a reference lo-freq oscillator
 ** Superheterodyne Receiver
 [[https://www.youtube.com/watch?v=dk6DdG4vs4Y]]
+
+
+* Digital Communication
+[[/images/digital-comms-flowchart.png]]
+\[x(t) = \sum_k a_kp_T(t-kT) | T: \text{symbol duration}\]
+** Spectrum of Transmitted Signal
+- Cannot find direct expectation of pulse as that would imply spectrum is zero but we need a spectrum to transmit a signal.
+- Hence, power spectral density comes in. For that we need the autocorrelation.
+  - \(R_{xx}(\tau) = E{x(t)x(t+\tau)} = \frac{P_d}{T}R_{P_TP_T}(\tau)\)
+  - \(= \sum_kE{a_k^2}p(t-kT)p(t+\tau-kT)\)
+  - Data Symbol Power \(P_d = E{a_k^2} = A^2\)
+  - Taking Fourier transform, on both sides,  \[\overline{S_{xx}(f)}^{\text{PSD of x(t)}} = \frac{P_d}{T} \overline{S_{PP}(f)}^{\text{Energy Spectral Density}}\]
+- \(S_{xx}(f) = \frac{P_d}{T}|P_T(f)|^2 = P_dT sinc^2(fT)\)
+** AWGN
+- Additive: \(y = x + n\)
+- White: Noise samples at any two different times are uncorrelated.
+  - \(R_{NN}(\tau) = \frac{n}{2}\delta(\tau)\)
+  - \(S_{NN} = \frac{n}{2}\) i.e. power spread equally across all frequencies just like white light
+- Remains Gaussian after any filtering as filter is linear
+
+* Data Coding
+** Convolutional Code
+- If size of shift register is \(n\), rate of code is \(1/n\), i.e. input sequence is \(1/n\) as long as output
+- Either send the code \(n\) times faster so BW required is \(n\) times and energy per coded bit becomes \(1/n\)th so more chance of error in a bit. But we can use parity checks to correct these errors.
+- Or send at the same rate but use a higher order modulation e.g. for 3-bit shift register use 8-PSK instead of BPSK so you can send 3 bits at once
