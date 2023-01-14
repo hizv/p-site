@@ -1,13 +1,15 @@
 +++
 title = "Control Systems"
-author = ["himi"]
-lastmod = 2022-05-10T15:58:50+05:30
+author = ["Himanish"]
+date = 2022-01-18
+lastmod = 2023-01-14T13:30:05+05:30
 categories = ["electronics"]
 draft = false
 mathjax = "t"
-[menu.main]
-  identifier = "control-systems"
-  weight = 2001
+[menu]
+  [menu.main]
+    identifier = "control-systems"
+    weight = 2001
 +++
 
 ## Mathematical Models of Systems {#mathematical-models-of-systems}
@@ -107,7 +109,8 @@ mathjax = "t"
 -   Rise time \\[t\_r = \frac{\pi-\theta}{\omega\_d}\\]
 -   Settling time
 
-\\[t\_s = \begin{cases} \frac{3}{\xi\omega\_n}  & 5\\% \text{ tolerance} \\\\
+\\[t\_s = \begin{cases}
+\frac{3}{\xi\omega\_n}  & 5\\% \text{ tolerance} \\\\
 \frac{4}{\xi\omega\_n}  & 2\\% \text{ tolerance}
 \end{cases}
 \\]

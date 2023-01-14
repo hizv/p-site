@@ -1,4 +1,6 @@
 #+TITLE: Control Systems
+#+date: 2022-01-18
+#+author: Himanish
 
 #+hugo_section: notes
 #+hugo_categories: electronics
@@ -76,7 +78,8 @@
   - Peak overshoot: \(M_p = \exp(-\pi\xi/\sqrt{1-\xi^2})\cdot 100\%\)
 - Rise time \[t_r = \frac{\pi-\theta}{\omega_d}\]
 - Settling time
-\[t_s = \begin{cases} \frac{3}{\xi\omega_n}  & 5\% \text{ tolerance} \\
+\[t_s = \begin{cases}
+\frac{3}{\xi\omega_n}  & 5\% \text{ tolerance} \\
 \frac{4}{\xi\omega_n}  & 2\% \text{ tolerance}
 \end{cases}
 \]
