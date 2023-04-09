@@ -1,14 +1,14 @@
 +++
-title = "Deep Learning"
+title = "Artificial Intelligence"
 author = ["Himanish"]
 date = 2023-02-27
-lastmod = 2023-02-27T19:26:15+05:30
+lastmod = 2023-04-09T11:31:37+05:30
 categories = ["cs"]
 draft = false
 mathjax = "t"
 [menu]
   [menu.main]
-    identifier = "deep-learning"
+    identifier = "artificial-intelligence"
     weight = 2001
 +++
 
