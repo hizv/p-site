@@ -1,4 +1,4 @@
-baseURL = 'https://himii.tech'
+baseURL = 'https://himii.netlify.app'
 title = "Himanish's Notes"
 
 languageCode = 'en-us'
