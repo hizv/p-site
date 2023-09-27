@@ -2,7 +2,7 @@
 title = "Electronic Devices"
 author = ["Himanish"]
 date = 2021-09-07
-lastmod = 2022-10-16T10:23:20+05:30
+lastmod = 2023-09-27T10:53:32+05:30
 categories = ["electronics"]
 draft = false
 mathjax = "t"
@@ -140,8 +140,7 @@ For energies much greater than the Fermi energy (\\(E-E\_F \geq 3\\) kT), the di
 
 #### Drift Velocity and Mobility {#drift-velocity-and-mobility}
 
-\\(v\_d = \\)
-\\(\begin{cases}
+\\(v\_d = \begin{cases}
 \mu E & E < E\_c \text{ [low field]}\\\\
 v\_{sat} & E \geq E\_c \text{ [high field]}
 \end{cases} \\)
@@ -204,10 +203,10 @@ Excess carriers are different from doping; in doping, the semiconductor stays in
 
 -   \\[J = q[n\mu\_n+p\mu\_p]\mathcal{E} = \sigma E \\]
 
-\\(\sigma = \\) \\(\begin{cases}
+\\[\sigma = \begin{cases}
 \sigma\_n & [n-type]\\\\
 \sigma\_p & [p-type]
-\end{cases} \\)
+\end{cases} \\]
 
 -   \\[\mathcal{E} = \frac{V}{l}\\]
 

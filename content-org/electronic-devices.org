@@ -104,8 +104,7 @@ Three integers used to describe a plane.
   - As \(T \uparrow, n_i \uparrow \uparrow\)
 ** Drift of Carriers in Fields
 *** Drift Velocity and Mobility
- \(v_d = \)
-\(\begin{cases}
+ \(v_d = \begin{cases}
 \mu E & E < E_c \text{ [low field]}\\
 v_{sat} & E \geq E_c \text{ [high field]}
 \end{cases} \)
@@ -147,10 +146,10 @@ Excess carriers are different from doping; in doping, the semiconductor stays in
 - \[ t_{drift} = \frac{\Delta x}{v_d}\]
 
 - \[J = q[n\mu_n+p\mu_p]\mathcal{E} = \sigma E \]
-\(\sigma = \) \(\begin{cases}
+\[\sigma = \begin{cases}
 \sigma_n & [n-type]\\
 \sigma_p & [p-type]
-\end{cases} \)
+\end{cases} \]
 - \[\mathcal{E} = \frac{V}{l}\]
 *** Formal Analysis
 - As a system always tries to re-establish equilibrium, when light is impinged on a semiconductor, creating excess carriers i.e.\(np > n_i^2\), recombination rate R shoots up to go back home. [net recombination occurs: R > G]
