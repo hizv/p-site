@@ -2,7 +2,7 @@
 title = "Natural Language Processing"
 author = ["Himanish"]
 date = 2023-09-20
-lastmod = 2023-09-20T21:50:37+05:30
+lastmod = 2023-10-08T11:36:02+05:30
 categories = ["cs"]
 draft = false
 mathjax = "t"
@@ -234,3 +234,32 @@ Mini-batch gradient is average of all gradients:
 #### L1 (Lasso) regularisation {#l1--lasso--regularisation}
 
 \\[R(\theta) = \sum\_i|\theta\_i|\\]
+
+
+## Vector Semantics and Embeddings {#vector-semantics-and-embeddings}
+
+
+### Lexical Semantics {#lexical-semantics}
+
+-   Lemma/citation form: form in dictionary. Inflicted forms don't have separated definitions, hence mouse is the lemma for mice as well.
+-   Mice is a wordform of mouse, sang of sing.
+-   Lemmas can have multiple word senses (polysemous), i.e. multiple meanings.
+-   Synonyms don't change the truth conditions of a sentence on substitution, hence they have the same _propositional meaning_.
+    -   Though truth-preserving, they aren't identical in meaning. Difference in linguistic form associated with difference in meaning: principle of contrast.
+-   Words can have relatedness despite not being similar, called word association in psychology, e.g. coffee and cup.
+    -   Relatedness: belonging to same semantic field.
+    -   Topic models: induce sets of associated words from text (unsupervised) e.g. Latent Dirichlet Allocation (LDA)
+-   Antonymy: opposites with respect to one feature of meaning, else similar.
+    -   reversives: up/down
+    -   binary opposition: long/short
+-   Connotation (sentiment): affective meaning.
+    -   positive (copy) vs negative (fake)
+    -   evaluation: [valence, arousal, dominance] represents meaning as a point in space.
+        -   valence: pleasantness of stimulus (happy vs unhappy)
+        -   arousal: intensity of emotion provoked (excited vs calm)
+        -   dominance: degree of control exerted (controlling vs awed/influenced)
+
+
+### Vector Semantics {#vector-semantics}
+
+-   Words can be defined by environments they exist in
