@@ -2,7 +2,7 @@
 title = "Algorithms"
 author = ["Himanish"]
 date = 2021-12-23
-lastmod = 2022-10-16T10:26:10+05:30
+lastmod = 2024-08-12T21:20:37+05:30
 categories = ["cs"]
 draft = false
 mathjax = "t"
@@ -187,25 +187,10 @@ We want CountSplitInv to be linear (\\(\mathcal{O}(n)\\))  so that Count will ru
 -   Divide the matrix into quadrants, similiar to how we divided a number into halves in Karatsuba multiplication.
 -   The quadrants behave like normal matrix elements for matrix multiplication i.e. if
 
-\\[X =\left(\begin{array}{c|c}
-  A & B \\\\\
-  \hline
-  C & D
-\end{array}\right), \quad
-Y =\left(\begin{array}{c|c}
-  E & F \\\\\
-  \hline
-  G & H
-\end{array}
-\right)
+\\[
+X =\left(\begin{array}{c|c} A & B \\\\ \hline C & D \end{array}\right), \quad Y =\left(\begin{array}{c|c} E & F \\\\ \hline G & H \end{array} \right)
 \\]
-then\\[ X =\left(\begin{array}{c|c}
-  AE+BG & AF+BH \\\\\
-  \hline
-  CE+DG & CF+DH
-\end{array}
-\right)
-\\]
+then\\[ X =\left(\begin{array}{c|c} AE+BG & AF+BH \\\\ \hline CE+DG & CF+DH \end{array} \right) \\]
 
 
 #### Trivial Recursive Algorithm {#trivial-recursive-algorithm}
@@ -246,11 +231,7 @@ T(n): maximum number of operations done by algorithm
 
 #### Master Theorem {#master-theorem}
 
-\\[T(n) = \begin{cases}
-\mathcal{O}(n^d \log n) & a = b^d \\\\
-\mathcal{O}(n^d) & a < b^d \\\\
-\mathcal{O}(n^{\log\_ba}) & a > b^d
-\end{cases}\\]
+\\[T(n) = \begin{cases} \mathcal{O}(n^d \log n) & a = b^d \\\ \mathcal{O}(n^d) & a < b^d \\\ \mathcal{O}(n^{\log\_ba}) & a > b^d \end{cases}\\]
 
 -   Interpretation:
     -   a: Rate of subproblem proliferation
