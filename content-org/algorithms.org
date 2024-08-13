@@ -216,9 +216,10 @@ Partition (A, l, r)
   - Sample space: \(\Omega\)
   - Random choices: \(\sigma\)
   - \(z_i = i^{th} \text{smallest element of array A i.e.} i^{th} \text{ order statistic} \)
-- Key random variable: \(C(\sigma) = \text{# of comparisons between two elements made by QSort} \), as running time of QSort dominated by comparisons.
+- Key random variable:
+\(C(\sigma) = \text{\# of comparisons between two elements made by QSort} \), as running time of QSort is dominated by comparisons.
 - We can't apply the Master Method as the subproblems are random, unbalanced.
-- For indices \(i < j\), let \(X_{ij} = \text{# of times } z_i, z_j \text{ get compared} \).
+- For indices \(i < j\), let \(X_{ij} = \text{\# of times } z_i, z_j \text{ get compared} \).
   - Now the only comparisons that occur are between the pivot and \(z_i\). Once an element has been compared with the pivot, the pivot would be excluded from further recursive calls, hence they would never be compared again.
 - So, \(C(\sigma) = \sum_{i=1}^{n-1}\sum_{j=i+1}^n X_{ij}(\sigma)\)
   - \(E[C] = \sum_{i=1}^{n-1}\sum_{j=i+1}^n E[X_{ij}]\)

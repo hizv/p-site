@@ -2,7 +2,7 @@
 title = "Algorithms"
 author = ["Himanish"]
 date = 2021-12-23
-lastmod = 2024-08-12T21:20:37+05:30
+lastmod = 2024-08-13T16:49:32+05:30
 categories = ["cs"]
 draft = false
 mathjax = "t"
@@ -299,9 +299,12 @@ Partition (A, l, r)
     -   Sample space: \\(\Omega\\)
     -   Random choices: \\(\sigma\\)
     -   \\(z\_i = i^{th} \text{smallest element of array A i.e.} i^{th} \text{ order statistic} \\)
--   Key random variable: \\(C(\sigma) = \text{# of comparisons between two elements made by QSort} \\), as running time of QSort dominated by comparisons.
+-   Key random variable:
+
+\\(C(\sigma) = \text{\\# of comparisons between two elements made by QSort} \\), as running time of QSort is dominated by comparisons.
+
 -   We can't apply the Master Method as the subproblems are random, unbalanced.
--   For indices \\(i < j\\), let \\(X\_{ij} = \text{# of times } z\_i, z\_j \text{ get compared} \\).
+-   For indices \\(i < j\\), let \\(X\_{ij} = \text{\\# of times } z\_i, z\_j \text{ get compared} \\).
     -   Now the only comparisons that occur are between the pivot and \\(z\_i\\). Once an element has been compared with the pivot, the pivot would be excluded from further recursive calls, hence they would never be compared again.
 -   So, \\(C(\sigma) = \sum\_{i=1}^{n-1}\sum\_{j=i+1}^n X\_{ij}(\sigma)\\)
     -   \\(E[C] = \sum\_{i=1}^{n-1}\sum\_{j=i+1}^n E[X\_{ij}]\\)
