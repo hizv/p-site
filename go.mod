@@ -1,5 +1,5 @@
 module p-site
 
-go 1.18
+go 1.24.6
 
-require gitlab.com/kaushalmodi/hugo-theme-refined v0.12.4 // indirect
+require github.com/hizv/hugo-theme-refined v0.0.0-20250827103928-39df7b5b37b8 // indirect
