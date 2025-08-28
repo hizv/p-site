@@ -9,6 +9,7 @@ disableAliases = true
   name = "Himanish"
   bio = "These infernal revelations beamed through the cryptic shadows are totally uncool."
 
+[Social]
   github = "hizv"
   linkedin = "him-ag"
 
@@ -43,7 +44,32 @@ isPlainText = true
 notAlternative = true
 
 [Params]
-  mainSections = ["posts", "notes"]
+  mainSections = ["about", "notes"]
+  tagline = "Notes on software, systems, and the science of making machines learn"
+  description = "Notes on software, systems, and the science of making machines learn"
+
+  feedSections = ["posts"]
+
+  html5_validator = true
+
+  cache_busting = true
+  # cache_busting_debug = true
+  # cache_busting_debug = false
+
+  [Params.social]
+    use_icons = true
+
+    [[Params.social.service]]
+      name = "Github"
+      link = "https://github.com/hizv/"
+      relme = true
+
+    [[Params.social.service]]
+      name = "Linkedin"
+      link = "https://www.linkedin.com/in/him-ag/"
+      relme = true
+
+
 
 [module]
   [[module.imports]]
