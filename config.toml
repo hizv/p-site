@@ -16,6 +16,7 @@ disableAliases = true
 [Permalinks]
   posts = "/:filename/"
   notes = "/notes/:filename/"
+  blog = "/blog/:filename/"
   about = "about.md"
 
 [Taxonomies] 
@@ -44,11 +45,11 @@ isPlainText = true
 notAlternative = true
 
 [Params]
-  mainSections = ["about", "notes"]
+  mainSections = ["about", "blog", "notes"]
   tagline = "Notes on software, systems, and the science of making machines learn"
   description = "Notes on software, systems, and the science of making machines learn"
 
-  feedSections = ["posts"]
+  feedSections = ["blog", "posts"]
 
   html5_validator = true
 
