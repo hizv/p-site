@@ -1,4 +1,4 @@
-baseURL = 'https://himii.netlify.app'
+baseURL = 'https://hmax.dev'
 title = "Himanish Agarwal"
 
 languageCode = 'en-us'
@@ -68,7 +68,7 @@ notAlternative = true
     [[Params.social.service]]
       name = "Email"
       link = "mailto:hagarwal67@gatech.edu"
-      
+
     [[Params.social.service]]
       name = "Github"
       link = "https://github.com/hizv/"
