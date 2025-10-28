@@ -10,4 +10,4 @@ I have written code in quiet hours and in restless ones. In industry I built pip
 
 I return, again and again, to the border where software and systems meet. There is the elegance of an algorithm, the stubbornness of a cache, the silence of a GPU waiting for data, and the long patience of models that learn only when given the chance to see more of the world.
 
-This place is my notebook. Here I keep thoughts on engineering and on the machinery of intelligence. Some entries are small and sharp. Others wander and circle, searching for their form. I write for those who build, for those who study, and for those who wonder what lies between the two.
+Now, in Atlanta, the work continues. At Georgia Tech, I contribute to [Vajra](https://project-vajra.github.io/), a next-generation LLM serving engine. This is the work of the last mile: taking a trained model and building the machinery to serve its intelligence to the world. My part is in the choreography of it all, contributing to the scheduling and benchmarking infrastructure that manages the torrent of questions and measures the machine's response.
